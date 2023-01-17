@@ -1,29 +1,18 @@
-# QuestLima
+[![Java CI](https://github.com/opifexM/CatQuest/actions/workflows/main.yml/badge.svg)](https://github.com/opifexM/CatQuest/actions/workflows/main.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7849196a1b5d443646f3/maintainability)](https://codeclimate.com/github/opifexM/CatQuest/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7849196a1b5d443646f3/test_coverage)](https://codeclimate.com/github/opifexM/CatQuest/test_coverage)
 
-Ребята и девчата, всем привет!
+Game Web link: https://catquest.herokuapp.com/
 
-На этот раз у нас более сложный проект, который будет трудно объединить 
-в один общий проект со всем зависимостями.
-Поэтому поступим просто. 
+## Cat Quest
+In the game, you need to find a way out of the cave by passing through all areas of the map.
 
-Тут первоначально лежит абсолютно пустой проект. Заготовка, такая же как может быть сгенерирована в IDEA.
-Договоримся, что Java у нас будет 17-я. У всех. Привыкайте использовать только LTS.
-Вот прямо без каких-либо плюшек, так что POM.xml в любом случае надо будет заменить на свой.
+Technologies:
+- Tomcat (embedded)
+- Servlet, JSP, JSTL, JDBC
+- H2 Database (embedded)
 
-## Что нужно сделать.
-
-1. Сделайте fork этого репозитория.
-2. Создайте в нем ветку со своей фамилией, например, ivanov (я же тут тоже сделаю такие ветки).
-3. Размещайте в этой ветке свое решение.
-4. В конце вам нужно будет сделать pull request из своей ветки (в своем fork-e) 
-   в такую же точно ветку (в этом удаленном репозитории) и как обычно заполнить форму проектов
-5. После сдачи ваших проектов я положу в **master/main** тот пример, который буду 
-   параллельно с вами разрабатывать на факультативах. На этот раз код копипастить не получится, 
-   смотрите видео, разбирайтесь, почему что и где сделано.
-   Не копируйте, нужно ВАШЕ решение. Но мы уже и не совсем зеленые, правда ведь ;)
-6. Проверять проекты по итогам третьего модуля буду я, скорее всего быстро не получится ;).
-7. Планируйте время так, первые две недели - основной функционал. 
-   Последняя неделя - плюшки, рефакторинг, тесты, красоты.
-8. Если будут какие-то моменты - я обновлю это README. Поглядывайте периодически.
-
-2022-2023 JRU Lima, Александр Хмелев.
+Features:
+- Map generation
+- Moving around the map
+- Loading/Saving the game state
