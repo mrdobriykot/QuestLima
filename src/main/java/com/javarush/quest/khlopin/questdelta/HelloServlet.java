@@ -1,7 +1,10 @@
-package com.javarush.quest.khmelov.questdelta;
+package com.javarush.quest.khlopin.questdelta;
 
 import java.io.*;
 
+import com.javarush.quest.khlopin.questdelta.entity.Role;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -9,9 +12,6 @@ import jakarta.servlet.annotation.*;
 public class HelloServlet extends HttpServlet {
     private String message;
 
-    public void init() {
-        message = "Hello World!";
-    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
