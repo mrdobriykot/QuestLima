@@ -7,7 +7,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -30,7 +29,7 @@ public class UserServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/user.jsp");
             requestDispatcher.forward(request, response);
         }
-        response.sendRedirect("users");
+        response.sendRedirect("user");
     }
 
     @Override
@@ -47,6 +46,7 @@ public class UserServlet extends HttpServlet {
             userService.update(user);
         } else if (parameterMap.containsKey("delete")) {
             userService.delete(user);
+            request.getSession().invalidate();
         } else throw new IllegalStateException("unknown command");
         response.sendRedirect("users");
     }

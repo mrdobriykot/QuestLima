@@ -10,6 +10,7 @@ public class UserRepository extends BaseRepository<User> {
         create(User.builder().id(-1L).login("Desmont").password("123").build());
         create(User.builder().id(-1L).login("Amitamaru").password("1111").build());
         create(User.builder().id(-1L).login("Muraved").password("qwerty").build());
+        create(User.builder().id(-1L).login("q").password("q").build());
     }
 
     @Override

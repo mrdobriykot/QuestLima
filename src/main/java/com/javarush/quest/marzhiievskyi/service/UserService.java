@@ -31,4 +31,12 @@ public enum UserService {
     public Optional<User> get(Long id) {
         return Optional.ofNullable(userRepository.get(id));
     }
+
+    public Optional<User> get(String login, String password) {
+        User userToFind = User.builder()
+                .login(login)
+                .password(password)
+                .build();
+        return userRepository.find(userToFind).findAny();
+    }
 }
