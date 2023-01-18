@@ -28,7 +28,7 @@ public enum UserService {
         return userRepository.getAll();
     }
 
-    public User get(Long id) {
-        return userRepository.get(id);
+    public Optional<User> get(Long id) {
+        return Optional.ofNullable(userRepository.get(id));
     }
 }
