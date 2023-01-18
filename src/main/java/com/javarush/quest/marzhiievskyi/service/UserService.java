@@ -1,0 +1,34 @@
+package com.javarush.quest.marzhiievskyi.service;
+
+import com.javarush.quest.marzhiievskyi.entity.User;
+import com.javarush.quest.marzhiievskyi.repository.Repository;
+import com.javarush.quest.marzhiievskyi.repository.UserRepository;
+
+import java.util.Collection;
+import java.util.Optional;
+
+public enum UserService {
+    USER_SERVICE;
+
+    private final Repository<User> userRepository = new UserRepository();
+
+    public void create(User user) {
+        userRepository.create(user);
+    }
+
+    public void update(User user) {
+        userRepository.update(user);
+    }
+
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
+
+    public Collection<User> getAll() {
+        return userRepository.getAll();
+    }
+
+    public User get(Long id) {
+        return userRepository.get(id);
+    }
+}
