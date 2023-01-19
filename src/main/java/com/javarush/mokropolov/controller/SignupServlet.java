@@ -37,7 +37,7 @@ public class SignupServlet extends HttpServlet {
                 .role(Role.valueOf(request.getParameter(Key.ROLE)))
                 .build();
         userService.create(user);
-        imageService.uploadImage(request, user.getId());
+        imageService.uploadImage(request, user.getImage());
         Jsp.redirect(response, Key.USERS);
     }
 }

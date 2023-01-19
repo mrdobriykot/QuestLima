@@ -66,7 +66,7 @@ public class UserServlet extends HttpServlet {
         } else if (parameterMap.containsKey("delete")) {
             userService.delete(user);
         } else throw new IllegalStateException("unknown command");
-        imageService.uploadImage(request, user.getId());
+        imageService.uploadImage(request, user.getImage());
         Jsp.redirect(response, Key.USER);
     }
 }
