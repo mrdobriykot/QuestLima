@@ -19,8 +19,15 @@ public class MyProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/profile.jsp");
+        HttpSession session = request.getSession();
+        User user =(User) session.getAttribute("user");
+        if (user != null) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/profile.jsp");
+            requestDispatcher.forward(request, response);
+        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login.jsp");
         requestDispatcher.forward(request, response);
+
     }
 
     @Override
@@ -28,6 +35,5 @@ public class MyProfileServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         response.sendRedirect("user" + "?id=" + user.getId());
-        //TODO not logged way to my profile, need finish
     }
 }
