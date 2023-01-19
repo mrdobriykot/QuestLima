@@ -17,19 +17,24 @@
 <%--    </div>--%>
 <%--</div>--%>
 
-<form class="form-horizontal" action="profile" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" action="profile" method="post" enctype="multipart/form-data"
+      style="width: 70%; margin: auto">
     <fieldset>
 
         <!-- Form Name -->
-        <legend style="text-align: center">Info about ${user.login}</legend>
-
-        Player login: ${user.login}<br>
-        Player password: ${user.password}<br>
-        Total games: there wil be shown total info about played games<br><br>
+        <legend style="text-align: center">${user.login} profile</legend>
+        <div class="bd-example">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Player login: ${user.login}</li>
+                <li class="list-group-item">Player password: ${user.password}</li>
+                <li class="list-group-item">Total games: there wil be shown total info about played games</li>
+                <li class="list-group-item">Some info about player: </li>
+            </ul>
+        </div>
         <!-- Button -->
-        <div class="form-group">
-            <div class="col-md-4">
-                <button id="user" name="user" class="btn btn-primary">Edit</button>
+        <div class="form-group" >
+            <div class="col-md-4" style=" margin: auto;text-align: center">
+                <button id="user" name="user" class="btn btn-primary" style="width: 20%">Edit</button>
             </div>
         </div>
 

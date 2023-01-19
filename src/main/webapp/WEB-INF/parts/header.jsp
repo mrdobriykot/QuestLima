@@ -23,13 +23,13 @@
     <li><a href="${pageContext.request.contextPath}/users" class="nav-link px-2 link-dark">Players</a></li>
   </ul>
 
-  <div class="col-md-3 text-end">
+  <div class="col-md-3 text-end" style="margin-right: 10px">
     <c:choose>
       <c:when test="${not empty sessionScope.user}">
         <button type="button" class="btn btn-outline-primary me-2" onclick="document.location='logout'">Logout</button>
       </c:when>
       <c:otherwise>
-        <button type="button" class="btn btn-outline-primary me-2" onclick="document.location='login'">Login</button>
+        <button type="button" class="btn btn-outline-primary me-2" onclick="document.location='login'">Sign in</button>
         <button type="button" class="btn btn-primary" onclick="document.location='signup'">Sign-up</button>
       </c:otherwise>
     </c:choose>
