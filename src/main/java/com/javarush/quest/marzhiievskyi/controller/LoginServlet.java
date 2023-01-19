@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User user = optionalUser.get();
             session.setAttribute("user", user);
-            response.sendRedirect("user" + "?id=" + user.getId());
+            response.sendRedirect("profile");
         } else {
             response.sendRedirect("login"); //TODO msg with err
         }

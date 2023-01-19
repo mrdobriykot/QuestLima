@@ -20,12 +20,12 @@ public class MyProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user =(User) session.getAttribute("user");
-        if (user != null) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/profile.jsp");
-            requestDispatcher.forward(request, response);
+        User user = (User) session.getAttribute("user");
+        String targetForward = "WEB-INF/profile.jsp";
+        if (user == null) {
+            targetForward = "WEB-INF/login.jsp";
         }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetForward);
         requestDispatcher.forward(request, response);
 
     }

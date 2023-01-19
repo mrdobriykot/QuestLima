@@ -44,10 +44,12 @@ public class UserServlet extends HttpServlet {
             userService.create(user);
         } else if (parameterMap.containsKey("update")) {
             userService.update(user);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
         } else if (parameterMap.containsKey("delete")) {
             userService.delete(user);
             request.getSession().invalidate();
         } else throw new IllegalStateException("unknown command");
-        response.sendRedirect("users");
+        response.sendRedirect("profile");
     }
 }

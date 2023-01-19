@@ -37,6 +37,6 @@ public class SignUpServlet extends HttpServlet {
         userService.create(user);
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-        response.sendRedirect("user" + "?id=" + user.getId());
+        response.sendRedirect("profile");
     }
 }
