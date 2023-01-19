@@ -8,7 +8,7 @@ public class UserRepository implements Repository {
 
     private final HashMap<Long, User> userMap = new HashMap<>();
 
-    public static final AtomicLong id = new AtomicLong();
+    public static final AtomicLong id = new AtomicLong(3);
     public UserRepository() {
         userMap.put(1L,new User(1L,"Mihail","recd123",Role.ADMIN));
         userMap.put(2L, new User(2L,"Emma","saf423",Role.USER));
@@ -16,8 +16,9 @@ public class UserRepository implements Repository {
     }
 
     @Override
-    public void create(User user) {
-        userMap.put(id.incrementAndGet(),user);
+    public void create(String login, String password, Role role) {
+        long key = id.incrementAndGet();
+        userMap.put(key,new User(key,login,password,role));
     }
 
     @Override

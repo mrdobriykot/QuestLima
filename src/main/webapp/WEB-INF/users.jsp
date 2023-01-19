@@ -20,7 +20,7 @@
     <p>Edit user <a href="user?id=${user.id}"> ${user.userName} </a> </p>
 </c:forEach>
 
-<form class="form-horizontal" action="createNewUser.jsp" method="get">
+<form class="form-horizontal" action="createNewUser" method="get">
     <fieldset>
         <!-- Form Name -->
         <legend></legend>

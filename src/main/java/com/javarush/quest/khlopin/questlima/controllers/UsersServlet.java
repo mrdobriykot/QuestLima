@@ -1,6 +1,7 @@
 package com.javarush.quest.khlopin.questlima.controllers;
 
 import com.javarush.quest.khlopin.questlima.entity.DB;
+import com.javarush.quest.khlopin.questlima.entity.Role;
 import com.javarush.quest.khlopin.questlima.entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -13,10 +14,20 @@ import java.util.Collection;
 public class UsersServlet extends HttpServlet {
 
     @Override
+    public void init(ServletConfig config) throws ServletException {
+        config.getServletContext().setAttribute("roles", Role.values());
+        super.init(config);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Collection<User> allUsers = DB.userDataBase.getAll();
         request.setAttribute("users",allUsers);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("users.jsp");
+        System.out.println(allUsers);
+        for (User user : allUsers) {
+            System.out.println(user);
+        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/users.jsp");
         requestDispatcher.forward(request,response);
     }
 

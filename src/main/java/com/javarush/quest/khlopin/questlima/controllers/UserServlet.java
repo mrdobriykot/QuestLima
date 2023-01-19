@@ -25,7 +25,7 @@ public class UserServlet extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         User user = DB.userDataBase.get(id);
         request.setAttribute("user", user);
-        request.getRequestDispatcher("user.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/user.jsp").forward(request, response);
     }
 
     @Override
@@ -43,6 +43,6 @@ public class UserServlet extends HttpServlet {
             DB.userDataBase.update(currentUser.getId(), updatedUser);
         }
 
-        request.getRequestDispatcher("users.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/complete.jsp").forward(request, response);
     }
 }
