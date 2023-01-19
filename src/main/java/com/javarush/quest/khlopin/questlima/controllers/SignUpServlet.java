@@ -19,7 +19,7 @@ public class SignUpServlet extends HttpServlet {
             System.out.println(Arrays.toString(stringEntry.getValue()));
             System.out.println(stringEntry.getKey());
         }
-        request.getRequestDispatcher("WEB-INF/signUp.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/auth/signUp.jsp").forward(request,response);
     }
 
     @Override

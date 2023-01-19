@@ -22,23 +22,30 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
                 <li><a href="index.jsp" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Play in Quest</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Your Page</a></li>
             </ul>
 
 <%--            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">--%>
 <%--                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."--%>
 <%--                       aria-label="Search">--%>
 <%--            </form>--%>
-
+            <c:choose>
+                <c:when test="${not empty sessionScope.user}">
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2" value="log"><a href="#">login</a> </button>
-                    <button type="button" class="btn btn-warning" value="reg"><a href="signup">sign-up</a></button>
+                    <button type="button" class="btn btn-outline-light me-2" value="log"><a href="#">Profile</a> </button>
+                    <button type="button" class="btn btn-warning" value="reg"><a href="#">Logout</a></button>
                 </div>
-
+                </c:when>
+                <c:otherwise>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-outline-light me-2"><a href="loginServlet">Login</a> </button>
+                        <button type="button" class="btn btn-warning"><a href="signup">Sign-Up</a></button>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </header>

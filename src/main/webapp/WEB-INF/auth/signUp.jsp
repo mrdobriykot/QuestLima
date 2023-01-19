@@ -1,4 +1,4 @@
-<%@include file="pageConstructor/header.jsp"%>
+<%@include file="../pageConstructor/header.jsp"%>
 
 
 <form action="signup" method="post">
@@ -24,20 +24,6 @@
             </div>
         </div>
 
-<%--        <!-- Select Basic -->--%>
-<%--        <div class="form-group">--%>
-<%--            <label class="col-md-4 control-label" for="role">Role</label>--%>
-<%--            <div class="col-md-4">--%>
-<%--                <select id="role" name="role" class="form-control">--%>
-<%--                    <c:forEach items="${applicationScope.roles}" var="role">--%>
-<%--                        <option value="${role}">${role}</option>--%>
-<%--                    </c:forEach>--%>
-<%--                </select>--%>
-
-<%--            </div>--%>
-<%--        </div>--%>
-
-        <!-- Button (Double) -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1"></label>
             <div class="col-md-8">
@@ -48,4 +34,4 @@
     </fieldset>
 </form>
 
-<%@include file="pageConstructor/footer.jsp"%>
+<%@include file="../pageConstructor/footer.jsp"%>
