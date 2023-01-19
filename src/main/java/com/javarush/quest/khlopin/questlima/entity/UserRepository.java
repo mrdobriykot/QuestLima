@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questdelta.entity;
+package com.javarush.quest.khlopin.questlima.entity;
 
 import java.util.Collection;
 import java.util.HashMap;

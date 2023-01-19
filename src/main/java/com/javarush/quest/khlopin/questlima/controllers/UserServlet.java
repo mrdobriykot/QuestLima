@@ -1,14 +1,13 @@
-package com.javarush.quest.khlopin.questdelta.controllers;
+package com.javarush.quest.khlopin.questlima.controllers;
 
-import com.javarush.quest.khlopin.questdelta.entity.DB;
-import com.javarush.quest.khlopin.questdelta.entity.Role;
-import com.javarush.quest.khlopin.questdelta.entity.User;
+import com.javarush.quest.khlopin.questlima.entity.DB;
+import com.javarush.quest.khlopin.questlima.entity.Role;
+import com.javarush.quest.khlopin.questlima.entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 
 @WebServlet(name = "UserServlet", value = "/user")

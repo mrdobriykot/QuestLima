@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questdelta.entity;
+package com.javarush.quest.khlopin.questlima.entity;
 
 public class DB {
 

@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: mrfre
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Create New User</title>
@@ -46,8 +48,7 @@
     <div class="col-md-4">
         <select id="role" name="role" class="form-control">
             <c:forEach items="${applicationScope.roles}" var="role">
-                <option>${role}</option>
-                <option>superRole</option> <%-- testRole--%>
+                <option value="${role}">${role}</option>
             </c:forEach>
         </select>
 

@@ -1,7 +1,6 @@
-package com.javarush.quest.khlopin.questdelta.entity;
+package com.javarush.quest.khlopin.questlima.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 @Data

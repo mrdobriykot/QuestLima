@@ -1,6 +1,6 @@
-package com.javarush.quest.khlopin.questdelta.controllers;
+package com.javarush.quest.khlopin.questlima.controllers;
 
-import com.javarush.quest.khlopin.questdelta.entity.Role;
+import com.javarush.quest.khlopin.questlima.entity.Role;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
