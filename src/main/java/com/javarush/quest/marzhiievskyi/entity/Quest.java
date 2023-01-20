@@ -11,9 +11,8 @@ import java.util.Collection;
 public class Quest implements AbstractEntity{
     private Long id;
     private String name;
-    private String text;
+    private String startingText;
     private Long startQuestionId;
-
     private Collection<Question> questions = new ArrayList<>();
     private Collection<User> players = new ArrayList<>();
 

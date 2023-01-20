@@ -9,20 +9,16 @@
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Login</th>
-                <th scope="col">Password</th>
-                <th scope="col">Games</th>
+                <th scope="col">Name of the game</th>
 
             </tr>
             </thead>
             <tbody>
 
-            <c:forEach var="user" items="${requestScope.users}">
+            <c:forEach var="quest" items="${requestScope.quests}">
                 <tr>
-                    <th scope="row">${user.id}</th>
-                    <td>${user.login}</td>
-                    <td>${user.password}</td>
-                    <td>${user.games}</td>
+                    <th scope="row">${quest.id}</th>
+                    <td> <a href="quest?id=${quest.id}">${quest.name}</a></td>
                 </tr>
             </c:forEach>
 

@@ -3,7 +3,7 @@
 
 <main class="container">
     <div class="bg-light p-5 rounded">
-        <h1>Epic space quest</h1>
+        <h1>Quest games</h1>
         <p class="lead">
             Hello and welcome to the quest game project. On navigation menu you can register or
             login if you already have account. Also, you can check other players and their info by clicking "Players".

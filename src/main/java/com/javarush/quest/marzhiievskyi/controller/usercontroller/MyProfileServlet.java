@@ -1,7 +1,6 @@
-package com.javarush.quest.marzhiievskyi.controller;
+package com.javarush.quest.marzhiievskyi.controller.usercontroller;
 
 import com.javarush.quest.marzhiievskyi.entity.User;
-import com.javarush.quest.marzhiievskyi.service.UserService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,8 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.Objects;
-import java.util.Optional;
 
 @WebServlet(name = "MyProfile", value = "/profile")
 public class MyProfileServlet extends HttpServlet {

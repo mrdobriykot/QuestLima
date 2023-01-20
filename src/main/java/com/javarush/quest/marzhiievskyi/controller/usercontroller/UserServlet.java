@@ -1,4 +1,4 @@
-package com.javarush.quest.marzhiievskyi.controller;
+package com.javarush.quest.marzhiievskyi.controller.usercontroller;
 
 import com.javarush.quest.marzhiievskyi.entity.User;
 import com.javarush.quest.marzhiievskyi.service.UserService;

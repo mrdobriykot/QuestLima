@@ -1,4 +1,4 @@
-package com.javarush.quest.marzhiievskyi.controller;
+package com.javarush.quest.marzhiievskyi.controller.usercontroller;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
