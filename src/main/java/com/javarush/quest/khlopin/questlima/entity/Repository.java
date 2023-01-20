@@ -1,6 +1,7 @@
 package com.javarush.quest.khlopin.questlima.entity;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface Repository {
 
@@ -10,4 +11,6 @@ public interface Repository {
     void delete(long id);
     void update(long idOfOlderUser, User user);
     Collection<User> getAll();
+
+    Optional<User> find(String login);
 }

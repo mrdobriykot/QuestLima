@@ -14,11 +14,6 @@ import java.util.Map;
 public class SignUpServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        for (Map.Entry<String, String[]> stringEntry : parameterMap.entrySet()) {
-            System.out.println(Arrays.toString(stringEntry.getValue()));
-            System.out.println(stringEntry.getKey());
-        }
         request.getRequestDispatcher("WEB-INF/auth/signUp.jsp").forward(request,response);
     }
 

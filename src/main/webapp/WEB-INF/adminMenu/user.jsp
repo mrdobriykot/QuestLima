@@ -1,4 +1,4 @@
-<%@include file="pageConstructor/header.jsp"%>
+<%@include file="../pageConstructor/header.jsp"%>
 
 
 <form class="form-horizontal" action="user?id=${requestScope.user.id}" method="post">
@@ -50,4 +50,4 @@
     </fieldset>
 </form>
 
-<%@include file="pageConstructor/footer.jsp"%>
+<%@include file="../pageConstructor/footer.jsp"%>

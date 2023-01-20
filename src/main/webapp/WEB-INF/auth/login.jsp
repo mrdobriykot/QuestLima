@@ -1,6 +1,6 @@
 <%@include file="../pageConstructor/header.jsp"%>
 
-<form action="loginServlet" method="post">
+<form action="login" method="post">
   <fieldset>
 
     <legend>Auth</legend>

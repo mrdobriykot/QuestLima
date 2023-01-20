@@ -35,13 +35,13 @@
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2" value="log"><a href="#">Profile</a> </button>
-                    <button type="button" class="btn btn-warning" value="reg"><a href="#">Logout</a></button>
+                    <button type="button" class="btn btn-outline-light me-2" value="log"><a href="profile">Profile</a> </button>
+                    <button type="button" class="btn btn-warning" value="reg"><a href="logOut">Logout</a></button>
                 </div>
                 </c:when>
                 <c:otherwise>
                     <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2"><a href="loginServlet">Login</a> </button>
+                        <button type="button" class="btn btn-outline-light me-2"><a href="login">Login</a> </button>
                         <button type="button" class="btn btn-warning"><a href="signup">Sign-Up</a></button>
                     </div>
                 </c:otherwise>

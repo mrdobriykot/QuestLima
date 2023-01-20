@@ -23,11 +23,7 @@ public class UsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Collection<User> allUsers = DB.userDataBase.getAll();
         request.setAttribute("users",allUsers);
-//        System.out.println(allUsers);
-//        for (User user : allUsers) {
-//            System.out.println(user);
-//        }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/users.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/adminMenu/users.jsp");
         requestDispatcher.forward(request,response);
     }
 

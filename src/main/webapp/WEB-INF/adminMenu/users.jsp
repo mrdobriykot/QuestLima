@@ -1,4 +1,4 @@
-<%@include file="pageConstructor/header.jsp"%>
+<%@include file="../pageConstructor/header.jsp"%>
 <html>
 <head>
     <title>AllUsers</title>
@@ -26,5 +26,5 @@
     </fieldset>
 </form>
 
-<%@include file="pageConstructor/footer.jsp"%>
+<%@include file="../pageConstructor/footer.jsp"%>
 
