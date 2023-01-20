@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questlima.controllers;
+package com.javarush.quest.khlopin.questlima.controllers.usersControllers;
 
 import com.javarush.quest.khlopin.questlima.entity.DB;
 import com.javarush.quest.khlopin.questlima.entity.Role;
@@ -43,6 +43,6 @@ public class UserServlet extends HttpServlet {
             DB.userDataBase.update(currentUser.getId(), updatedUser);
         }
 
-        request.getRequestDispatcher("WEB-INF/complete.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/adminMenu/complete.jsp").forward(request, response);
     }
 }

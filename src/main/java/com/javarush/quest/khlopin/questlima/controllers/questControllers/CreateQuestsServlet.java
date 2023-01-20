@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questlima.controllers;
+package com.javarush.quest.khlopin.questlima.controllers.questControllers;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -6,11 +6,12 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "adminMenuServlet", value = "/adminMenu")
-public class adminMenuServlet extends HttpServlet {
+@WebServlet(name = "CreateQuestsServlet", value = "/createQuests")
+public class CreateQuestsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/adminMenu/adminMenu.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/topBarPages/createQuest.jsp").forward(request,response);
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questlima.controllers;
+package com.javarush.quest.khlopin.questlima.controllers.usersControllers;
 
 import com.javarush.quest.khlopin.questlima.entity.User;
 import com.javarush.quest.khlopin.questlima.services.CheckAdminService;

@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questlima.controllers;
+package com.javarush.quest.khlopin.questlima.controllers.authControllers;
 
 import com.javarush.quest.khlopin.questlima.services.CheckAdminService;
 import jakarta.servlet.*;
