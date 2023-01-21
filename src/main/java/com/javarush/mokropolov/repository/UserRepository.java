@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class UserRepository extends BaseRepository<User> {
     public UserRepository() {
         create(new User(-1L,"admin","admin", Role.ADMIN));
-        create(new User(-1L,"user","qwerty", Role.USER));
+        create(new User(-1L,"user","user", Role.USER));
         create(new User(-1L,"guest","guest", Role.GUEST));
     }
 

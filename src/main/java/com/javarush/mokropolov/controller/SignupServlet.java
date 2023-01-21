@@ -7,6 +7,7 @@ import com.javarush.mokropolov.service.UserService;
 import com.javarush.mokropolov.util.Go;
 import com.javarush.mokropolov.util.Jsp;
 import com.javarush.mokropolov.util.Key;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,6 +23,11 @@ public class SignupServlet extends HttpServlet {
 
     UserService userService = UserService.USER_SERVICE;
     ImageService imageService = ImageService.IMAGE_SERVICE;
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        config.getServletContext().setAttribute(Key.ROLES, Role.values());
+        super.init(config);
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

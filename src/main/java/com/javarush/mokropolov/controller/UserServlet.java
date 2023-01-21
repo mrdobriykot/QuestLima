@@ -7,13 +7,13 @@ import com.javarush.mokropolov.service.UserService;
 import com.javarush.mokropolov.util.Go;
 import com.javarush.mokropolov.util.Jsp;
 import com.javarush.mokropolov.util.Key;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Map;
@@ -24,16 +24,18 @@ import java.util.Optional;
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 public class UserServlet extends HttpServlet {
 
-    UserService userService = UserService.USER_SERVICE;
-    ImageService imageService = ImageService.IMAGE_SERVICE;
+    private final UserService userService = UserService.USER_SERVICE;
+    private final ImageService imageService = ImageService.IMAGE_SERVICE;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        config.getServletContext().setAttribute(Key.ROLES, Role.values());
+        super.init(config);
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String parameterId = request.getParameter(Key.ID);
-
-        HttpSession session = request.getSession();//
-        session.setAttribute(Key.ID, parameterId);//
-
         request.setAttribute(Key.ID, parameterId);
         if (Objects.nonNull(parameterId)) {
             long id = Long.parseLong(parameterId);
@@ -45,7 +47,7 @@ public class UserServlet extends HttpServlet {
             Jsp.forward(request, response, Go.USER);
         }
 
-        Jsp.redirect(response, Key.USERS);
+        response.sendRedirect(Key.USERS);
     }
 
 

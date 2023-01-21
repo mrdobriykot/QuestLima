@@ -26,7 +26,7 @@
                 <div class="col-md-4">
                     <input id="userPassword" name="password" type="password" placeholder="pass req"
                            class="form-control input-md" required=""
-                           value="qwerty">
+                           value="admin">
 
                 </div>
             </div>
