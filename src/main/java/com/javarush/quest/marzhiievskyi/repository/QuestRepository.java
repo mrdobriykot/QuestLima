@@ -13,9 +13,10 @@ public class QuestRepository extends BaseRepository<Quest> {
                 .startingText(TextForQuest.STARTING_TEXT_QUEST)
                 .build());
         create(Quest.builder()
-                .id(-1L).name("abra cadabra")
+                .id(-1L).name(TextForQuest.NAME_QUEST_TEST)
                 .startingText(TextForQuest.STARTING_TEXT_QUEST)
-                .build());//TODO initialize where should be?
+                .build());
+        //TODO initialize where should be?
     }
 
     @Override

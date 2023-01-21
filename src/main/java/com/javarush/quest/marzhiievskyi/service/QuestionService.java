@@ -5,6 +5,7 @@ import com.javarush.quest.marzhiievskyi.repository.QuestionRepository;
 import com.javarush.quest.marzhiievskyi.repository.Repository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 public enum QuestionService {
@@ -26,6 +27,13 @@ public enum QuestionService {
 
     public Question get(Long questionId) {
         return questionRepository.get(questionId);
+    }
+
+    public Optional<Question> get(String text) {
+        Question questionToFind = Question.builder()
+                .text(text)
+                .build();
+        return questionRepository.find(questionToFind).findAny();
     }
 
     public Collection<Question> getAll() {

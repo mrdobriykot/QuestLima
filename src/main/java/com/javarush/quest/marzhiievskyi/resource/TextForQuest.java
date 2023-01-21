@@ -1,7 +1,8 @@
 package com.javarush.quest.marzhiievskyi.resource;
 
-public class TextForQuest {
-    public static final String STARTING_TEXT_QUEST = "Some starting text.";//TODO change all texts
+public class TextForQuest {//TODO change all texts
+    public static final String STARTING_TEXT_QUEST = "Some starting text.";
+    public static final String NAME_QUEST_TEST = "EPIC test";
 
     public static final String STARTING_QUESTION_TEXT="You lost memory. Do you agree fly away with UFO?";
 
