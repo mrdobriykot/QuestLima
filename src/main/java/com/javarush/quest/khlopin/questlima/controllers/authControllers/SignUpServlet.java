@@ -20,10 +20,14 @@ public class SignUpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, String[]> parameterMap = request.getParameterMap();
+        try {
+            DB.userDataBase.create(parameterMap.get("login")[0],
+                    parameterMap.get("password")[0],
+                    Role.USER);
+        } catch (RuntimeException e) {
+            request.getRequestDispatcher("WEB-INF/auth/alreadyCreated.jsp").forward(request,response);
+        }
 
-        DB.userDataBase.create(parameterMap.get("login")[0],
-                parameterMap.get("password")[0],
-                Role.USER);
-        request.getRequestDispatcher("WEB-INF/complete.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/adminMenu/complete.jsp").forward(request,response); // Move jsp file
     }
 }

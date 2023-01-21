@@ -1,5 +1,7 @@
 package com.javarush.quest.khlopin.questlima.entity;
 
+import com.javarush.quest.khlopin.questlima.excpetions.QuestException;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +23,15 @@ public class UserRepository implements Repository {
     @Override
     public void create(String login, String password, Role role) {
         long key = id.incrementAndGet();
-        userMap.put(key,new User(key,login,password,role));
+
+        for (Map.Entry<Long, User> longUserEntry : userMap.entrySet()) {
+            if (longUserEntry.getValue().getUserName().equals(login)) {
+                throw new QuestException();
+            } else {
+                userMap.put(key, new User(key, login, password, role));
+            }
+        }
+
     }
 
     @Override

@@ -21,6 +21,9 @@
                 </svg>
             </a>
 
+            <c:choose>
+            <c:when test="${not empty sessionScope.user}">
+
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 
                 <li><a href="index.jsp" class="nav-link px-2 text-secondary">Home</a></li>
@@ -28,6 +31,15 @@
                 <li><a href="createQuests" class="nav-link px-2 text-white">Create Quest</a></li>
 
             </ul>
+            </c:when>
+            <c:otherwise>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
+                    <li><a href="index.jsp" class="nav-link px-2 text-secondary">Home</a></li>
+
+                </ul>
+            </c:otherwise>
+            </c:choose>
 
 <%--            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">--%>
 <%--                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."--%>
