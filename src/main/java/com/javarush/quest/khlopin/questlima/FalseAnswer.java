@@ -1,6 +1,13 @@
 package com.javarush.quest.khlopin.questlima;
 
-public class FalseAnswer extends Answer {
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-    String value;
+@Data
+@AllArgsConstructor
+public class FalseAnswer extends Answer {
+    private Long answerId;
+    private String text;
+    private String value;
+    private Long questionId;
 }

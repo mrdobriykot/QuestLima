@@ -11,11 +11,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class UserRepository implements Repository {
+public class UserRepository implements Repository<User> {
 
     private final HashMap<Long, User> userMap = new HashMap<>();
 
-    public static final AtomicLong id = new AtomicLong(0); // TODO По окончанию разработки заменить на 3 и убрать роль админа 1234
+    public static final AtomicLong id = new AtomicLong(0); // TODO По окончанию разработки убрать роль админа 1234
 
     public UserRepository() {
 

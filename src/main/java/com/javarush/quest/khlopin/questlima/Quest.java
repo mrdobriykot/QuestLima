@@ -10,12 +10,13 @@ import java.util.List;
 @AllArgsConstructor
 public class Quest {
 
-    public Long id;
-    public User author;
+    private Long id;
+    private User author;
 
-    public String info;
+    private String info;
 
-    public List<Question> list = new ArrayList<>();
+    private List<Question> list;
+    private User user;
 
 
 

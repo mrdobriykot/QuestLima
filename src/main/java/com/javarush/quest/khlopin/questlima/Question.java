@@ -1,14 +1,15 @@
 package com.javarush.quest.khlopin.questlima;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+import java.util.List;
+@Data
+@AllArgsConstructor
 public class Question {
 
-    public Long id;
-
-    public int nextQuestionId;
-
-
-    public List<Answer> answerList;
+    private Long id;
+    private int nextQuestionId;
+    private List<Answer> answerList;
 
 }

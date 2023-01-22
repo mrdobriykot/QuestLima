@@ -1,5 +1,6 @@
 package com.javarush.quest.khlopin.questlima.services;
 
+import com.javarush.quest.khlopin.questlima.Answer;
 import com.javarush.quest.khlopin.questlima.entity.Repository;
 import com.javarush.quest.khlopin.questlima.entity.Role;
 import com.javarush.quest.khlopin.questlima.entity.User;
@@ -7,7 +8,7 @@ import com.javarush.quest.khlopin.questlima.entity.User;
 import java.util.Collection;
 import java.util.Optional;
 
-public class AnswerRepository implements Repository {
+public class AnswerRepository implements Repository<Answer> {
 
     @Override
     public void create(String login, String password, Role role) {
@@ -25,7 +26,7 @@ public class AnswerRepository implements Repository {
     }
 
     @Override
-    public void update(long idOfOlderUser, User user) {
+    public void update(long idOfOlderUser, Answer user) {
 
     }
 
