@@ -1,0 +1,42 @@
+.center {
+    text-align: center
+}
+
+.btn {
+    display: inline-block;
+    background: #8C959D;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.color_red {
+    color: red;
+}
+
+.color_blue {
+    color: blue;
+}
+
+.color {
+    color: indigo;
+    font-size: 45px;
+}
+
+table {
+    border: 1px solid red;
+}
+
+table th {
+    border: 1px solid blue;
+    padding: 5px;
+}
+
+table td {
+    border: 1px dashed green;
+    padding: 5px;
+}
+
+.container {
+    margin: auto;
+}
