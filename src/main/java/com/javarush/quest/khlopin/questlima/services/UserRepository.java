@@ -1,5 +1,8 @@
-package com.javarush.quest.khlopin.questlima.entity;
+package com.javarush.quest.khlopin.questlima.services;
 
+import com.javarush.quest.khlopin.questlima.entity.Repository;
+import com.javarush.quest.khlopin.questlima.entity.Role;
+import com.javarush.quest.khlopin.questlima.entity.User;
 import com.javarush.quest.khlopin.questlima.excpetions.QuestException;
 
 import java.util.Collection;
@@ -12,27 +15,27 @@ public class UserRepository implements Repository {
 
     private final HashMap<Long, User> userMap = new HashMap<>();
 
-    public static final AtomicLong id = new AtomicLong(4); // TODO По окончанию разработки заменить на 3 и убрать роль админа 1234
+    public static final AtomicLong id = new AtomicLong(0); // TODO По окончанию разработки заменить на 3 и убрать роль админа 1234
+
     public UserRepository() {
-        userMap.put(1L,new User(1L,"Mihail","recd123",Role.ADMIN));
-        userMap.put(2L, new User(2L,"Emma","saf423",Role.USER));
-        userMap.put(3L, new User(3L, "Valik","fdsgh432",Role.GUEST));
-        userMap.put(4L, new User(4L, "1234","1234", Role.ADMIN));
+
+        create("Mihail", "recd123", Role.ADMIN);
+        create("Emma", "saf423", Role.USER);
+        create("Valik", "fdsgh432", Role.GUEST);
+        create("1234", "1234", Role.ADMIN);
     }
 
     @Override
     public void create(String login, String password, Role role) {
         long key = id.incrementAndGet();
-
-        for (Map.Entry<Long, User> longUserEntry : userMap.entrySet()) {
-            if (longUserEntry.getValue().getUserName().equals(login)) {
-                throw new QuestException();
-            } else {
-                userMap.put(key, new User(key, login, password, role));
-            }
+        Optional<User> user = find(login);
+        if (user.isEmpty()) {
+            userMap.put(key, new User(key, login, password, role));
+        } else {
+            throw new QuestException("Пользователь с таким именем уже создан");
         }
-
     }
+
 
     @Override
     public User get(long id) {
@@ -52,7 +55,7 @@ public class UserRepository implements Repository {
     @Override
     public void update(long idOfOlderUser, User user) {
         delete(idOfOlderUser);
-        userMap.put(idOfOlderUser,user);
+        userMap.put(idOfOlderUser, user);
     }
 
     @Override

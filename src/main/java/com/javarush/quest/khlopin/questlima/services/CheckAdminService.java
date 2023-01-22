@@ -22,8 +22,6 @@ public class CheckAdminService {
         isAdmin = false;
         session.setAttribute("isAdmin",isAdmin);
     }
-//    public static void setIsAdminParamInAttribute(HttpSession session) {
-//        session.setAttribute("isAdmin", isAdmin);
-//    }
+
 
 }
