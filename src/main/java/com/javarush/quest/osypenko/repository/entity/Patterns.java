@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 public class Patterns implements Training {
     private final HashMap<Long, DB> map = new HashMap<>();
+    private static final Long CONSTANT_ID = 5000L;
 
     public Patterns() {
        map.put(5000L, new DB(1L, "Что такое ООП?", "ООП - методология программирования, основанная на представлении программы в виде совокупности объектов, каждый из которых является экземпляром определенного класса, а классы образуют иерархию наследования. " +
@@ -14,6 +15,12 @@ public class Patterns implements Training {
                 "Класс — это описание еще не созданного объекта, как бы общий шаблон, состоящий из полей, методов и конструктора, а объект – экземпляр класса, созданный на основе этого описания."));
     }
 
+    @Override
+    public Long getConstantID() {
+        return CONSTANT_ID;
+    }
+
+    @Override
     public HashMap<Long, DB> getMap() {
         return map;
     }

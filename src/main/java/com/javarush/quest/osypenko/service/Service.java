@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Service {
     private static final HashMap<Entity, Training> objectHashMap = new HashMap<>();
@@ -28,7 +29,10 @@ public class Service {
         for (Entity value : Entity.values()) {
             if (value.toString().equals(parameter)) {
                 HashMap<Long, DB> dbHashMap = objectHashMap.get(value).getMap();
-                Collection<DB> values = dbHashMap.values();
+                TreeMap<Long, DB> sortedMap = new TreeMap<>(dbHashMap);
+                Collection<DB> values = sortedMap.values();
+                request.setAttribute("constantID", objectHashMap.get(value).getConstantID());
+                request.setAttribute("size", values.size());
                 request.setAttribute("values", values);
             }
         }
