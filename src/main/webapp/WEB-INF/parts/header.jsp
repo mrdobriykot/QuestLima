@@ -23,12 +23,10 @@
         <%-- guest --%>
         <li><a href="${pageContext.request.contextPath}/" class="nav-link px-2 link-secondary">Home</a></li>
         <%-- user --%>
-        <li><a href="#" class="nav-link px-2 link-dark disabled">Играть</a></li>
         <li><a href="#" class="nav-link px-2 link-dark disabled">Статистика</a></li>
         <%-- admin--%>
         <li><a href="users" class="nav-link px-2">Пользователи</a></li>
         <li><a href="create-quest" class="nav-link px-2">Создать квест</a></li>
-        <li><a href="#" class="nav-link px-2 disabled">Редактировать квест</a></li>
     </ul>
 
     <ul class="nav col-md-3 text-end">

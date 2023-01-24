@@ -1,5 +1,6 @@
 package com.javarush.khmelov.controller;
 
+import com.javarush.khmelov.config.Winter;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
@@ -17,11 +18,11 @@ import java.util.Collection;
 @WebServlet(name = "UsersServlet", value = Go.USERS)
 public class UsersServlet extends HttpServlet {
 
-    private final UserService userService = UserService.USER_SERVICE;
+    private final UserService userService = Winter.getBean(UserService.class);
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Collection<User> users = userService.getAll();
-        request.setAttribute(Key.USERS,users);
+        request.setAttribute(Key.USERS, users);
         Jsp.forward(request, response, Key.USERS);
     }
 

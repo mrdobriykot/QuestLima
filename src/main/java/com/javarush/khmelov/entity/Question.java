@@ -24,6 +24,6 @@ public class Question implements AbstractEntity {
     private final Collection<Answer> answers = new ArrayList<>();
 
     public String getImage() {
-        return "quest-" + id;
+        return "question-" + id;
     }
 }

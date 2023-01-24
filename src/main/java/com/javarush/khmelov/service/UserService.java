@@ -1,17 +1,18 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.User;
-import com.javarush.khmelov.repository.Repository;
 import com.javarush.khmelov.repository.UserRepository;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public enum UserService {
+public class UserService {
 
-    USER_SERVICE;
+    private final UserRepository userRepository;
 
-    private final Repository<User> userRepository = new UserRepository();
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public void create(User user) {
         userRepository.create(user);

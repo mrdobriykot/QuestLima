@@ -1,5 +1,6 @@
 package com.javarush.khmelov.controller;
 
+import com.javarush.khmelov.config.Winter;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.ImageService;
@@ -7,7 +8,6 @@ import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
 import com.javarush.khmelov.util.Jsp;
 import com.javarush.khmelov.util.Key;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,14 +24,8 @@ import java.util.Optional;
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 public class UserServlet extends HttpServlet {
 
-    private final UserService userService = UserService.USER_SERVICE;
-    private final ImageService imageService = ImageService.IMAGE_SERVICE;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        config.getServletContext().setAttribute(Key.ROLES, Role.values());
-        super.init(config);
-    }
+    private final UserService userService = Winter.getBean(UserService.class);
+    private final ImageService imageService = Winter.getBean(ImageService.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,9 +38,9 @@ public class UserServlet extends HttpServlet {
                 User user = optionalUser.get();
                 request.setAttribute(Key.USER, user);
             }
-            Jsp.forward(request, response, Key.USER);
+            Jsp.forward(request, response, Go.USER);
         }
-        response.sendRedirect(Key.USERS);
+        Jsp.redirect(response,Go.USERS);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.javarush.khmelov.controller;
 
+import com.javarush.khmelov.config.Winter;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.ImageService;
@@ -21,8 +22,8 @@ import java.io.IOException;
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 public class SignupServlet extends HttpServlet {
 
-    private final UserService userService = UserService.USER_SERVICE;
-    private final ImageService imageService = ImageService.IMAGE_SERVICE;
+    private final UserService userService = Winter.getBean(UserService.class);
+    private final ImageService imageService = Winter.getBean(ImageService.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -32,7 +33,7 @@ public class SignupServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Jsp.forward(request,response, Key.SIGNUP);
+        Jsp.forward(request,response, Go.SIGNUP);
     }
 
     @Override
@@ -45,6 +46,6 @@ public class SignupServlet extends HttpServlet {
                 .build();
         userService.create(user);
         imageService.uploadImage(request, user.getImage());
-        Jsp.redirect(response, Key.USERS);
+        Jsp.redirect(response, Go.USERS);
     }
 }
