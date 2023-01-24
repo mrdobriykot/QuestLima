@@ -14,15 +14,16 @@ import java.util.Objects;
 
 import com.javarush.khmelov.util.Go;
 
-//@WebFilter(Go.ACTIONS)
+@WebFilter("/*")
 public class MessageFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+        super.doFilter(req, res, chain);
+
         HttpSession session = req.getSession(false);
         if (req.getMethod().equalsIgnoreCase("get") && Objects.nonNull(session)) {
             session.removeAttribute(Key.ERROR_MESSAGE);
         }
-        super.doFilter(req, res, chain);
     }
 }

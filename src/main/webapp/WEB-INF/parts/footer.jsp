@@ -1,14 +1,14 @@
 <%--suppress ALL --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<c:if test="${not empty sessionScope.errorMessageOFF}">
-    <div class="container d-flex flex-wrap justify-content-center">
-            <span class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-                <span class="alert alert-warning" role="alert">
-                        ${sessionScope.errorMessage}
-                </span>
-            </span>
-    </div>
-</c:if>
+<%--<c:if test="${not empty sessionScope.errorMessage}">--%>
+<%--    <div class="container d-flex flex-wrap justify-content-center">--%>
+<%--            <span class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">--%>
+<%--                <span class="alert alert-warning" role="alert">--%>
+<%--                        ${sessionScope.errorMessage}--%>
+<%--                </span>--%>
+<%--            </span>--%>
+<%--    </div>--%>
+<%--</c:if>--%>
 
 <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
