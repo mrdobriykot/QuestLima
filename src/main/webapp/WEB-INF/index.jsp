@@ -18,8 +18,8 @@
     <br>
     <p class="color_red">Выберите один из вариантов</p>
 
-    <a href="${pageContext.request.contextPath}/training" class="btn">Подготовка к собеседованию</a>
-    <a href="${pageContext.request.contextPath}/interview" class="btn">Виртуальное собеседование</a>
+    <a href="${pageContext.request.contextPath}/training" class="btn_gray">Подготовка к собеседованию</a>
+    <a href="${pageContext.request.contextPath}/interview" class="btn_gray">Виртуальное собеседование</a>
 </div>
 </body>
 </html>

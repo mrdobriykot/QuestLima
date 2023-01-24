@@ -1,12 +1,13 @@
 package com.javarush.quest.osypenko.repository;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public interface Training {
-    HashMap<Long, DB> map = new HashMap<>();
+    TreeMap<Long, DB> map = new TreeMap<>();
 
     Long getConstantID();
 
-    HashMap<Long, DB> getMap();
+    TreeMap<Long, DB> getMap();
 
 }

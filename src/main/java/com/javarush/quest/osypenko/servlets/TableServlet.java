@@ -1,6 +1,6 @@
 package com.javarush.quest.osypenko.servlets;
 
-import com.javarush.quest.osypenko.service.Service;
+import com.javarush.quest.osypenko.service.ServiceTraining;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class TableServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Service.extracted(request);
+        ServiceTraining.extracted(request);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/table.jsp");
         dispatcher.forward(request, response);

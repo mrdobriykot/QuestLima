@@ -16,7 +16,7 @@
     <form action="table" method="get">
 
         <c:forEach var="value" items="${Entity.values()}">
-            <input value="${value}" type="submit" name="${value}" class="btn"/>
+            <input value="${value}" type="submit" name="${value}" class="btn_gray"/>
         </c:forEach>
 
     </form>

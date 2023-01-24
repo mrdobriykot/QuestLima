@@ -2,14 +2,33 @@
     text-align: center
 }
 
-.btn {
+.btn_gray {
     display: inline-block;
-    background: #8C959D;
+    background: gray;
     color: #fff;
     padding: 1rem 1.5rem;
     text-decoration: none;
     border-radius: 3px;
 }
+
+.btn_green {
+    display: inline-block;
+    background: green;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.btn_red {
+    display: inline-block;
+    background: red;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
 .color_red {
     color: red;
 }

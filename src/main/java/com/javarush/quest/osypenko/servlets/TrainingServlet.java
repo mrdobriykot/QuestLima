@@ -11,13 +11,7 @@ import jakarta.servlet.annotation.*;
 public class TrainingServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String name = request.getParameter("name");
-        System.out.println(name);
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/training.jsp");
         dispatcher.forward(request, response);
-    }
-
-    public void destroy() {
     }
 }
