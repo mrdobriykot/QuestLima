@@ -1,6 +1,5 @@
 package com.javarush.quest.osypenko.repository;
 
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public interface Training {

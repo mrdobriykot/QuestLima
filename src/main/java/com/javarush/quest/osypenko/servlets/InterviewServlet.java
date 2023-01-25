@@ -29,24 +29,12 @@ public class InterviewServlet extends HttpServlet {
         List<Long> idQuest = new ArrayList<>(dbTreeMap.keySet());
 
         List<Object> questInterview = new ArrayList<>();
-
         for (Integer integers : random) {
             Object aLong = idQuest.get(integers);
             questInterview.add(dbTreeMap.get(aLong));
         }
 
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        String parameter = null;
-        for (String str : parameterMap.keySet()) {
-            parameter = str;
-        }
-        System.out.println(parameter);
-
-
         request.setAttribute("quest", questInterview);
-
-
-
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/interview.jsp");
         dispatcher.forward(request, response);

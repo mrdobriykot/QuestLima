@@ -28,6 +28,8 @@
                 <c:forEach var="urls" items="${quest.url}">
                     <a href="${urls.value}">${urls.key}</a>
                 </c:forEach>
+                <p>
+                    <img src="${quest.images}">
             </td>
         </tr>
     </c:forEach>
