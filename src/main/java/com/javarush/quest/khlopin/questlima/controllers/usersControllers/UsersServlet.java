@@ -1,8 +1,8 @@
 package com.javarush.quest.khlopin.questlima.controllers.usersControllers;
 
-import com.javarush.quest.khlopin.questlima.entity.DB;
-import com.javarush.quest.khlopin.questlima.entity.Role;
-import com.javarush.quest.khlopin.questlima.entity.User;
+import com.javarush.quest.khlopin.questlima.utills.DB;
+import com.javarush.quest.khlopin.questlima.entity.user.Role;
+import com.javarush.quest.khlopin.questlima.entity.user.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;

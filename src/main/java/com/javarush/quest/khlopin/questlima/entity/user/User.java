@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questlima.entity;
+package com.javarush.quest.khlopin.questlima.entity.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

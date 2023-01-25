@@ -1,18 +1,15 @@
 package com.javarush.quest.khlopin.questlima.controllers.authControllers;
 
-import com.javarush.quest.khlopin.questlima.entity.DB;
-import com.javarush.quest.khlopin.questlima.entity.Role;
-import com.javarush.quest.khlopin.questlima.entity.User;
+import com.javarush.quest.khlopin.questlima.utills.DB;
+import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.services.CheckAdminService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @WebServlet(name = "loginServlet", value = "/login")
 public class loginServlet extends HttpServlet {

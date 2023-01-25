@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questlima;
+package com.javarush.quest.khlopin.questlima.entity.game;
 
 public enum GameState {
     WIN,

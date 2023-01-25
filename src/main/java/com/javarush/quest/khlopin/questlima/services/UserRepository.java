@@ -1,8 +1,8 @@
 package com.javarush.quest.khlopin.questlima.services;
 
 import com.javarush.quest.khlopin.questlima.entity.Repository;
-import com.javarush.quest.khlopin.questlima.entity.Role;
-import com.javarush.quest.khlopin.questlima.entity.User;
+import com.javarush.quest.khlopin.questlima.entity.user.Role;
+import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.excpetions.QuestException;
 
 import java.util.Collection;
@@ -15,7 +15,7 @@ public class UserRepository implements Repository<User> {
 
     private final HashMap<Long, User> userMap = new HashMap<>();
 
-    public static final AtomicLong id = new AtomicLong(0); // TODO По окончанию разработки убрать роль админа 1234
+    private static final AtomicLong id = new AtomicLong(0); // TODO По окончанию разработки убрать роль админа 1234
 
     public UserRepository() {
 
@@ -25,7 +25,6 @@ public class UserRepository implements Repository<User> {
         create("1234", "1234", Role.ADMIN);
     }
 
-    @Override
     public void create(String login, String password, Role role) {
         long key = id.incrementAndGet();
         Optional<User> user = find(login);

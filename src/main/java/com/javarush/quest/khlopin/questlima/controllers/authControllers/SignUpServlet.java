@@ -1,13 +1,12 @@
 package com.javarush.quest.khlopin.questlima.controllers.authControllers;
 
-import com.javarush.quest.khlopin.questlima.entity.DB;
-import com.javarush.quest.khlopin.questlima.entity.Role;
+import com.javarush.quest.khlopin.questlima.utills.DB;
+import com.javarush.quest.khlopin.questlima.entity.user.Role;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 
 @WebServlet(name = "SignUpServlet", value = "/signup")

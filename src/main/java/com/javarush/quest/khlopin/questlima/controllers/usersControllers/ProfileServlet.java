@@ -1,14 +1,11 @@
 package com.javarush.quest.khlopin.questlima.controllers.usersControllers;
 
-import com.javarush.quest.khlopin.questlima.entity.User;
 import com.javarush.quest.khlopin.questlima.services.CheckAdminService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Iterator;
 
 @WebServlet(name = "ProfileServlet", value = "/profile")
 public class ProfileServlet extends HttpServlet {

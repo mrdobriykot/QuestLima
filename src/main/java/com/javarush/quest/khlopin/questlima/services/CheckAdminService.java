@@ -1,7 +1,7 @@
 package com.javarush.quest.khlopin.questlima.services;
 
-import com.javarush.quest.khlopin.questlima.entity.Role;
-import com.javarush.quest.khlopin.questlima.entity.User;
+import com.javarush.quest.khlopin.questlima.entity.user.Role;
+import com.javarush.quest.khlopin.questlima.entity.user.User;
 import jakarta.servlet.http.HttpSession;
 
 
