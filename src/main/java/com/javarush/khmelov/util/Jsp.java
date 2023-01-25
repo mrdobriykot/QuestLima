@@ -18,6 +18,7 @@ public class Jsp {
 
     public void forward(HttpServletRequest request, HttpServletResponse response, String target) throws ServletException, IOException {
         target = fixTarget(target);
+        findErrorInSessionAfterForwardOrRedirect(request);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/%s.jsp".formatted(target));
         requestDispatcher.forward(request, response);
     }
