@@ -13,7 +13,7 @@ public class IndexServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         Init init = new Init();
         init.initDefaultUsers();
-        init.initQuestsFromRepository();
+        init.initQuests();
         super.init(config);
     }
 

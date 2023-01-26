@@ -3,7 +3,8 @@
 
 
 
-<form class="form-horizontal" action="game?id=${requestScope.quest.id}" method="post">
+<form class="form-horizontal" action="game?id=${requestScope.quest.id}" method="post"
+style="text-align: center">
     <fieldset>
 
         <!-- Form Name -->
@@ -19,10 +20,16 @@
         <p>${requestScope.question}</p>
         <!-- Button (Double) -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="answer${answer.nextQuestionId}">Select your way</label>
-            <div class="col-md-8">
+
+
+            <c:if test="${not empty requestScope.answers}">
+                <label class="col-md-4 control-label" for="answer${answer.nextQuestionId}">Select your way</label>
+
+            </c:if>
+<%--            <label class="col-md-4 control-label" for="answer${answer.nextQuestionId}">Select your way</label>--%>
+            <div class="col-md-8" style="text-align: center; width: 70%; margin: auto">
                 <c:forEach var="answer" items="${requestScope.answers}">
-                    <button style="width: 100px" id="answer${answer.nextQuestionId}" name="answer" value="${answer.nextQuestionId}" class="btn btn-primary">${answer.text}</button>
+                    <button style="width: 300px" id="answer${answer.nextQuestionId}" name="answer" value="${answer.nextQuestionId}" class="btn btn-primary">${answer.text}</button>
                 </c:forEach>
             </div>
         </div>

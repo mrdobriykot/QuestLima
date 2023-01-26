@@ -3,6 +3,7 @@ package com.javarush.quest.marzhiievskyi.controller;
 import com.javarush.quest.marzhiievskyi.entity.Answer;
 import com.javarush.quest.marzhiievskyi.entity.Quest;
 import com.javarush.quest.marzhiievskyi.entity.Question;
+import com.javarush.quest.marzhiievskyi.entity.User;
 import com.javarush.quest.marzhiievskyi.service.GameSessionService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -21,8 +22,6 @@ public class GameSessionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long questId = Long.valueOf(request.getParameter("id"));
-        //HttpSession session = request.getSession();
-        //User user = (User) session.getAttribute("user");
 
         //TODO add some info about user and game session
 
@@ -44,8 +43,16 @@ public class GameSessionServlet extends HttpServlet {
         Long questId = Long.valueOf(request.getParameter("id"));
         Quest quest = gameSessionService.getQuest(questId);
 
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+
+
         String nextQuestionIdFromAnswer = request.getParameter("answer");
         Long nextQuestionId = Long.parseLong(nextQuestionIdFromAnswer);
+
+        gameSessionService.checkEndGame(user.getId(), nextQuestionId, questId);
+
         request.setAttribute("quest", quest);
         request.setAttribute("nextQuestionId", nextQuestionId);
         forwardToTheNextQuestion(request, response, questId, nextQuestionId);

@@ -63,10 +63,17 @@ public class DemoQuest extends Quest {
                 .text("2 Disagree answer")
                 .nextQuestionId(3L)
                 .build();
+        Answer answer = Answer.builder()
+                .id(3L)
+                .questionId(firstQuestion.getId())
+                .text("3  answer")
+                .nextQuestionId(3L)
+                .build();
 
         Collection<Answer> answers = new ArrayList<>();
         answers.add(agreeAnswer);
         answers.add(disagreeAnswer);
+        answers.add(answer);
         firstQuestion.setAnswerList(answers);
 
         return firstQuestion;
@@ -82,14 +89,14 @@ public class DemoQuest extends Quest {
                 .build();
 
         Answer agreeAnswer = Answer.builder()
-                .id(3L)
+                .id(4L)
                 .questionId(secondQuestion.getId())
                 .text("3 Agree answer")
                 .nextQuestionId(4L)
                 .build();
 
         Answer disagreeAnswer = Answer.builder()
-                .id(4L)
+                .id(5L)
                 .questionId(secondQuestion.getId())
                 .text("4 Disagree answer")
                 .nextQuestionId(5L)

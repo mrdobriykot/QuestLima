@@ -4,6 +4,7 @@ import com.javarush.quest.marzhiievskyi.entity.User;
 import com.javarush.quest.marzhiievskyi.repository.Repository;
 import com.javarush.quest.marzhiievskyi.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ public enum UserService {
     private final Repository<User> userRepository = new UserRepository();
 
     public void create(User user) {
+        user.setGames(new ArrayList<>());
         userRepository.create(user);
     }
 

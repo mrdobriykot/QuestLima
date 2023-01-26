@@ -15,10 +15,13 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Player login: ${user.login}</li>
                 <li class="list-group-item">Player password: ${user.password}</li>
-                <li class="list-group-item">Total games: there wil be shown total info about played games</li>
-                <li class="list-group-item">Some info about player: </li>
+                <li class="list-group-item">Total games played: ${fn:length(user.games)}</li>
+                <li class="list-group-item">Total wins: -</li>
+                <li class="list-group-item">Total losses: -</li>
             </ul>
         </div>
+        <br>
+        <br>
         <!-- Button -->
         <div class="form-group" >
             <div class="col-md-4" style=" margin: auto;text-align: center">
