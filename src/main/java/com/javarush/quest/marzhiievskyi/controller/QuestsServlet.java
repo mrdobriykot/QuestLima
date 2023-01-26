@@ -2,7 +2,7 @@ package com.javarush.quest.marzhiievskyi.controller;
 
 import com.javarush.quest.marzhiievskyi.entity.Quest;
 import com.javarush.quest.marzhiievskyi.entity.User;
-import com.javarush.quest.marzhiievskyi.service.QuestService;
+import com.javarush.quest.marzhiievskyi.service.GameSessionService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -12,7 +12,7 @@ import java.util.Collection;
 
 @WebServlet(name = "QuestsServlet", value = "/quests")
 public class QuestsServlet extends HttpServlet {
-    QuestService questService = QuestService.QUEST_SERVICE;
+    GameSessionService gameSessionService = GameSessionService.GAME_SESSION_SERVICE;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -24,15 +24,10 @@ public class QuestsServlet extends HttpServlet {
             targetForward = "WEB-INF/login.jsp";
         }
 
-        Collection<Quest> allQuests = questService.getAll();
+        Collection<Quest> allQuests = gameSessionService.getAllQuests();
         request.setAttribute("quests", allQuests);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetForward);
         requestDispatcher.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

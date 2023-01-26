@@ -19,9 +19,4 @@ public class UsersServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/users.jsp");
         requestDispatcher.forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

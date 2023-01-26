@@ -18,7 +18,7 @@
             <c:forEach var="quest" items="${requestScope.quests}">
                 <tr>
                     <th scope="row">${quest.id}</th>
-                    <td> <a href="quest?id=${quest.id}">${quest.name}</a></td>
+                    <td> <a href="game?id=${quest.id}">${quest.name}</a></td>
                 </tr>
             </c:forEach>
 

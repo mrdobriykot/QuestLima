@@ -1,8 +1,6 @@
 package com.javarush.quest.marzhiievskyi.repository;
 
-import com.javarush.quest.marzhiievskyi.entity.GameState;
 import com.javarush.quest.marzhiievskyi.entity.Question;
-import com.javarush.quest.marzhiievskyi.resource.TextForQuest;
 
 import java.util.stream.Stream;
 

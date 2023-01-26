@@ -6,29 +6,6 @@ import java.util.stream.Stream;
 
 public class UserRepository extends BaseRepository<User> {
 
-    public UserRepository() {
-        create(User.builder()
-                .id(-1L)
-                .login("Desmont")
-                .password("123")
-                .build());
-        create(User.builder()
-                .id(-1L)
-                .login("Amitamaru")
-                .password("1111")
-                .build());
-        create(User.builder()
-                .id(-1L)
-                .login("Muraved")
-                .password("qwerty")
-                .build());
-        create(User.builder()
-                .id(-1L)
-                .login("q")
-                .password("q")
-                .build());
-    }
-
     @Override
     public Stream<User> find(User pattern) {
         return map.values().stream()
