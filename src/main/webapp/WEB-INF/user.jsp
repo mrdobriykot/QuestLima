@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@include file="parts/header.jsp" %>
 <form class="form-horizontal" action="user?id=${requestScope.user.id==null?0:requestScope.user.id}" method="post">
     <fieldset>

@@ -19,19 +19,16 @@ public class Init {
                 .id(0L)
                 .login("Amitamaru")
                 .password("111111")
-                .games(new ArrayList<>())
                 .build());
         userService.create(User.builder()
                 .id(0L)
                 .login("Desmont")
                 .password("123456")
-                .games(new ArrayList<>())
                 .build());
         userService.create(User.builder()
                 .id(0L)
                 .login("q")
                 .password("q")
-                .games(new ArrayList<>())
                 .build());
     }
 

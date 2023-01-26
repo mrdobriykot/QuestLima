@@ -13,6 +13,8 @@ public class User implements AbstractEntity{
     private String login;
     private String password;
     private Collection<GameSession> games = new ArrayList<>();
+    private Collection<GameSession> wins = new ArrayList<>();
+    private Collection<GameSession> losses = new ArrayList<>();
 
 
 

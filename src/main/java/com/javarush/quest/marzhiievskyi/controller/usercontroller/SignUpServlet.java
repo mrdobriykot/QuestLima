@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet(name = "SignUpServlet", value = "/signup")
 public class SignUpServlet extends HttpServlet {
@@ -25,15 +26,20 @@ public class SignUpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        User user = User.builder()
+        User userToCreate = User.builder()
                 .id(0L)
                 .login(request.getParameter("login"))
                 .password(request.getParameter("password"))
                 .build();
 
-        userService.create(user);
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-        response.sendRedirect("profile");
+        if (!userService.checkUserExist(userToCreate)) {
+            response.sendRedirect("signup");
+        } else {
+            userService.create(userToCreate);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", userToCreate);
+            response.sendRedirect("profile");
+        }
+
     }
 }

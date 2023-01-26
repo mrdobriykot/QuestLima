@@ -16,8 +16,8 @@
                 <li class="list-group-item">Player login: ${user.login}</li>
                 <li class="list-group-item">Player password: ${user.password}</li>
                 <li class="list-group-item">Total games played: ${fn:length(user.games)}</li>
-                <li class="list-group-item">Total wins: -</li>
-                <li class="list-group-item">Total losses: -</li>
+                <li class="list-group-item">Total wins: ${fn:length(user.wins)}</li>
+                <li class="list-group-item">Total losses: ${fn:length(user.losses)}</li>
             </ul>
         </div>
         <br>

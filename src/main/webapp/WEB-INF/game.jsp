@@ -1,5 +1,5 @@
 <%@include file="parts/header.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 
 
 
@@ -23,13 +23,13 @@ style="text-align: center">
 
 
             <c:if test="${not empty requestScope.answers}">
-                <label class="col-md-4 control-label" for="answer${answer.nextQuestionId}">Select your way</label>
+                <label class="col-md-4 control-label" for="answer">Select your way</label>
 
             </c:if>
 <%--            <label class="col-md-4 control-label" for="answer${answer.nextQuestionId}">Select your way</label>--%>
             <div class="col-md-8" style="text-align: center; width: 70%; margin: auto">
                 <c:forEach var="answer" items="${requestScope.answers}">
-                    <button style="width: 300px" id="answer${answer.nextQuestionId}" name="answer" value="${answer.nextQuestionId}" class="btn btn-primary">${answer.text}</button>
+                    <button style="width: 300px" id="answer" name="answer" value="${answer.nextQuestionId}" class="btn btn-primary">${answer.text}</button>
                 </c:forEach>
             </div>
         </div>

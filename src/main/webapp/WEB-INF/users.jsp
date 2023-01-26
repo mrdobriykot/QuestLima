@@ -1,7 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@include file="parts/header.jsp" %>
-
-<%--<a href="user?id=${user.id}"> ${user.login}</a>--%>
 
 <div class="bd-example-snippet bd-code-snippet" style="width: 70%; margin: auto">
     <div class="bd-example">
@@ -25,8 +23,8 @@
                     <td>${user.login}</td>
                     <td>${user.password}</td>
                     <td>${fn:length(user.games)}</td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td>${fn:length(user.wins)}</td>
+                    <td>${fn:length(user.losses)}</td>
                 </tr>
             </c:forEach>
 

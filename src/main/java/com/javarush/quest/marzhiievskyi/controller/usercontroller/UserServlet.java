@@ -43,9 +43,9 @@ public class UserServlet extends HttpServlet {
         if (parameterMap.containsKey("create")) {
             userService.create(user);
         } else if (parameterMap.containsKey("update")) {
-            userService.update(user);
+            User updatedUser = userService.update(user);
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);
+            session.setAttribute("user", updatedUser);
         } else if (parameterMap.containsKey("delete")) {
             userService.delete(user);
             request.getSession().invalidate();
