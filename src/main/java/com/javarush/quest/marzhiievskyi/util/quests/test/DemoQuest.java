@@ -6,6 +6,7 @@ import com.javarush.quest.marzhiievskyi.entity.GameState;
 import com.javarush.quest.marzhiievskyi.entity.Quest;
 import com.javarush.quest.marzhiievskyi.entity.Question;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -21,8 +22,8 @@ public class DemoQuest extends Quest {
     private final Question winQuestion = generateWinQuestion();
 
     public DemoQuest() {
-        setName("Demo Quest");
-        setStartingText("...!!!...");
+        setName("Test Demo");
+        setStartingText("Along in away galaxy...");
         setStartQuestionId(firstQuestion.getId());
         generateQuestions();
     }
@@ -63,17 +64,10 @@ public class DemoQuest extends Quest {
                 .text("2 Disagree answer")
                 .nextQuestionId(3L)
                 .build();
-        Answer answer = Answer.builder()
-                .id(3L)
-                .questionId(firstQuestion.getId())
-                .text("3  answer")
-                .nextQuestionId(3L)
-                .build();
 
         Collection<Answer> answers = new ArrayList<>();
         answers.add(agreeAnswer);
         answers.add(disagreeAnswer);
-        answers.add(answer);
         firstQuestion.setAnswerList(answers);
 
         return firstQuestion;
@@ -89,14 +83,14 @@ public class DemoQuest extends Quest {
                 .build();
 
         Answer agreeAnswer = Answer.builder()
-                .id(4L)
+                .id(3L)
                 .questionId(secondQuestion.getId())
                 .text("3 Agree answer")
                 .nextQuestionId(4L)
                 .build();
 
         Answer disagreeAnswer = Answer.builder()
-                .id(5L)
+                .id(4L)
                 .questionId(secondQuestion.getId())
                 .text("4 Disagree answer")
                 .nextQuestionId(5L)

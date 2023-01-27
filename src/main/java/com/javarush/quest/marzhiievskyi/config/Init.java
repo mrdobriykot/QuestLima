@@ -3,10 +3,8 @@ package com.javarush.quest.marzhiievskyi.config;
 import com.javarush.quest.marzhiievskyi.entity.User;
 import com.javarush.quest.marzhiievskyi.service.GameSessionService;
 import com.javarush.quest.marzhiievskyi.service.UserService;
+import com.javarush.quest.marzhiievskyi.util.quests.forest.EscapeFromForestQuest;
 import com.javarush.quest.marzhiievskyi.util.quests.test.DemoQuest;
-import com.javarush.quest.marzhiievskyi.util.quests.test.TestQuest;
-
-import java.util.ArrayList;
 
 public class Init {
 
@@ -33,8 +31,8 @@ public class Init {
     }
 
     public void initQuests() {
+        gameSessionService.loadQuestToRepository(new EscapeFromForestQuest());
         gameSessionService.loadQuestToRepository(new DemoQuest());
-        gameSessionService.loadQuestToRepository(new TestQuest());
     }
 
 }

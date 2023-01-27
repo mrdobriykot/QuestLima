@@ -1,6 +1,6 @@
-package com.javarush.quest.marzhiievskyi.util;
+package com.javarush.quest.marzhiievskyi.util.quests.test;
 
-public class TextForQuest {
+public class TextDemoQuest {
     //TODO change all texts
     public static final String STARTING_TEXT_QUEST = "Some starting text.";
     public static final String NAME_QUEST_TEST = "EPIC test";

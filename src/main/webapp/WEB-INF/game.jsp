@@ -9,23 +9,28 @@ style="text-align: center">
 
         <!-- Form Name -->
         <legend>${requestScope.quest.name}</legend>
+        <br>
+        <br>
 
         <!-- Text question -->
         <c:if test="${requestScope.questionId==1}">
-            <h3>${requestScope.quest.startingText}</h3>
+            <h5>${requestScope.quest.startingText}</h5>
+            <br>
+            <br>
         </c:if>
 
 
 
-        <p>${requestScope.question}</p>
+        <h6>${requestScope.question}</h6>
+        <br>
+
         <!-- Button (Double) -->
         <div class="form-group">
 
 
-            <c:if test="${not empty requestScope.answers}">
-                <label class="col-md-4 control-label" for="answer">Select your way</label>
-
-            </c:if>
+<%--            <c:if test="${not empty requestScope.answers}">--%>
+<%--                <label class="col-md-4 control-label" for="answer">Select your way</label>--%>
+<%--            </c:if>--%>
 <%--            <label class="col-md-4 control-label" for="answer${answer.nextQuestionId}">Select your way</label>--%>
             <div class="col-md-8" style="text-align: center; width: 70%; margin: auto">
                 <c:forEach var="answer" items="${requestScope.answers}">
