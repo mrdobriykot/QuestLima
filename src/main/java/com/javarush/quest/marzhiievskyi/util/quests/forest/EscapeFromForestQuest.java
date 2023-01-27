@@ -136,7 +136,7 @@ public class EscapeFromForestQuest extends Quest {
         Answer answer3 = Answer.builder()
                 .id(6L)
                 .questionId(question2.getId())
-                .text(TextEscapeFromForest.ANSWER_ID_5)
+                .text(TextEscapeFromForest.ANSWER_ID_6)
                 .nextQuestionId(7L)
                 .build();
 
