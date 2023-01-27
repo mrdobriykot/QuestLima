@@ -5,10 +5,7 @@ import com.javarush.quest.khlopin.questlima.entity.user.Role;
 import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.excpetions.QuestException;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class UserRepository implements Repository<User> {
@@ -29,7 +26,7 @@ public class UserRepository implements Repository<User> {
         long key = id.incrementAndGet();
         Optional<User> user = find(login);
         if (user.isEmpty()) {
-            userMap.put(key, new User(key, login, password, role));
+            userMap.put(key, new User(key, login, password, role, new ArrayList<>()));
         } else {
             throw new QuestException("Пользователь с таким именем уже создан");
         }

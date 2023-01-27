@@ -22,12 +22,12 @@ public class AnswerRepository implements Repository<List<Answer>> {
                createFinishAnswer("Отклонить вызов", 1L,AnswerState.FALSE,"Ты отклонил вызов. Поражение.")));
 
         answersMap.put(answersId.incrementAndGet(), List.of(
-                create("Подняться на мостик",2L,AnswerState.TRUE)));
-                createFinishAnswer("Отказаться подниматься на мостик", 2L,AnswerState.FALSE,"Ты не пошел на переговоры. Поражение.");
+                create("Подняться на мостик",2L,AnswerState.TRUE),
+                createFinishAnswer("Отказаться подниматься на мостик", 2L,AnswerState.FALSE,"Ты не пошел на переговоры. Поражение.")));
 
         answersMap.put(answersId.incrementAndGet(),List.of(
                 createFinishAnswer("Рассказать правду о себе", 3L,AnswerState.TRUE,"Ты победил."),
-                createFinishAnswer("Солгать о себе",4L, AnswerState.FALSE,"Твою ложь разоблочили. Поражение.")));
+                createFinishAnswer("Солгать о себе",3L, AnswerState.FALSE,"Твою ложь разоблочили. Поражение.")));
     }
 
 

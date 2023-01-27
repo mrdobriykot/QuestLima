@@ -19,8 +19,7 @@ public class QuestionRepository implements Repository<Question> {
 
         questionsMap.put(questionsId.incrementAndGet(),create(2L,"Ты потерял память. Принять вызов НЛО?", DB.answerDataBase.get(1L)));
                questionsMap.put(questionsId.incrementAndGet(),create(3L,"Ты принял вызов, поднимешься на мостик к капитану?",DB.answerDataBase.get(2L)));
-                questionsMap.put(questionsId.incrementAndGet(),create(null, "Ты поднялся на мостик. Ты кто?", DB.answerDataBase.get(3L)));
-    }
+                questionsMap.put(questionsId.incrementAndGet(),create(null, "Ты поднялся на мостик. Ты кто?", DB.answerDataBase.get(3L)));}
 
     public Question create(Long nextQuestionId, String value, List<Answer> answerList) {
         long idForQuest = questionId.incrementAndGet();

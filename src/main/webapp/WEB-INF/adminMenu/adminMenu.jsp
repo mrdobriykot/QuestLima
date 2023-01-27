@@ -9,6 +9,7 @@
 
 <c:if test="${sessionScope.isAdmin}">
 ADMIN PANEL
+    <br>
     <a href="users">All Users</a>
 
 </c:if>

@@ -1,6 +1,15 @@
 <%@include file="pageConstructor/header.jsp"%>
 My Profile
-${sessionScope.user}
+<br>
+<br>
+Your name: ${sessionScope.user.getUserName()}
+<br>
+Your Role: ${sessionScope.user.getRole()}
+<br>
+Your count of game: ${sessionScope.user.getGameList().size()}
+<br>
+<%--Your IP address: ${sessionScope.user.get}--%>
+<br>
 <c:if test="${sessionScope.isAdmin}">
 <a href="adminMenu">to Admin Panel</a>
 </c:if>

@@ -16,7 +16,7 @@ public class QuestRepository implements Repository<Quest> {
 
 
     public QuestRepository() {
-        create(DB.userDataBase.get(1),"First", DB.questionDataBase.getAll(), DB.questionDataBase.getAll().size());
+        create(DB.userDataBase.get(1),"НЛО", DB.questionDataBase.getAll(), DB.questionDataBase.getAll().size());
 
     }
 

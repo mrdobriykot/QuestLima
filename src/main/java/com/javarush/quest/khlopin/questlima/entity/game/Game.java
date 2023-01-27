@@ -11,9 +11,7 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 public class Game extends GameEntity {
 
-    private User player;
-
-    private Question quest;
+    private Quest quest;
     private GameState gameState;
 
 

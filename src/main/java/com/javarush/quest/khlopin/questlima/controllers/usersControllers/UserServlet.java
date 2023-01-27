@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 @WebServlet(name = "UserServlet", value = "/user")
@@ -39,7 +40,8 @@ public class UserServlet extends HttpServlet {
             User updatedUser = new User(Long.parseLong(parameterMap.get("id")[0]),
                     parameterMap.get("login")[0],
                     parameterMap.get("password")[0],
-                    Role.valueOf(parameterMap.get("role")[0]));
+                    Role.valueOf(parameterMap.get("role")[0]),
+                    new ArrayList<>());
             DB.userDataBase.update(currentUser.getId(), updatedUser);
         }
 
