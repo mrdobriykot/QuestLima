@@ -10,4 +10,6 @@ public class URLPatterns {
     public static final String GAME = "/WEB-INF/game.jsp";
 
     public static final String GAME_SERVLET = "/game";
+
+    public static final String QUEST_CONTENT = "/quest_content.json";
 }

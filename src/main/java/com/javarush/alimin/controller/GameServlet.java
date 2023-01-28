@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -67,6 +68,9 @@ public class GameServlet extends HttpServlet {
 
     private void setPlayerNameForSession(HttpSession session, HttpServletRequest request) {
         String name = request.getParameter("name");
+        if (Objects.isNull(name) || StringUtils.isEmpty(name)) {
+            name = "a mysterious stranger";
+        }
         session.setAttribute("playerName", name);
     }
 
