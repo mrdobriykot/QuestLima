@@ -5,6 +5,8 @@ import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.utills.DB;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -20,9 +22,13 @@ public class QuestStarter {
     @Getter
     private String finishTrueAnswer;
 
+    private User user;
+
+    private static final Logger log = LogManager.getLogger(QuestStarter.class);
+
 
     public void startQuest(HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
+        user = (User) request.getSession().getAttribute("user");
         long id = Long.parseLong(request.getParameter("id"));
         quest = DB.questDataBase.get(id);
         questionList = quest.getQuestionList();
@@ -32,9 +38,11 @@ public class QuestStarter {
         user.getGameList().add(game);
         request.setAttribute("question", question);
         request.setAttribute("answers", answerList);
+        log.info("Была создана игра" + user + "для пользователя " + user);
     }
 
     public void nextStageOfQuest(HttpServletRequest request, String answer, int stage) {
+        log.trace(user + " перешел на стадию" + stage + "в игре" + game);
         Question currentQuestion = questionList.get(stage);
         question = currentQuestion;
         answerList = currentQuestion.getAnswerList();
@@ -58,6 +66,11 @@ public class QuestStarter {
     public void findTrueAnswer() {
         game.setGameState(GameState.WIN);
         finishTrueAnswer = question.getAnswerList().get(0).getFinishAnswerText();
+        if (finishTrueAnswer != null) {
+        log.trace("найден правильный ответ в игре " + game + "ответ: " + finishTrueAnswer); }
+        else {
+            log.trace(" правильный ответ для игры " + game + " не найден " + "пользователь " + user);
+        }
     }
 
 

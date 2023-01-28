@@ -1,4 +1,4 @@
-package com.javarush.quest.khlopin.questlima.entity;
+package com.javarush.quest.khlopin.questlima.entity.game;
 
 import lombok.Data;
 

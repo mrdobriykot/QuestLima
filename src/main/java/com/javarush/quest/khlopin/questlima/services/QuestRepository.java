@@ -1,10 +1,11 @@
 package com.javarush.quest.khlopin.questlima.services;
 
-import com.javarush.quest.khlopin.questlima.entity.Repository;
 import com.javarush.quest.khlopin.questlima.entity.game.Quest;
 import com.javarush.quest.khlopin.questlima.entity.game.Question;
 import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.utills.DB;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -13,11 +14,12 @@ public class QuestRepository implements Repository<Quest> {
 
     private final HashMap<Long,Quest> questMap = new HashMap<>();
     private static final AtomicLong id = new AtomicLong(0);
+    private static final Logger log = LogManager.getLogger(QuestRepository.class);
 
 
     public QuestRepository() {
         create(DB.userDataBase.get(1),"НЛО", DB.questionDataBase.getAll(), DB.questionDataBase.getAll().size());
-
+        log.trace("quest repository was uploaded");
     }
 
 

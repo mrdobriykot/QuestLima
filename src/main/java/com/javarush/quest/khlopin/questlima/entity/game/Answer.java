@@ -1,8 +1,6 @@
 package com.javarush.quest.khlopin.questlima.entity.game;
 
-import com.javarush.quest.khlopin.questlima.entity.GameEntity;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

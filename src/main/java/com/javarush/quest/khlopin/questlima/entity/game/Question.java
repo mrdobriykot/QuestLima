@@ -1,6 +1,5 @@
 package com.javarush.quest.khlopin.questlima.entity.game;
 
-import com.javarush.quest.khlopin.questlima.entity.GameEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

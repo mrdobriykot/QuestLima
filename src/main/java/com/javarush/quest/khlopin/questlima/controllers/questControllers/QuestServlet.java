@@ -35,7 +35,7 @@ public class QuestServlet extends HttpServlet {
                 if (stage != questStarter.getQuest().getCountOfStages()) {
                     stage++;
                 }
-                if (stage == questStarter.getQuest().getCountOfStages() && answer.equals("true")) {
+                if (stage == questStarter.getQuest().getCountOfStages() && answer.equals("true")) { //TODO Перенести это в questStarter и покрыть лоагми
                     stage = 0;
                     questStarter.findTrueAnswer();
                     request.setAttribute("result", questStarter.getFinishTrueAnswer());
