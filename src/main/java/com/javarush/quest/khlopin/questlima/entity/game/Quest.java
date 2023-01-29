@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
@@ -18,8 +19,9 @@ public class Quest extends GameEntity {
 
     private int countOfStages;
 
-
-
+    public String toString() {
+        return "Quest id=" + this.getId() + ", author=" + this.getAuthor() + ", info=" + this.getInfo();
+    }
 
 
 }

@@ -12,20 +12,20 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class QuestRepository implements Repository<Quest> {
 
-    private final HashMap<Long,Quest> questMap = new HashMap<>();
+    private final HashMap<Long, Quest> questMap = new HashMap<>();
     private static final AtomicLong id = new AtomicLong(0);
     private static final Logger log = LogManager.getLogger(QuestRepository.class);
 
 
     public QuestRepository() {
-        create(DB.userDataBase.get(1),"НЛО", DB.questionDataBase.getAll(), DB.questionDataBase.getAll().size());
+        create(DB.userDataBase.get(1), "НЛО", findAllQustionsForQuest(1), findAllQustionsForQuest(1).size());
         log.trace("quest repository was uploaded");
     }
 
 
-        public void create(User author, String info, List<Question> list,int countOfStages) {
+    public void create(User author, String info, List<Question> list, int countOfStages) {
         long questId = id.incrementAndGet();
-        questMap.put(questId, new Quest(questId, author,info,list,countOfStages));
+        questMap.put(questId, new Quest(questId, author, info, list, countOfStages));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class QuestRepository implements Repository<Quest> {
     @Override
     public void update(long idOfOlderEntity, Quest entity) {
         delete(idOfOlderEntity);
-        questMap.put(idOfOlderEntity,entity);
+        questMap.put(idOfOlderEntity, entity);
     }
 
     @Override
@@ -52,5 +52,17 @@ public class QuestRepository implements Repository<Quest> {
     @Override
     public Optional<Quest> find(String id) { //TODO Вынести из абстракции???
         return Optional.ofNullable(questMap.get(Long.parseLong(id)));
+    }
+
+    public List<Question> findAllQustionsForQuest(long questId) {
+
+        List<Question> all = DB.questionDataBase.getAll();
+        List<Question> questionList = new ArrayList<>();
+        for (Question question : all) {
+            if (question.getQuestId() == questId) {
+                questionList.add(question);
+            }
+        }
+        return questionList;
     }
 }

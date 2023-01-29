@@ -15,4 +15,8 @@ public class User {
     private Role role;
 
     private List<Game> gameList;
+
+    public String toString() {
+        return "User id=" + this.getId() + ", userName=" + this.getUserName() + "role=" + this.getRole();
+    }
 }
