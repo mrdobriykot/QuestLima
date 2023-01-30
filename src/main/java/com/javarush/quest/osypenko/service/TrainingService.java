@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class ServiceTraining {
+public class TrainingService {
     public static void extracted(HttpServletRequest request) {
-        HashMap<Entity, Training> objectHashMap = new Util().getObjectHashMap();
+        HashMap<Entity, Training> objectHashMap = new Util().getAllEntityDB();
 
         Map<String, String[]> parameterMap = request.getParameterMap();
         String parameter = null;

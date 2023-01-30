@@ -29,6 +29,15 @@
     border-radius: 3px;
 }
 
+.btn_cornflowerblue {
+    display: inline-block;
+    background: cornflowerblue;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
 .color_red {
     color: red;
 }
@@ -37,7 +46,7 @@
     color: blue;
 }
 
-.color {
+.color_indigo {
     color: indigo;
     font-size: 45px;
 }
@@ -58,4 +67,8 @@ table td {
 
 .container {
     margin: auto;
+}
+
+.background {
+    background-color: #f2f4f8;
 }

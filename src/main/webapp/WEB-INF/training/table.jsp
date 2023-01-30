@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Table</title>
-    <link href="css/main.css" rel="stylesheet">
+    <link href="../../css/main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,7 +29,9 @@
                     <a href="${urls.value}">${urls.key}</a>
                 </c:forEach>
                 <p>
-                    <img src="${quest.images}">
+                    <c:forEach var="img" items="${quest.images}">
+                    <img src="${img}">
+                    </c:forEach>
             </td>
         </tr>
     </c:forEach>

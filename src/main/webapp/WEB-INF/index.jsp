@@ -7,7 +7,7 @@
     <title>Hello</title>
     <link href="css/main.css" rel="stylesheet">
 </head>
-<body>
+<body class="background">
 <div class="center">
     <br>
     <h1>Делаем обучение интереснее!</h1>
@@ -20,6 +20,8 @@
 
     <a href="${pageContext.request.contextPath}/training" class="btn_gray">Подготовка к собеседованию</a>
     <a href="${pageContext.request.contextPath}/interview" class="btn_gray">Виртуальное собеседование</a>
+    <br><br>
+    <img src="images/view/13-1024x683.png">
 </div>
 </body>
 </html>

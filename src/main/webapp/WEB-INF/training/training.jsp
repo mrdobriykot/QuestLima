@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Quest</title>
-    <link href="css/main.css" rel="stylesheet">
+    <link href="../../css/main.css" rel="stylesheet">
 </head>
 <body>
 <div class="center">
@@ -20,6 +20,7 @@
         </c:forEach>
 
     </form>
+    <img src="../../images/view/ackjjbwvbwisvvv.jpeg">
 </div>
 </body>
 </html>
