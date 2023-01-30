@@ -8,7 +8,7 @@ public interface Repository<T> {
     Collection<T> getAll();
     T get(long id);
     T create(T entity);
-    T delete(T entity);
+    void delete(T entity);
     T update(T entity);
-    Optional<T> find (String pattern);
+    Optional<T> find(String pattern);
 }

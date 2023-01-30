@@ -1,35 +1,36 @@
-package com.javarush.quest.ivanilov.servlets;
+package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.constants.Attributes;
-import com.javarush.quest.ivanilov.constants.Messages;
-import com.javarush.quest.ivanilov.constants.Targets;
-import com.javarush.quest.ivanilov.entities.users.Operation;
+import com.javarush.quest.ivanilov.entities.users.Roles;
+import com.javarush.quest.ivanilov.utils.constants.Attributes;
+import com.javarush.quest.ivanilov.utils.constants.Jsp;
+import com.javarush.quest.ivanilov.utils.constants.Messages;
+import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.entities.users.User;
-import com.javarush.quest.ivanilov.services.AuthorizationService;
 import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.Navigator;
-import com.javarush.quest.ivanilov.utils.RequestUtils;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet(name = "SignupServlet", value = Targets.SIGNUP)
 public class SignupServlet extends HttpServlet {
-    private final AuthorizationService auth = AuthorizationService.AUTHORIZATION_SERVICE;
     private final UserService userService = UserService.USER_SERVICE;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        auth.authorizeAndProceed(req, resp, Targets.MAIN, Targets.SIGNUP_JSP);
+        Navigator.dispatch(req, resp, Jsp.SIGNUP_JSP);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, String> attributes = RequestUtils.getAttributes(req);
-        User user = userService.createOrModifyUser(req, resp, attributes, Operation.CREATE);
+        String login = req.getParameter(Attributes.LOGIN);
+        String password = req.getParameter(Attributes.PASSWORD);
+        User user = userService.createOrModifyUser(login, password, Roles.USER, null);
 
         if (user != null) {
             HttpSession session = req.getSession();
@@ -38,7 +39,7 @@ public class SignupServlet extends HttpServlet {
             Navigator.redirect(resp, Targets.MAIN);
         } else {
             req.setAttribute(Attributes.MESSAGE, Messages.GENERIC_REASON);
-            Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
+            Navigator.dispatch(req, resp, Jsp.ERROR_MESSAGE_JSP);
         }
     }
 }

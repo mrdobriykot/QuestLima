@@ -6,7 +6,6 @@ import org.apache.commons.lang3.NotImplementedException;
 import java.util.Optional;
 
 public class TaskRepository extends BaseRepository<Task> {
-
     @Override
     public Optional<Task> find(String pattern) {
         throw new NotImplementedException();

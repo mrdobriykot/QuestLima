@@ -1,7 +1,7 @@
-package com.javarush.quest.ivanilov.servlets;
+package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.constants.Attributes;
-import com.javarush.quest.ivanilov.constants.Targets;
+import com.javarush.quest.ivanilov.utils.constants.Attributes;
+import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -18,10 +18,5 @@ public class LogoutServlet extends HttpServlet {
         session.setAttribute(Attributes.IS_AUTHORIZED, false);
         session.setAttribute(Attributes.USER, null);
         Navigator.dispatch(req, resp, Targets.INDEX);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

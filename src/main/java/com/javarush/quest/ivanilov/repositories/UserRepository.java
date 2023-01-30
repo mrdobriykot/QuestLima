@@ -14,10 +14,9 @@ public class UserRepository extends BaseRepository<User> {
         create(User.builder().login("testUser2").password("google").role(Roles.USER).gamesPlayed(new ArrayList<>()).build());
     }
 
-    @Override
-    public Optional<User> find(String pattern) {
+    public Optional<User> find(String loginPattern) {
         return map.values().stream()
-                .filter(user -> user.getLogin().equals(pattern))
+                .filter(user -> user.getLogin().equals(loginPattern))
                 .findFirst();
     }
 }

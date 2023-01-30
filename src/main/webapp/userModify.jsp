@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <c:import url="elements/header.jsp"></c:import>
 <html>
@@ -12,13 +11,13 @@
 <div>
 <form class="form" action="/userModify" method="POST">
     <fieldset>
-        <legend>Изменение пользователя ${requestScope.userToBeModified.login} </legend>
+        <legend>Изменение пользователя ${requestScope.userToBeModified.login} </legend><br>
         <label for="userId">ID</label>
-        <input type="text" id="userId" name="userId" value="${requestScope.userToBeModified.id}" readonly/>
+        <input type="text" id="userId" name="userId" value="${requestScope.userToBeModified.id}" readonly/><br>
         <label for="login">Логин</label>
-        <input type="text" id="login" name="login" value="${requestScope.userToBeModified.login}" />
+        <input type="text" id="login" name="login" value="${requestScope.userToBeModified.login}" /><br>
         <label for="stacked-password">Password</label>
-        <input type="text" id="stacked-password" name="password" value="${requestScope.userToBeModified.password}"/>
+        <input type="text" id="stacked-password" name="password" value="${requestScope.userToBeModified.password}"/><br>
         <label for="stacked-state">Роль</label>
         <select id="stacked-state" name="role">
             <option selected>${requestScope.userToBeModified.role}</option>
@@ -27,7 +26,7 @@
                     <option>${role}</option>
                 </c:if>
             </c:forEach>
-        </select>
+        </select><br>
         <button type="submit" class="button button-blue">Изменить данные</button>
     </fieldset>
 </form>

@@ -1,4 +1,4 @@
-package com.javarush.quest.ivanilov.constants;
+package com.javarush.quest.ivanilov.utils.constants;
 
 public class Strings {
     public static final String UNEXPECTED_VALUE = "Unexpected value: ";
@@ -24,4 +24,5 @@ public class Strings {
     public static final String WON = "Вы победили!";
     public static final String ABOUT_HIT = "%s наносит удар %s с силой %d. У %s остаётся %d здоровья.";
     public static final String ABOUT_BLOCK = "%s блокирует удар %s";
+    public static final String NOT_PLAYING = "Не играет.";
 }

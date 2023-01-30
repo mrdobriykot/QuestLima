@@ -29,8 +29,8 @@ public abstract class BaseRepository<T extends AbstractEntity> implements Reposi
     }
 
     @Override
-    public T delete(T entity) {
-        return map.remove(entity.getId());
+    public void delete(T entity) {
+        map.remove(entity.getId());
     }
 
     @Override

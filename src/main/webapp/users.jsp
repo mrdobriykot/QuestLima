@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body class="typewriter">
-<h1>Пользователи</h1>
+<div><h1>Пользователи</h1></div>
 <br>
+<div>
+    <form action="/userCreate" method="GET">
+        <button type="submit" class="button button-green">Создать пользователя</button>
+    </form>
+</div>
 <div>
     <table class="table">
         <thead>
@@ -19,6 +24,9 @@
                 <th>Логин</th>
                 <th>Пароль</th>
                 <th>Роль</th>
+                <th>Текущая игра</th>
+                <th>Игр пройдено</th>
+                <th>Игр выиграно</th>
                 <th>Изменить</th>
                 <th>Удалить</th>
             </tr>
@@ -29,8 +37,11 @@
                 <td>${user.login}</td>
                 <td>${user.password}</td>
                 <td>${user.role}</td>
-                <td><a class="button" class="button-yellow" href="/userModify?userId=${user.id}">Изменить</a></td>
-                <td><a class="button" class="button-red" href="/userDelete?userId=${user.id}">Удалить</a></td>
+                <td>${user.currentGameName}</td>
+                <td>${user.gamesPlayed}</td>
+                <td>${user.gamesWon}</td>
+                <td><a class="button button-yellow" href="/userModify?userId=${user.id}">Изменить</a></td>
+                <td><a class="button button-red" href="/userDelete?userId=${user.id}">Удалить</a></td>
             </tr>
             <br>
         </c:forEach>

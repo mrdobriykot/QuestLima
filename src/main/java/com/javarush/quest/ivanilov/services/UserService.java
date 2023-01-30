@@ -1,26 +1,15 @@
 package com.javarush.quest.ivanilov.services;
 
 
-import com.javarush.quest.ivanilov.constants.Attributes;
-import com.javarush.quest.ivanilov.constants.Messages;
-import com.javarush.quest.ivanilov.constants.Targets;
-import com.javarush.quest.ivanilov.entities.users.Operation;
 import com.javarush.quest.ivanilov.entities.users.Roles;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.repositories.Repository;
 import com.javarush.quest.ivanilov.repositories.UserRepository;
-import com.javarush.quest.ivanilov.utils.Navigator;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
 import java.util.Optional;
 @Slf4j
 public enum UserService {
@@ -53,21 +42,25 @@ public enum UserService {
         return repo.find(pattern);
     }
 
-    public User createOrModifyUser(HttpServletRequest req, HttpServletResponse resp, Map<String, String> attributes, Operation operation) throws ServletException, IOException {
-        String login = attributes.getOrDefault(Attributes.LOGIN, null);
-        String password = attributes.getOrDefault(Attributes.PASSWORD, null);
-
-        if (!attributesAreValid(req, resp, login, password)) {
+    public User createOrModifyUser(String login, String password, Roles role, User userOrNull) {
+        if (!attributesAreValid(login, password)) {
             return null;
         }
 
-        User newUser = getUser(req, resp, attributes, operation, login);
+        User newUser;
+
+        if (userOrNull == null) {
+            newUser = getUser(login, password, role, null);
+        } else {
+            newUser = getUser(login, password, role, userOrNull);
+        }
+
         if (newUser == null) {
             return null;
         }
 
         User actualUser;
-        if (operation.equals(Operation.CREATE)) {
+        if (newUser.getId() == 0) {
             actualUser = USER_SERVICE.create(newUser);
         } else {
             actualUser = USER_SERVICE.update(newUser);
@@ -76,71 +69,49 @@ public enum UserService {
         return actualUser;
     }
 
-    private boolean attributesAreValid(HttpServletRequest req, HttpServletResponse resp, String login, String password) throws ServletException, IOException {
-        if (StringUtils.isBlank(login)) {
-            req.setAttribute(Attributes.MESSAGE, Messages.NO_LOGIN);
-            Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
-            return false;
-        }
-
-        if (StringUtils.isBlank(password)) {
-            req.setAttribute(Attributes.MESSAGE, Messages.NO_PASSWORD);
-            Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
-            return false;
-        }
-        return true;
+    private boolean attributesAreValid(String login, String password) {
+        return !(StringUtils.isBlank(login) || StringUtils.isBlank(password));
     }
 
-    private User getUser(HttpServletRequest req, HttpServletResponse resp, Map<String, String> attributes, Operation operation, String login) throws ServletException, IOException {
+    private User getUser(String login, String password, Roles role, User userOrNull) {
         User newUser;
-        switch (operation) {
-            case CREATE -> {
+
+        if (userOrNull == null) {
+            Optional<User> optionalUser = USER_SERVICE.find(login);
+            if (optionalUser.isPresent()) {
+                return null;
+            }
+            newUser = getUserBuild(login, password, role);
+        } else {
+            if (!userOrNull.getLogin().equals(login)) {
                 Optional<User> optionalUser = USER_SERVICE.find(login);
                 if (optionalUser.isPresent()) {
-                    req.setAttribute(Attributes.MESSAGE, new Messages().userAlreadyExists(optionalUser.get().getLogin()));
-                    Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
                     return null;
                 }
-                newUser = getUserBuild(attributes);
             }
-            case UPDATE -> {
-                User currUser = (User) req.getSession().getAttribute(Attributes.USER);
-                if (!currUser.getLogin().equals(login)) {
-                    Optional<User> optionalUser = USER_SERVICE.find(login);
-                    if (optionalUser.isPresent()) {
-                        req.setAttribute(Attributes.MESSAGE, new Messages().userAlreadyExists(optionalUser.get().getLogin()));
-                        Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
-                        return null;
-                    }
-                }
-                newUser = getUserBuild(attributes, currUser);
-                newUser.setId(currUser.getId());
-            }
-            default -> throw new UnsupportedOperationException();
+            newUser = getUserBuild(login, password, role, userOrNull);
         }
         return newUser;
     }
 
-    private User getUserBuild(Map<String, String> attributes, User user) {
-        String login = attributes.getOrDefault(Attributes.LOGIN, null);
-        String password = attributes.getOrDefault(Attributes.PASSWORD, null);
-        Roles role = Roles.valueOf(attributes.getOrDefault(Attributes.ROLE, null));
-        return User.builder()
+    private User getUserBuild(String login, String password, Roles role, User user) {
+        User newUser = User.builder()
                 .login(login)
                 .password(password)
                 .role(role)
                 .gamesPlayed(user.getGamesPlayed())
                 .currentGameId(user.getCurrentGameId())
                 .build();
+        newUser.setId(user.getId());
+        return newUser;
     }
 
-    private User getUserBuild(Map<String, String> attributes) {
-        String login = attributes.getOrDefault(Attributes.LOGIN, null);
-        String password = attributes.getOrDefault(Attributes.PASSWORD, null);
+    private User getUserBuild(String login, String password, Roles role) {
+        Roles actualRole = role != null ? role : Roles.USER;
         return User.builder()
                 .login(login)
                 .password(password)
-                .role(Roles.USER)
+                .role(actualRole)
                 .gamesPlayed(new ArrayList<>())
                 .currentGameId(0)
                 .build();

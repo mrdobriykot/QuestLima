@@ -94,3 +94,7 @@
 .largeText {
     max-width: 1000px;
 }
+
+input {
+    margin-bottom: 15px;
+}

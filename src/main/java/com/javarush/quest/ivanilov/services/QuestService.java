@@ -7,7 +7,6 @@ import com.javarush.quest.ivanilov.repositories.Repository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
-import java.util.Optional;
 @Slf4j
 public enum QuestService {
 
@@ -29,13 +28,5 @@ public enum QuestService {
 
     public Quest update(Quest quest) {
         return repo.update(quest);
-    }
-
-    public void delete(Quest quest) {
-        repo.delete(quest);
-    }
-
-    public Optional<Quest> find(String pattern) {
-        return repo.find(pattern);
     }
 }

@@ -5,8 +5,7 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.Optional;
 
-public class QuestRepository extends BaseRepository<Quest>{
-
+public class QuestRepository extends BaseRepository<Quest> {
     @Override
     public Optional<Quest> find(String pattern) {
         throw new NotImplementedException();

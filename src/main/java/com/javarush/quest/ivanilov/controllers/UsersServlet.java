@@ -1,8 +1,11 @@
-package com.javarush.quest.ivanilov.servlets;
+package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.constants.Attributes;
-import com.javarush.quest.ivanilov.constants.Messages;
-import com.javarush.quest.ivanilov.constants.Targets;
+import com.javarush.quest.ivanilov.entities.users.UserToSend;
+import com.javarush.quest.ivanilov.utils.Users;
+import com.javarush.quest.ivanilov.utils.constants.Attributes;
+import com.javarush.quest.ivanilov.utils.constants.Jsp;
+import com.javarush.quest.ivanilov.utils.constants.Messages;
+import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.services.AuthorizationService;
 import com.javarush.quest.ivanilov.services.UserService;
@@ -21,21 +24,16 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        auth.authorizeAndProceed(req, resp, Targets.LOGIN_JSP);
         User user = (User) req.getSession().getAttribute(Attributes.USER);
 
         if (auth.isAdmin(user)) {
             Collection<User> users = userService.getAll();
-            req.setAttribute(Attributes.USERS, users);
-            Navigator.dispatch(req, resp, Targets.USERS_JSP);
+            Collection<UserToSend> usersToSend = Users.extractUsersToSend(users);
+            req.setAttribute(Attributes.USERS, usersToSend);
+            Navigator.dispatch(req, resp, Jsp.USERS_JSP);
         } else {
             req.setAttribute(Attributes.MESSAGE, new Messages().forbidden(user.getLogin()));
-            Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
+            Navigator.dispatch(req, resp, Jsp.ERROR_MESSAGE_JSP);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

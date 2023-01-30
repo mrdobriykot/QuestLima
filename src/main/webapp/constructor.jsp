@@ -4,7 +4,6 @@
 <html>
 <head>
     <title>Конструктор квестов</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body class="typewriter">
@@ -16,7 +15,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Сценарий квеста</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea" name="questScenario"
+            <textarea class="form-control" aria-label="With textarea" name="questScenario" rows="10" cols="50"
                       placeholder="Напишите здесь сценарий вашего квеста. Руководство по сценарию и пример - ниже"></textarea>
         </div>
         <button type="submit" class="button button-green">Создать квест</button>

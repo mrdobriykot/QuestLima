@@ -1,7 +1,7 @@
-package com.javarush.quest.ivanilov.servlets;
+package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.constants.Attributes;
-import com.javarush.quest.ivanilov.constants.Targets;
+import com.javarush.quest.ivanilov.utils.constants.Attributes;
+import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.entities.game.Event;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import jakarta.servlet.*;
@@ -20,10 +20,5 @@ public class TaskDispatcherServlet extends HttpServlet {
             case QUESTION -> Navigator.redirect(resp, Targets.QUESTION);
             case FIGHT -> Navigator.redirect(resp, Targets.FIGHT);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 }

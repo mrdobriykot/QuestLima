@@ -10,12 +10,10 @@
 <c:if test="${requestScope.isInGame == true}">
 <div><h1>Текущая игра: </h1></div>
     <table class="table">
-        <c:forEach var="quest" items="${requestScope.quests}">
             <tr>
-                <td>${currentGameName}</td>
+                <td>${requestScope.currentGameName}</td>
                 <td><form action="/play" method="GET"><button class="button button-green">Продолжить</button></form></td>
             </tr>
-        </c:forEach>
     </table>
 </c:if>
 <div><h1>Доступные квесты:</h1></div>
