@@ -1,4 +1,4 @@
-package com.javarush.dobrov;
+package com.javarush.dobrov.controller;
 
 import java.io.*;
 

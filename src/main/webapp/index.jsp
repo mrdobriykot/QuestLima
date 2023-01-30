@@ -26,7 +26,7 @@
         <li><a href="#" class="nav-link px-2 link-dark disabled">Играть</a></li>
         <li><a href="#" class="nav-link px-2 link-dark disabled">Статистика</a></li>
         <%-- admin--%>
-        <li><a href="create-quest" class="nav-link px-2">Создать квест</a></li>
+        <li><a href="${pageContext.request.contextPath}/CreateQuestServlet" class="nav-link px-2">Создать квест</a></li>
         <li><a href="#" class="nav-link px-2 disabled">Редактировать квест</a></li>
     </ul>
 
