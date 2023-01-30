@@ -1,4 +1,4 @@
-package com.javarush.quest.ivanilov.constants;
+package com.javarush.quest.ivanilov.utils.constants;
 
 public class Strings {
     public static final String UNEXPECTED_VALUE = "Unexpected value: ";

@@ -1,21 +1,21 @@
 package com.javarush.quest.ivanilov.servlets;
 
-import com.javarush.quest.ivanilov.constants.Attributes;
-import com.javarush.quest.ivanilov.constants.Messages;
-import com.javarush.quest.ivanilov.constants.Targets;
-import com.javarush.quest.ivanilov.entities.users.Operation;
+import com.javarush.quest.ivanilov.utils.constants.Attributes;
+import com.javarush.quest.ivanilov.utils.constants.Jsp;
+import com.javarush.quest.ivanilov.utils.constants.Messages;
+import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.entities.users.Roles;
 import com.javarush.quest.ivanilov.entities.users.User;
-import com.javarush.quest.ivanilov.services.AuthorizationService;
-import com.javarush.quest.ivanilov.services.UserService;
+import com.javarush.quest.ivanilov.controllers.AuthorizationService;
+import com.javarush.quest.ivanilov.controllers.UserService;
 import com.javarush.quest.ivanilov.utils.Navigator;
-import com.javarush.quest.ivanilov.utils.RequestUtils;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet(name = "ModifyUserServlet", value = Targets.USER_MODIFY_ETC)
 public class ModifyUserServlet extends HttpServlet {
@@ -24,40 +24,39 @@ public class ModifyUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        auth.authorizeAndProceed(req, resp, Targets.LOGIN_JSP);
         User user = (User) req.getSession().getAttribute(Attributes.USER);
-        Map<String, String> attributes = RequestUtils.getAttributes(req.getQueryString());
-        long userId = Long.parseLong(attributes.getOrDefault(Attributes.USER_ID, Attributes.DEFAULT_ID));
+        long userId = Long.parseLong(req.getParameter(Attributes.USER_ID));
 
         if (auth.isAdmin(user) || user.getId() == userId) {
             req.setAttribute(Attributes.USER_TO_BE_MODIFIED, userService.get(userId));
             req.setAttribute(Attributes.ROLES, Roles.values());
-            Navigator.dispatch(req, resp, Targets.USER_MODIFY_JSP);
+            Navigator.dispatch(req, resp, Jsp.USER_MODIFY_JSP);
         } else {
             req.setAttribute(Attributes.MESSAGE, new Messages().forbidden(user.getLogin()));
-            Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
+            Navigator.dispatch(req, resp, Jsp.ERROR_MESSAGE_JSP);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        auth.authorizeAndProceed(req, resp, Targets.LOGIN_JSP);
         User user = (User) req.getSession().getAttribute(Attributes.USER);
-        Map<String, String> attributes = RequestUtils.getAttributes(req);
-        long userId = Long.parseLong(attributes.getOrDefault(Attributes.USER_ID, Attributes.DEFAULT_ID));
+        long userId = Long.parseLong(req.getParameter(Attributes.USER_ID));
 
         if (auth.isAdmin(user) || user.getId() == userId) {
-            User updatedUser = userService.createOrModifyUser(req, resp, attributes, Operation.UPDATE);
+            String login = req.getParameter(Attributes.LOGIN);
+            String password = req.getParameter(Attributes.PASSWORD);
+            User updatedUser = userService.createOrModifyUser(login, password, userService.get(userId));
+
             if (updatedUser != null) {
                 req.setAttribute(Attributes.MESSAGE, new Messages().userUpdatedSuccessfully(updatedUser));
-                Navigator.dispatch(req, resp, Targets.SUCCESS_MESSAGE_JSP);
+                Navigator.dispatch(req, resp, Jsp.SUCCESS_MESSAGE_JSP);
             } else {
-                req.setAttribute(Attributes.MESSAGE, Messages.GENERIC_REASON);
-                Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
+                req.setAttribute(Attributes.MESSAGE, Messages.USER_NOT_MODIFIED);
+                Navigator.dispatch(req, resp, Jsp.ERROR_MESSAGE_JSP);
             }
         } else {
             req.setAttribute(Attributes.MESSAGE, new Messages().forbidden(user.getLogin()));
-            Navigator.dispatch(req, resp, Targets.ERROR_MESSAGE_JSP);
+            Navigator.dispatch(req, resp, Jsp.ERROR_MESSAGE_JSP);
         }
     }
 }

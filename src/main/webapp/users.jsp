@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body class="typewriter">
-<h1>Пользователи</h1>
+<div><h1>Пользователи</h1></div>
 <br>
+<div>
+    <form action="/userCreate" method="POST">
+        <button type="submit" class="button button-green">Создать пользователя</button>
+    </form>
+</div>
 <div>
     <table class="table">
         <thead>

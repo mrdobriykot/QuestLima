@@ -1,7 +1,7 @@
-package com.javarush.quest.ivanilov.services;
+package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.constants.Attributes;
-import com.javarush.quest.ivanilov.constants.Strings;
+import com.javarush.quest.ivanilov.utils.constants.Attributes;
+import com.javarush.quest.ivanilov.utils.constants.Strings;
 import com.javarush.quest.ivanilov.entities.game.*;
 import com.javarush.quest.ivanilov.entities.users.User;
 import jakarta.servlet.http.HttpSession;

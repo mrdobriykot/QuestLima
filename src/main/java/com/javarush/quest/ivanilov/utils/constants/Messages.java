@@ -1,17 +1,11 @@
-package com.javarush.quest.ivanilov.constants;
+package com.javarush.quest.ivanilov.utils.constants;
 
 import com.javarush.quest.ivanilov.entities.users.User;
 
 public class Messages {
 
-    public static final String NO_PASSWORD = "Пароль не указан. Пожалуйста, заполните пароль.";
-    public static final String NO_LOGIN = "Логин не указан. Пожалуйста, укажите логин.";
     public static final String GENERIC_REASON = "Что-то пошло не так :(";
-    public static final String LOGOUT_SUCCESS = "Вы успешно разлогинились.";
-
-    public String userAlreadyExists(String login) {
-        return String.format("Не получилось авторизовать пользователя. Причина: пользователь %s уже существует. Попробуйте другой логин.", login);
-    }
+    public static final String USER_NOT_MODIFIED = "Не получилось внести изменения. Вероятно, данный логин уже существует.";
 
     public String forbidden(String login) {
         return String.format("Access to user management is forbidden: user %s doesn't have necessary rights.", login);
