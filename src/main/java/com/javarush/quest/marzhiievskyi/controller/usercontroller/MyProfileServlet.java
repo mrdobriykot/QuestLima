@@ -5,7 +5,6 @@ import com.javarush.quest.marzhiievskyi.entity.User;
 import com.javarush.quest.marzhiievskyi.service.UserService;
 import com.javarush.quest.marzhiievskyi.util.ServletConstants;
 import com.javarush.quest.marzhiievskyi.util.ServletUtilMethod;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
