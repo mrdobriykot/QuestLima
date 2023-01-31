@@ -17,7 +17,6 @@ import java.util.Collection;
 
 @WebServlet(name = ServletConstants.MY_PROFILE_SERVLET, value = ServletConstants.PROFILE_PATH)
 public class MyProfileServlet extends HttpServlet {
-    public static final String USER_ID_PATTERN = "?id=";
     UserService userService = UserService.USER_SERVICE;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,6 +40,7 @@ public class MyProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute(ServletConstants.USER);
-        response.sendRedirect(ServletConstants.USER + USER_ID_PATTERN + user.getId());
+        String userIdPattern = "?id=";
+        response.sendRedirect(ServletConstants.USER + userIdPattern + user.getId());
     }
 }
