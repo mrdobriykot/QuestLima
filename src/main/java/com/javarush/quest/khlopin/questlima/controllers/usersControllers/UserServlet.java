@@ -14,12 +14,6 @@ import java.util.Map;
 @WebServlet(name = "UserServlet", value = "/user")
 public class UserServlet extends HttpServlet {
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        config.getServletContext().setAttribute("roles", Role.values());
-        super.init(config);
-    }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

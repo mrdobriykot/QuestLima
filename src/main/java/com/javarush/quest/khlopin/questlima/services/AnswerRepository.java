@@ -79,20 +79,4 @@ public class AnswerRepository implements Repository<List<Answer>> {
         return answersMap.values();
     }
 
-    @Override
-    public Optional<List<Answer>> find(String login) {
-        return Optional.empty(); //заглушка
-    }
-    //    @Override
-//    public Optional<List<Answer>> find(String text) {
-//
-//        for (Map.Entry<Long, Answer> answerEntry : answersMap.entrySet()) {
-//            Answer answer = answerEntry.getValue();
-//            String answerText = answer.getText();
-//            if (answerText.equals(text)) {
-//                return Optional.of(answer);
-//            }
-//        }
-//        return Optional.empty();
-//    } //TODO ИСПРАВИТЬ!!!!
 }

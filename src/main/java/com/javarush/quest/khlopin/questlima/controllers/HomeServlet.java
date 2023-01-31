@@ -1,5 +1,6 @@
 package com.javarush.quest.khlopin.questlima.controllers;
 
+import com.javarush.quest.khlopin.questlima.entity.user.Role;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -12,6 +13,11 @@ import java.io.IOException;
 @WebServlet(name = "HomeServlet", value = "")
 public class HomeServlet extends HttpServlet {
 
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        config.getServletContext().setAttribute("roles", Role.values());
+        super.init(config);
+    }
 
     private static final Logger log = LogManager.getLogger(HomeServlet.class);
 

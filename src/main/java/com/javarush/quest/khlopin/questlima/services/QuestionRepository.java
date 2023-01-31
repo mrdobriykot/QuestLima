@@ -55,20 +55,5 @@ public class QuestionRepository implements Repository<Question> {
         return new ArrayList<>(questionsMap.values());
     }
 
-    @Override
-    public Optional<Question> find(String login) {
-        return Optional.empty();
-    } //заглушка
 
-    //    @Override
-//    public Optional<Question> find(String text) {
-//        for (Map.Entry<Long, Question> questionEntry : questionsMap.entrySet()) {
-//            Question question = questionEntry.getValue();
-//            String questionText = question.getText();
-//            if (questionText.equals(text)) {
-//                return Optional.of(question);
-//            }
-//        }
-//        return Optional.empty();
-//    } //TODO Исправить!
 }

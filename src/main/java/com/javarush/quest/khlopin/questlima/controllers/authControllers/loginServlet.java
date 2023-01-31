@@ -17,6 +17,8 @@ import java.util.Optional;
 public class loginServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(loginServlet.class);
 
+    boolean success;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("WEB-INF/auth/login.jsp").forward(request, response);
@@ -37,9 +39,11 @@ public class loginServlet extends HttpServlet {
                     CheckAdminService.checkAdmin(session);
                     request.getRequestDispatcher("WEB-INF/profile.jsp").forward(request, response);
                     log.info("Пользователь" + user1 + "успешно авторизовался");
+                    request.setAttribute("success",true);
                 }
             } else {
                 request.getRequestDispatcher("WEB-INF/auth/noSuccess.jsp").forward(request, response);
+                request.setAttribute("success",false);
                 log.info("неудачная попытка авторизации");
             }
         }

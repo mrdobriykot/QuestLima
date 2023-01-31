@@ -60,7 +60,6 @@ public class UserRepository implements Repository<User> {
         userMap.put(idOfOlderUser, user);
     }
 
-    @Override
     public Optional<User> find(String login) {
         for (Map.Entry<Long, User> longUserEntry : userMap.entrySet()) {
             User user = longUserEntry.getValue();

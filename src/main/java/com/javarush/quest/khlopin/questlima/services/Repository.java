@@ -13,5 +13,4 @@ public interface Repository<T> {
     void update(long idOfOlderEntity, T entity);
     Collection<T> getAll();
 
-    Optional<T> find(String login);
 }

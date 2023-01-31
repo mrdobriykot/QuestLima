@@ -49,10 +49,6 @@ public class QuestRepository implements Repository<Quest> {
         return questMap.values();
     }
 
-    @Override
-    public Optional<Quest> find(String id) { //TODO Вынести из абстракции???
-        return Optional.ofNullable(questMap.get(Long.parseLong(id)));
-    }
 
     public List<Question> findAllQustionsForQuest(long questId) {
 

@@ -9,17 +9,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
-
+@Getter
 public class QuestStarter {
     //TODO в вынести в переменные класса и создать конструктор квест и сделать универсальным для любого квеста
     private Game game;
-    @Getter
     private Quest quest;
     private List<Question> questionList;
 
     private List<Answer> answerList;
     private Question question;
-    @Getter
     private String finishTrueAnswer;
 
     private User user;

@@ -35,14 +35,13 @@ public class QuestServlet extends HttpServlet {
                 if (stage != questStarter.getQuest().getCountOfStages()) {
                     stage++;
                 }
-                if (stage == questStarter.getQuest().getCountOfStages() && answer.equals("true")) { //TODO Перенести это в questStarter и покрыть лоагми
+                if (stage == questStarter.getQuest().getCountOfStages() && answer.equals("true")) {
                     stage = 0;
                     questStarter.findTrueAnswer();
                     request.setAttribute("result", questStarter.getFinishTrueAnswer());
                     request.getRequestDispatcher("WEB-INF/quests/firstQuest/quest.jsp").forward(request, response);
                 } else {
                     questStarter.nextStageOfQuest(request, answer, stage);
-                    System.out.println(stage);
                     request.getRequestDispatcher("WEB-INF/quests/firstQuest/quest.jsp").forward(request, response);
                 }
             }
