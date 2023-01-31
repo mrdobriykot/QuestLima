@@ -3,7 +3,9 @@ package com.javarush.quest.marzhiievskyi.controller.usercontroller;
 import com.javarush.quest.marzhiievskyi.entity.GameSession;
 import com.javarush.quest.marzhiievskyi.entity.User;
 import com.javarush.quest.marzhiievskyi.service.UserService;
-import jakarta.servlet.RequestDispatcher;
+import com.javarush.quest.marzhiievskyi.util.ServletConstants;
+import com.javarush.quest.marzhiievskyi.util.ServletUtilMethod;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,35 +16,32 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Collection;
 
-@WebServlet(name = "MyProfile", value = "/profile")
+@WebServlet(name = ServletConstants.MY_PROFILE_SERVLET, value = ServletConstants.PROFILE_PATH)
 public class MyProfileServlet extends HttpServlet {
+    public static final String USER_ID_PATTERN = "?id=";
     UserService userService = UserService.USER_SERVICE;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(ServletConstants.USER);
 
-        String targetForward = "WEB-INF/profile.jsp";
+        String targetForward = ServletConstants.WEB_INF_PROFILE_JSP;
 
         if (user == null) {
-            targetForward = "WEB-INF/login.jsp";
+            targetForward = ServletConstants.WEB_INF_LOGIN_JSP;
         } else {
             Collection<GameSession> wins = userService.getWins(user.getId());
             Collection<GameSession> losses = userService.getLosses(user.getId());
             user.setWins(wins);
             user.setLosses(losses);
         }
-
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetForward);
-        requestDispatcher.forward(request, response);
-
+        ServletUtilMethod.forward(request, response, targetForward);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        response.sendRedirect("user" + "?id=" + user.getId());
+        User user = (User) session.getAttribute(ServletConstants.USER);
+        response.sendRedirect(ServletConstants.USER + USER_ID_PATTERN + user.getId());
     }
 }

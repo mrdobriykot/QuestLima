@@ -3,6 +3,8 @@ package com.javarush.quest.marzhiievskyi.controller;
 import com.javarush.quest.marzhiievskyi.entity.Quest;
 import com.javarush.quest.marzhiievskyi.entity.User;
 import com.javarush.quest.marzhiievskyi.service.GameSessionService;
+import com.javarush.quest.marzhiievskyi.util.ServletConstants;
+import com.javarush.quest.marzhiievskyi.util.ServletUtilMethod;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,24 +12,23 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.Collection;
 
-@WebServlet(name = "QuestsServlet", value = "/quests")
+@WebServlet(name = ServletConstants.QUESTS_SERVLET, value = ServletConstants.QUESTS_PATH)
 public class QuestsServlet extends HttpServlet {
     GameSessionService gameSessionService = GameSessionService.GAME_SESSION_SERVICE;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(ServletConstants.USER);
 
-        String targetForward = "WEB-INF/quests.jsp";
+        String targetForward = ServletConstants.WEB_INF_QUESTS_JSP;
 
         if (user == null) {
-            targetForward = "WEB-INF/login.jsp";
+            targetForward = ServletConstants.WEB_INF_LOGIN_JSP;
         }
 
         Collection<Quest> allQuests = gameSessionService.getAllQuests();
-        request.setAttribute("quests", allQuests);
+        request.setAttribute(ServletConstants.QUESTS, allQuests);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetForward);
-        requestDispatcher.forward(request, response);
+        ServletUtilMethod.forward(request, response, targetForward);
     }
 }

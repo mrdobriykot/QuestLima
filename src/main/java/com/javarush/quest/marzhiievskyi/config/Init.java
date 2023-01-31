@@ -3,6 +3,7 @@ package com.javarush.quest.marzhiievskyi.config;
 import com.javarush.quest.marzhiievskyi.entity.User;
 import com.javarush.quest.marzhiievskyi.service.GameSessionService;
 import com.javarush.quest.marzhiievskyi.service.UserService;
+import com.javarush.quest.marzhiievskyi.util.NameConstants;
 import com.javarush.quest.marzhiievskyi.util.quests.forest.EscapeFromForestQuest;
 import com.javarush.quest.marzhiievskyi.util.quests.test.DemoQuest;
 
@@ -13,20 +14,21 @@ public class Init {
     final GameSessionService gameSessionService = GameSessionService.GAME_SESSION_SERVICE;
 
     public void initDefaultUsers() {
+
         userService.create(User.builder()
                 .id(0L)
-                .login("Amitamaru")
-                .password("111111")
+                .login(NameConstants.AMITAMARU)
+                .password(NameConstants.PASSWORD)
                 .build());
         userService.create(User.builder()
                 .id(0L)
-                .login("Desmont")
-                .password("123456")
+                .login(NameConstants.DESMONT)
+                .password(NameConstants.PASSWORD_2)
                 .build());
         userService.create(User.builder()
                 .id(0L)
-                .login("q")
-                .password("q")
+                .login(NameConstants.Q)
+                .password(NameConstants.PASSWORD_3)
                 .build());
     }
 
