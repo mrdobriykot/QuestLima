@@ -16,7 +16,6 @@ public enum UserService {
     private final Repository<User> userRepository = new UserRepository();
 
     public void create(User user) {
-
         if (user.getGames() == null) {
             user.setGames(new ArrayList<>());
         }

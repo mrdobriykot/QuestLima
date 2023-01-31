@@ -45,7 +45,7 @@ public enum GameSessionService {
         return question.map(Question::getAnswerList).orElse(null);
     }
 
-    public void checkEndGame(Long userId, Long questionId, Long questId) {
+    public void checkEndOfTheGame(Long userId, Long questionId, Long questId) {
         Optional<Question> optionalQuestion = getQuestion(questId, questionId);
         if (optionalQuestion.isPresent()) {
             Question question = optionalQuestion.get();
@@ -68,10 +68,8 @@ public enum GameSessionService {
         Optional<User> optionalUser = userService.get(userId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-
             Collection<GameSession> games = user.getGames();
             games.add(playedGameByUser);
-
             userService.update(user);
         }
     }

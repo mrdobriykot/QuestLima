@@ -8,7 +8,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 @WebServlet(name = "UsersServlet", value = "/users")

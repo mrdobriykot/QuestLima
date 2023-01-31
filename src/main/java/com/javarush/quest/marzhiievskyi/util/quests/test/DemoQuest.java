@@ -22,8 +22,8 @@ public class DemoQuest extends Quest {
     private final Question winQuestion = generateWinQuestion();
 
     public DemoQuest() {
-        setName("Test Demo");
-        setStartingText("Along in away galaxy...");
+        setName(TextDemoQuest.NAME_QUEST_TEST);
+        setStartingText(TextDemoQuest.STARTING_TEXT_QUEST);
         setStartQuestionId(firstQuestion.getId());
         generateQuestions();
     }
@@ -48,20 +48,20 @@ public class DemoQuest extends Quest {
                 .id(1L)
                 .questId(getId())
                 .gameState(GameState.PLAY)
-                .text("First question")
+                .text(TextDemoQuest.STARTING_QUESTION_TEXT)
                 .build();
 
         Answer agreeAnswer = Answer.builder()
                 .id(1L)
                 .questionId(firstQuestion.getId())
-                .text("1 Agree answer")
+                .text(TextDemoQuest.AGREE_ANSWER)
                 .nextQuestionId(2L)
                 .build();
 
         Answer disagreeAnswer = Answer.builder()
                 .id(2L)
                 .questionId(firstQuestion.getId())
-                .text("2 Disagree answer")
+                .text(TextDemoQuest.DISAGREE_ANSWER)
                 .nextQuestionId(3L)
                 .build();
 
@@ -79,20 +79,20 @@ public class DemoQuest extends Quest {
                 .id(2L)
                 .questId(getId())
                 .gameState(GameState.PLAY)
-                .text("Second question")
+                .text(TextDemoQuest.SECOND_QUESTION_TEXT)
                 .build();
 
         Answer agreeAnswer = Answer.builder()
                 .id(3L)
                 .questionId(secondQuestion.getId())
-                .text("3 Agree answer")
+                .text(TextDemoQuest.AGREE_ANSWER)
                 .nextQuestionId(4L)
                 .build();
 
         Answer disagreeAnswer = Answer.builder()
                 .id(4L)
                 .questionId(secondQuestion.getId())
-                .text("4 Disagree answer")
+                .text(TextDemoQuest.DISAGREE_ANSWER)
                 .nextQuestionId(5L)
                 .build();
 
@@ -110,7 +110,7 @@ public class DemoQuest extends Quest {
                 .id(3L)
                 .questId(getId())
                 .gameState(GameState.LOST)
-                .text("Lost question")
+                .text(TextDemoQuest.LOST_GAME_TEXT)
                 .build();
     }
 
@@ -120,7 +120,7 @@ public class DemoQuest extends Quest {
                 .id(4L)
                 .questId(getId())
                 .gameState(GameState.LOST)
-                .text("Lost question")
+                .text(TextDemoQuest.LOST_GAME_TEXT)
                 .build();
     }
 
@@ -130,7 +130,7 @@ public class DemoQuest extends Quest {
                 .id(5L)
                 .questId(getId())
                 .gameState(GameState.WIN)
-                .text("Win question")
+                .text(TextDemoQuest.WIN_GAME_TEXT)
                 .build();
     }
 

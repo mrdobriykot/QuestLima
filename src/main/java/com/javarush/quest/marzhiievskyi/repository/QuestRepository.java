@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 public class QuestRepository extends BaseRepository<Quest> {
 
-
     @Override
     public Stream<Quest> find(Quest pattern) {
         return map.values().stream()
