@@ -1,5 +1,7 @@
 package com.javarush.quest.ivanilov.controllers;
 
+import com.javarush.quest.ivanilov.services.GameService;
+import com.javarush.quest.ivanilov.services.TaskService;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
@@ -8,10 +10,6 @@ import com.javarush.quest.ivanilov.entities.game.Fight;
 import com.javarush.quest.ivanilov.entities.game.Game;
 import com.javarush.quest.ivanilov.entities.game.Task;
 import com.javarush.quest.ivanilov.entities.users.User;
-import com.javarush.quest.ivanilov.services.GameService;
-import com.javarush.quest.ivanilov.services.GameWorker;
-import com.javarush.quest.ivanilov.services.GameWorkerImpl;
-import com.javarush.quest.ivanilov.services.TaskService;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

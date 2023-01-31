@@ -1,11 +1,11 @@
 package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.services.AuthorizationService;
-import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.entities.users.User;
+import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
+import com.javarush.quest.ivanilov.utils.constants.Messages;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +20,6 @@ import java.io.IOException;
 @Slf4j
 @WebServlet(name = "LoginServlet", value = Targets.LOGIN)
 public class LoginServlet extends HttpServlet {
-    public static final String NOT_AUTHORIZED = "Не получилось авторизовать пользователя.";
     private final AuthorizationService auth = AuthorizationService.AUTHORIZATION_SERVICE;
     private final UserService userService = UserService.USER_SERVICE;
 
@@ -35,7 +34,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String login = req.getParameter(Attributes.LOGIN);
         String password = req.getParameter(Attributes.PASSWORD);
         User user = userService.find(login).orElse(null);
@@ -47,8 +46,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute(Attributes.USER, user);
             Navigator.redirect(resp, Targets.MAIN);
         } else {
-            req.setAttribute(Attributes.MESSAGE, NOT_AUTHORIZED);
-            Navigator.dispatch(req, resp, Jsp.ERROR_MESSAGE_JSP);
+            req.setAttribute(Attributes.MESSAGE, Messages.NOT_AUTHORIZED);
+            Navigator.redirect(resp, Jsp.ERROR_MESSAGE_JSP);
         }
     }
 

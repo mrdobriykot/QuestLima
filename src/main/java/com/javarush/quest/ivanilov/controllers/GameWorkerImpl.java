@@ -1,5 +1,8 @@
-package com.javarush.quest.ivanilov.services;
+package com.javarush.quest.ivanilov.controllers;
 
+import com.javarush.quest.ivanilov.services.GameService;
+import com.javarush.quest.ivanilov.services.QuestService;
+import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Strings;
 import com.javarush.quest.ivanilov.entities.game.*;

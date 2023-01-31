@@ -1,18 +1,19 @@
 package com.javarush.quest.ivanilov.controllers;
 
+import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.entities.users.UserToSend;
+import com.javarush.quest.ivanilov.services.UserService;
+import com.javarush.quest.ivanilov.utils.Navigator;
 import com.javarush.quest.ivanilov.utils.Users;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
 import com.javarush.quest.ivanilov.utils.constants.Messages;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
-import com.javarush.quest.ivanilov.entities.users.User;
-import com.javarush.quest.ivanilov.services.AuthorizationService;
-import com.javarush.quest.ivanilov.services.UserService;
-import com.javarush.quest.ivanilov.utils.Navigator;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.Collection;

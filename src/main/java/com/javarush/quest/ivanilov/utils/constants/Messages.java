@@ -6,7 +6,8 @@ public class Messages {
 
     public static final String GENERIC_REASON = "Что-то пошло не так :(";
     public static final String USER_NOT_MODIFIED = "Не получилось внести изменения. Вероятно, данный логин уже существует.";
-    public static final String USER_NOT_CREATED = "Не получилось создать пользователя.";
+    public static final String USER_NOT_CREATED = "Пользователь не был создан.";
+    public static final String NOT_AUTHORIZED = "Не получилось авторизовать пользователя.";
 
     public String forbidden(String login) {
         return String.format("Access to user management is forbidden: user %s doesn't have necessary rights.", login);

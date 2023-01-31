@@ -107,11 +107,10 @@ public enum UserService {
     }
 
     private User getUserBuild(String login, String password, Roles role) {
-        Roles actualRole = role != null ? role : Roles.USER;
         return User.builder()
                 .login(login)
                 .password(password)
-                .role(actualRole)
+                .role(role)
                 .gamesPlayed(new ArrayList<>())
                 .currentGameId(0)
                 .build();
