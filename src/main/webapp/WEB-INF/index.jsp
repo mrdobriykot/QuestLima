@@ -7,20 +7,17 @@
     <title>Hello</title>
     <link href="css/main.css" rel="stylesheet">
 </head>
-<body class="background">
+<body class="background_index">
 <div class="center">
-    <br>
-    <h1>Делаем обучение интереснее!</h1>
-    <br>
+    <h1 class="color_indigo">Делаем обучение интереснее!</h1>
     <h4>Web-приложение поможет в обучении Java а так же подготовке к собеседованию.
         <p>Совмещаем практику и теорию )))</p>
     </h4>
-    <br>
-    <p class="color_red">Выберите один из вариантов</p>
+    <h4 class="color_red">Выберите один из вариантов</h4>
 
     <a href="${pageContext.request.contextPath}/training" class="btn_gray">Подготовка к собеседованию</a>
     <a href="${pageContext.request.contextPath}/interview" class="btn_gray">Виртуальное собеседование</a>
-    <br><br>
+    <br>
     <img src="images/view/13-1024x683.png">
 </div>
 </body>

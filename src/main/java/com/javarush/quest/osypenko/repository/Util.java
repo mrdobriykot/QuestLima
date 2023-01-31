@@ -1,5 +1,6 @@
 package com.javarush.quest.osypenko.repository;
 
+import com.javarush.quest.osypenko.costants.Constant;
 import com.javarush.quest.osypenko.repository.entityDB.*;
 
 import java.util.*;
@@ -35,7 +36,7 @@ public class Util {
 
     public List<Object> getQuestInterview() {
         TreeSet<Integer> random = new TreeSet<>();
-        while (random.size() < 15) {
+        while (random.size() < Constant.LENGTH_INTERVIEW) {
             random.add(ThreadLocalRandom.current().nextInt(0, getAllQuestion().size()));
         }
 

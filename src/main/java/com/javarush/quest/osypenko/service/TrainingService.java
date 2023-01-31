@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class TrainingService {
-    public static void extracted(HttpServletRequest request) {
+    public void trainingTable(HttpServletRequest request) {
         HashMap<Entity, Training> objectHashMap = new Util().getAllEntityDB();
 
         Map<String, String[]> parameterMap = request.getParameterMap();

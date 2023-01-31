@@ -5,12 +5,12 @@
 <html>
 <head>
     <title>Quest</title>
-    <link href="../../css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 </head>
-<body>
+<body class="background_training">
 <div class="center">
     <br>
-    <h1>Выберите тему для изучения</h1>
+    <h1 class="color_indigo">Выберите тему для изучения</h1>
     <br>
 
     <form action="table" method="get">
@@ -20,7 +20,7 @@
         </c:forEach>
 
     </form>
-    <img src="../../images/view/ackjjbwvbwisvvv.jpeg">
+    <img src="images/view/c4i0TWtk1qE.jpg">
 </div>
 </body>
 </html>

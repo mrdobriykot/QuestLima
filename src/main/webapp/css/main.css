@@ -69,6 +69,18 @@ table td {
     margin: auto;
 }
 
-.background {
+.background_index {
     background-color: #f2f4f8;
+}
+
+.background_result {
+    background-color: #f7eee5;
+}
+
+.background_training {
+    background-color: #fdf2f0;
+}
+
+.background_interview {
+    background-color: #f4f2f0;
 }

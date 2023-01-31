@@ -4,12 +4,12 @@
 <html>
 <head>
     <title>Table</title>
-    <link href="../../css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="background_index">
 <div class="center">
-    <h1 class="color">${requestScope.attribute}</h1>
+    <h1 class="color_indigo">${requestScope.attribute}</h1>
 </div>
 В базе по данной теме существует <var class="color_red">${requestScope.dbSize}</var> вопроса(ов).
 <hr>
