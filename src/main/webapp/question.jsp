@@ -15,7 +15,7 @@
     <form action="/question" method="POST">
         <fieldset>
         <c:forEach var="option" items="${options}">
-        <input type="radio" id="option${option.id}" name="optionId" value="${option.id}">
+        <input class="margin" type="radio" id="option${option.id}" name="optionId" value="${option.id}">
         <label for="option${option.id}">${option.name}</label><br>
         </c:forEach>
         <button type="submit" class="button button-blue">Ответить</button>

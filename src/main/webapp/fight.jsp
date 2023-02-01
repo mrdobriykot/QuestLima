@@ -16,13 +16,13 @@
     <fieldset>
       <div>Нанести удар: </div>
       <c:forEach var="hitOption" items="${sessionScope.fight.hitOptions}">
-        <input type="radio" id="hitOption${hitOption}" name="hitOption" value="${hitOption}">
+        <input class="margin" type="radio" id="hitOption${hitOption}" name="hitOption" value="${hitOption}">
         <label for="hitOption${hitOption}">${hitOption}</label><br>
       </c:forEach>
       <br>
       <div>Поставить блок: </div>
       <c:forEach var="blockOption" items="${sessionScope.fight.blockOptions}">
-        <input type="radio" id="blockOption${blockOption}" name="blockOption" value="${blockOption}">
+        <input class="margin" type="radio" id="blockOption${blockOption}" name="blockOption" value="${blockOption}">
         <label for="blockOption${blockOption}">${blockOption}</label><br>
       </c:forEach>
       <br>

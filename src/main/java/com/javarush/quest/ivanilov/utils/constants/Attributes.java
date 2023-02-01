@@ -27,4 +27,5 @@ public class Attributes {
     public static final String QUEST_SCENARIO = "questScenario";
     public static final String EVENT = "Event";
     public static final String ROLE = "role";
+    public static final String QUEST = "quest";
 }

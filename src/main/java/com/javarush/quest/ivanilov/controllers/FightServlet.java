@@ -1,7 +1,6 @@
 package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.services.GameService;
-import com.javarush.quest.ivanilov.services.TaskService;
+import com.javarush.quest.ivanilov.services.*;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
@@ -24,7 +23,11 @@ import java.util.Collections;
 
 @WebServlet(name = "FightServlet", value = Targets.FIGHT)
 public class FightServlet extends HttpServlet {
-    GameWorker gameWorker = new GameWorkerImpl();
+    GameWorker gameWorker = new GameWorkerImpl(
+            GameService.GAME_SERVICE,
+            UserService.USER_SERVICE,
+            QuestService.QUEST_SERVICE
+    );
     TaskService taskService = TaskService.TASK_SERVICE;
     GameService gameService = GameService.GAME_SERVICE;
     @Override
@@ -59,11 +62,13 @@ public class FightServlet extends HttpServlet {
             case WIN -> {
                 User user = (User) session.getAttribute(Attributes.USER);
                 finishFight(fight, user, true);
+                session.setAttribute(Attributes.FIGHT, null);
                 Navigator.redirect(resp, Targets.PLAY);
             }
             case LOSE -> {
                 User user = (User) session.getAttribute(Attributes.USER);
                 finishFight(fight, user, false);
+                session.setAttribute(Attributes.FIGHT, null);
                 Navigator.redirect(resp, Targets.PLAY);
             }
             default -> throw new UnsupportedOperationException();

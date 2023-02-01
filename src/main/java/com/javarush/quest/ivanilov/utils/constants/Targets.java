@@ -18,4 +18,6 @@ public class Targets {
     public static final String QUESTION = "/question";
     public static final String FIGHT = "/fight";
     public static final String CONSTRUCTOR = "/constructor";
+    public static final String QUESTS = "/quests";
+    public static final String QUEST_DELETE_ETC = "/questDelete/*";
 }

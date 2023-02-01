@@ -1,5 +1,6 @@
 package com.javarush.quest.ivanilov.controllers;
 
+import com.javarush.quest.ivanilov.services.*;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.entities.users.User;
@@ -24,7 +25,7 @@ public class GameInitServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User player = (User) req.getSession().getAttribute(Attributes.USER);
         long questId = Long.parseLong(req.getParameter(Attributes.QUEST_ID));
-        GameWorker worker = new GameWorkerImpl();
+        GameWorker worker = new GameWorkerImpl(GameService.GAME_SERVICE, UserService.USER_SERVICE, QuestService.QUEST_SERVICE);
         worker.initializeGame(player.getId(), questId);
         Navigator.redirect(resp, Targets.PLAY);
     }

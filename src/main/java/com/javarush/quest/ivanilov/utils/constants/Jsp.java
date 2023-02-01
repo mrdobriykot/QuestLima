@@ -16,4 +16,6 @@ public class Jsp {
     public static final String FIGHT_JSP = "fight.jsp";
     public static final String SHOW_RESULT_JSP = "showResult.jsp";
     public static final String CONSTRUCTOR_JSP = "constructor.jsp";
+    public static final String QUESTS_JSP = "quests.jsp";
+    public static final String QUEST_DELETE_JSP = "questDelete.jsp";
 }

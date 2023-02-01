@@ -3,6 +3,10 @@ package com.javarush.quest.ivanilov.controllers;
 import com.javarush.quest.ivanilov.entities.game.Event;
 import com.javarush.quest.ivanilov.entities.game.GameStatus;
 import com.javarush.quest.ivanilov.entities.users.User;
+import com.javarush.quest.ivanilov.services.GameService;
+import com.javarush.quest.ivanilov.services.GameWorkerImpl;
+import com.javarush.quest.ivanilov.services.QuestService;
+import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
@@ -19,7 +23,11 @@ import java.io.IOException;
 @WebServlet(name = "ShowResultServlet", value = Targets.SHOW_RESULT)
 public class ShowResultServlet extends HttpServlet {
 
-    GameWorkerImpl gameWorker = new GameWorkerImpl();
+    GameWorkerImpl gameWorker = new GameWorkerImpl(
+            GameService.GAME_SERVICE,
+            UserService.USER_SERVICE,
+            QuestService.QUEST_SERVICE
+    );
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -11,9 +11,9 @@
     <fieldset>
         <legend>Пожалуйста, создайте аккаунт</legend>
         <label for="text">Логин</label>
-        <input type="text" id="text" name="login" placeholder="login" required/>
+        <input class="margin" type="text" id="text" name="login" placeholder="login" required/><br>
         <label for="stacked-password">Password</label>
-        <input type="password" id="stacked-password" name="password" required/>
+        <input class="margin" type="password" id="stacked-password" name="password" required/><br>
         <button type="submit" class="button button-blue">Создать аккаунт</button>
     </fieldset>
 </form>

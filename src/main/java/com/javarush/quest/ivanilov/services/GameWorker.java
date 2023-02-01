@@ -1,4 +1,4 @@
-package com.javarush.quest.ivanilov.controllers;
+package com.javarush.quest.ivanilov.services;
 
 import com.javarush.quest.ivanilov.entities.game.Event;
 import com.javarush.quest.ivanilov.entities.game.Fight;

@@ -1,5 +1,6 @@
-package com.javarush.quest.ivanilov.entities.users;
+package com.javarush.quest.ivanilov.utils.transfers;
 
+import com.javarush.quest.ivanilov.entities.users.Roles;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class UserToSend {
+public class UserDto {
     private long id;
     private String login;
     private String password;

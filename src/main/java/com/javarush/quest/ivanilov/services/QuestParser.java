@@ -45,12 +45,21 @@ public class QuestParser {
 
     private StringBuilder removeLineBreaks(String text) {
         StringBuilder sb = new StringBuilder();
+        boolean isPrevSlash = false;
 
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
-            if (c == '\r' || c == '\n') {
+
+            if (c == '\\') {
+                isPrevSlash = true;
                 continue;
             }
+
+            if (isPrevSlash) {
+                isPrevSlash = false;
+                continue;
+            }
+
             sb.append(c);
         }
         return sb;

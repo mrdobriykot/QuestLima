@@ -1,21 +1,21 @@
 package com.javarush.quest.ivanilov.entities.users;
 
 import com.javarush.quest.ivanilov.entities.AbstractEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Builder
 @Getter
 @Setter
 @ToString
-public class User extends AbstractEntity {
-    private String login;
-    private String password;
-    private Roles role;
-    private long currentGameId;
-    private List<Long> gamesPlayed;
+@AllArgsConstructor
+public class User extends AbstractEntity implements Serializable {
+
+    private transient String login;
+    private transient String password;
+    private transient Roles role;
+    private transient long currentGameId;
+    private transient List<Long> gamesPlayed;
 }

@@ -12,15 +12,20 @@ import java.util.concurrent.ThreadLocalRandom;
 @Setter
 @Builder
 @ToString
-public class Hero extends AbstractEntity {
+public class Hero extends AbstractEntity implements Cloneable {
     public static final int MIN_HIT_POWER = 1;
     private String name;
     private int health;
     private int strength;
 
-    public int hit(Hero hero) {
+    public int hit(Hero target) {
         int power = ThreadLocalRandom.current().nextInt(MIN_HIT_POWER, strength + 1);
-        hero.health -= power;
+        target.health -= power;
         return power;
+    }
+
+    @Override
+    public Hero clone() throws CloneNotSupportedException {
+        return (Hero) super.clone();
     }
 }

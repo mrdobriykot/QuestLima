@@ -2,6 +2,7 @@ package com.javarush.quest.ivanilov.controllers;
 
 import com.javarush.quest.ivanilov.entities.users.Roles;
 import com.javarush.quest.ivanilov.entities.users.User;
+import com.javarush.quest.ivanilov.services.AuthorizationService;
 import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
@@ -49,7 +50,7 @@ public class ModifyUserServlet extends HttpServlet {
 
             if (updatedUser != null) {
                 long updatedUserId = updatedUser.getId();
-                req.setAttribute(Attributes.MESSAGE, new Messages().userUpdatedSuccessfully(userService.get(updatedUserId)));
+                req.setAttribute(Attributes.MESSAGE, new Messages().userUpdated(userService.get(updatedUserId)));
                 Navigator.dispatch(req, resp, Jsp.SUCCESS_MESSAGE_JSP);
             } else {
                 req.setAttribute(Attributes.MESSAGE, Messages.USER_NOT_MODIFIED);

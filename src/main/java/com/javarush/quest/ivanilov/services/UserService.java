@@ -5,13 +5,11 @@ import com.javarush.quest.ivanilov.entities.users.Roles;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.repositories.Repository;
 import com.javarush.quest.ivanilov.repositories.UserRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-@Slf4j
 public enum UserService {
 
     USER_SERVICE;

@@ -1,15 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div>
     <ul class="header-menu">
         <li class="header-menu-item">
-            <a href="/main" class="header-menu-item">Квесты</a>
+            <a href="/main" class="header-menu-item">Главное меню</a>
         </li>
         <c:if test="${sessionScope.user.currentGameId != 0}">
-        <li class="header-menu-item">
-            <a href="/play" class="header-menu-item">Продолжить </a>
-        </li>
+            <li class="header-menu-item">
+                <a href="/play" class="header-menu-item">Продолжить</a>
+            </li>
         </c:if>
         <li class="header-menu-item">
             <a href="/account" class="header-menu-item">Профиль (${sessionScope.user.login})</a>
@@ -20,6 +20,9 @@
         <c:if test="${sessionScope.user.role == 'ADMIN'}">
             <li class="header-menu-item">
                 <a href="/users" class="header-menu-item">Пользователи</a>
+            </li>
+            <li class="header-menu-item">
+                <a href="/quests" class="header-menu-item">Управление квестами</a>
             </li>
         </c:if>
         <li class="header-menu-item">

@@ -12,11 +12,11 @@
     <fieldset>
         <legend>Создание нового пользователя </legend>
         <label for="login">Логин</label>
-        <input type="text" id="login" name="login" /><br>
+        <input class="margin" type="text" id="login" name="login" /><br>
         <label for="stacked-password">Пароль</label>
-        <input type="text" id="stacked-password" name="password"/><br>
+        <input class="margin" type="text" id="stacked-password" name="password"/><br>
         <label for="stacked-state">Роль</label>
-        <select id="stacked-state" name="role">
+        <select class="margin" id="stacked-state" name="role">
             <c:forEach var="role" items="${requestScope.roles}">
                 <option>${role}</option>
             </c:forEach>

@@ -1,0 +1,22 @@
+[ {
+  "id" : 1,
+  "login" : "admin",
+  "password" : "admin",
+  "role" : "ADMIN",
+  "currentGameId" : 0,
+  "gamesPlayed" : [ ]
+}, {
+  "id" : 2,
+  "login" : "testUser",
+  "password" : "safari",
+  "role" : "USER",
+  "currentGameId" : 0,
+  "gamesPlayed" : [ ]
+}, {
+  "id" : 3,
+  "login" : "testUser2",
+  "password" : "google",
+  "role" : "USER",
+  "currentGameId" : 0,
+  "gamesPlayed" : [ ]
+} ]

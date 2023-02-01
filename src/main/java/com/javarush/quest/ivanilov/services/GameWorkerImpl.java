@@ -1,22 +1,24 @@
-package com.javarush.quest.ivanilov.controllers;
+package com.javarush.quest.ivanilov.services;
 
-import com.javarush.quest.ivanilov.services.GameService;
-import com.javarush.quest.ivanilov.services.QuestService;
-import com.javarush.quest.ivanilov.services.UserService;
-import com.javarush.quest.ivanilov.utils.constants.Attributes;
-import com.javarush.quest.ivanilov.utils.constants.Strings;
 import com.javarush.quest.ivanilov.entities.game.*;
 import com.javarush.quest.ivanilov.entities.users.User;
+import com.javarush.quest.ivanilov.utils.constants.Attributes;
+import com.javarush.quest.ivanilov.utils.constants.Strings;
 import jakarta.servlet.http.HttpSession;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Slf4j
+@AllArgsConstructor
 public class GameWorkerImpl implements GameWorker {
-    GameService gameService = GameService.GAME_SERVICE;
-    UserService userService = UserService.USER_SERVICE;
-    QuestService questService = QuestService.QUEST_SERVICE;
+    GameService gameService;
+    UserService userService;
+    QuestService questService;
 
     public void initializeGame(long playerId, long questId) {
         Quest quest = questService.get(questId);
@@ -67,9 +69,16 @@ public class GameWorkerImpl implements GameWorker {
 
         long eventId = event.getId();
         Task fight = event.getTask();
-        Quest quest = questService.get(event.getQuestId());
-        Hero hero = quest.getHero();
-        Hero villain = fight.getVillain();
+        User user = (User) session.getAttribute(Attributes.USER);
+        Hero hero = gameService.get(user.getCurrentGameId()).getHero();
+        Hero villain;
+
+        try {
+            villain = fight.getVillain().clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+
         HitBlockOptions options = new HitBlockOptions();
 
         return Fight.builder()
@@ -111,20 +120,6 @@ public class GameWorkerImpl implements GameWorker {
         return currentFight;
     }
 
-    private void calcHitsAndBlocks(String hitOption, Hero hero, Hero villain, Set<String> villainBlockOptions, List<String> fightLog) {
-        if (!villainBlockOptions.contains(hitOption)) {
-            int hit = hero.hit(villain);
-            fightLog.add(String.format(Strings.ABOUT_HIT,
-                            hero.getName(),
-                            villain.getName(),
-                            hit,
-                            villain.getName(),
-                            villain.getHealth()));
-        } else {
-            fightLog.add(String.format(Strings.ABOUT_BLOCK, villain.getName(), hero.getName()));
-        }
-    }
-
     public Game endGame(Event event, User user) {
         Game game = gameService.get(user.getCurrentGameId());
 
@@ -138,5 +133,19 @@ public class GameWorkerImpl implements GameWorker {
         user.setCurrentGameId(0);
         userService.update(user);
         return gameService.update(game);
+    }
+
+    private void calcHitsAndBlocks(String hitOption, Hero hero, Hero villain, Set<String> villainBlockOptions, List<String> fightLog) {
+        if (!villainBlockOptions.contains(hitOption)) {
+            int hit = hero.hit(villain);
+            fightLog.add(String.format(Strings.ABOUT_HIT,
+                    hero.getName(),
+                    villain.getName(),
+                    hit,
+                    villain.getName(),
+                    villain.getHealth()));
+        } else {
+            fightLog.add(String.format(Strings.ABOUT_BLOCK, villain.getName(), hero.getName()));
+        }
     }
 }

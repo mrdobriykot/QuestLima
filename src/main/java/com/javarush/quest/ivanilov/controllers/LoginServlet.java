@@ -1,6 +1,7 @@
 package com.javarush.quest.ivanilov.controllers;
 
 import com.javarush.quest.ivanilov.entities.users.User;
+import com.javarush.quest.ivanilov.services.AuthorizationService;
 import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;

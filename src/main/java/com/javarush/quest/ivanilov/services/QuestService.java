@@ -29,4 +29,9 @@ public enum QuestService {
     public Quest update(Quest quest) {
         return repo.update(quest);
     }
+
+    public void delete(long questId) {
+        Quest quest = QUEST_SERVICE.get(questId);
+        repo.delete(quest);
+    }
 }

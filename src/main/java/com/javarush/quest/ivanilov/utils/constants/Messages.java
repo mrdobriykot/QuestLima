@@ -1,5 +1,6 @@
 package com.javarush.quest.ivanilov.utils.constants;
 
+import com.javarush.quest.ivanilov.entities.game.Quest;
 import com.javarush.quest.ivanilov.entities.users.User;
 
 public class Messages {
@@ -13,7 +14,7 @@ public class Messages {
         return String.format("Access to user management is forbidden: user %s doesn't have necessary rights.", login);
     }
 
-    public String userUpdatedSuccessfully(User user) {
+    public String userUpdated(User user) {
         return String.format("Пользователь %s успешно обновлён.", user.toString());
     }
 
@@ -23,5 +24,9 @@ public class Messages {
 
     public String userCreated(User user) {
         return String.format("Пользователь %s успешно создан.", user.toString());
+    }
+
+    public String questDeleted(Quest quest) {
+        return String.format("Квест %s успешно удалён.", quest.toString());
     }
 }

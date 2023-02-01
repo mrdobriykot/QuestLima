@@ -15,7 +15,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Сценарий квеста</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea" name="questScenario" rows="10" cols="50"
+            <textarea class="form-control margin" aria-label="With textarea" name="questScenario" rows="10" cols="50"
                       placeholder="Напишите здесь сценарий вашего квеста. Руководство по сценарию и пример - ниже"></textarea>
         </div>
         <button type="submit" class="button button-green">Создать квест</button>

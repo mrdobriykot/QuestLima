@@ -25,7 +25,8 @@ import java.io.IOException;
                 Targets.FIGHT,
                 Targets.SHOW_RESULT,
                 Targets.NEW_GAME,
-                Targets.USER_CREATE
+                Targets.USER_CREATE,
+                Targets.QUESTS
         })
 public class AuthFilter extends HttpFilter {
 

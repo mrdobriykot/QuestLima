@@ -84,9 +84,6 @@
     text-decoration: white;
 }
 
-.table {
-}
-
 .plaintext {
     max-width: 700px;
 }
@@ -95,6 +92,7 @@
     max-width: 1000px;
 }
 
-input {
+.margin {
     margin-bottom: 15px;
 }
+

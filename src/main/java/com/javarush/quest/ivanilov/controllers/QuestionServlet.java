@@ -4,8 +4,7 @@ import com.javarush.quest.ivanilov.entities.game.Event;
 import com.javarush.quest.ivanilov.entities.game.Game;
 import com.javarush.quest.ivanilov.entities.game.Option;
 import com.javarush.quest.ivanilov.entities.users.User;
-import com.javarush.quest.ivanilov.services.EventService;
-import com.javarush.quest.ivanilov.services.GameService;
+import com.javarush.quest.ivanilov.services.*;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
@@ -22,7 +21,11 @@ import java.io.IOException;
 @WebServlet(name = "QuestionServlet", value = Targets.QUESTION)
 public class QuestionServlet extends HttpServlet {
 
-    GameWorker gameWorker = new GameWorkerImpl();
+    GameWorker gameWorker = new GameWorkerImpl(
+            GameService.GAME_SERVICE,
+            UserService.USER_SERVICE,
+            QuestService.QUEST_SERVICE
+    );
     EventService eventService = EventService.EVENT_SERVICE;
     GameService gameService = GameService.GAME_SERVICE;
 
