@@ -2,6 +2,7 @@ package com.javarush.quest.khlopin.questlima.controllers.authControllers;
 
 import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.services.CheckAdminService;
+import com.javarush.quest.khlopin.questlima.utills.Constants;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -17,15 +18,14 @@ public class logOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(Constants.USER);
         CheckAdminService.offAdmin(session);
-        session.setAttribute("user", null);
+        session.setAttribute(Constants.USER, null);
         log.info(user + " разлогинился");
         request.getRequestDispatcher("").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

@@ -23,7 +23,7 @@ public class QuestionRepository implements Repository<Question> {
         questionsMap.put(questionsId.incrementAndGet(),create(2L, 1,"Ты потерял память. Принять вызов НЛО?", DB.answerDataBase.get(1L)));
                questionsMap.put(questionsId.incrementAndGet(),create(3L, 1,"Ты принял вызов, поднимешься на мостик к капитану?",DB.answerDataBase.get(2L)));
                 questionsMap.put(questionsId.incrementAndGet(),create(null, 1, "Ты поднялся на мостик. Ты кто?", DB.answerDataBase.get(3L)));
-        log.trace("Question repository was uploaded");
+        log.trace("Репозиторий с вопросами был загружен");
     }
 
     public Question create(Long nextQuestionId, long questId, String value, List<Answer> answerList) {

@@ -31,7 +31,7 @@ public class AnswerRepository implements Repository<List<Answer>> {
                 createFinishAnswer("Рассказать правду о себе", 3L,AnswerState.TRUE,"Ты победил."),
                 createFinishAnswer("Солгать о себе",3L, AnswerState.FALSE,"Твою ложь разоблочили. Поражение.")));
 
-        log.trace("Answer repository was uploaded");
+        log.trace("Репозиторий с ответами был загружен");
     }
 
 

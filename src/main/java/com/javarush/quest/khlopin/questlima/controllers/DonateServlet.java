@@ -1,5 +1,6 @@
 package com.javarush.quest.khlopin.questlima.controllers;
 
+import com.javarush.quest.khlopin.questlima.utills.RedirectPaths;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,9 +14,10 @@ import java.io.IOException;
 public class DonateServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(DonateServlet.class);
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/topBarPages/donate.jsp").forward(request,response);
+        request.getRequestDispatcher(RedirectPaths.TO_DONATE).forward(request,response);
         log.trace(request.getSession().getAttribute("user") + "посетил страницу с донатом");
     }
 

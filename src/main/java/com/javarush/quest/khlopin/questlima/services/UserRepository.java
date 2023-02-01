@@ -21,7 +21,6 @@ public class UserRepository implements Repository<User> {
 
         create("Mihail", "recd123", Role.ADMIN);
         create("Emma", "saf423", Role.USER);
-        create("Valik", "fdsgh432", Role.GUEST);
         create("1234", "1234", Role.ADMIN);
         log.trace("User repository was uploaded");
     }

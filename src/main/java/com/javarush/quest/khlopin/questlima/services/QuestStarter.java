@@ -2,6 +2,7 @@ package com.javarush.quest.khlopin.questlima.services;
 
 import com.javarush.quest.khlopin.questlima.entity.game.*;
 import com.javarush.quest.khlopin.questlima.entity.user.User;
+import com.javarush.quest.khlopin.questlima.utills.Constants;
 import com.javarush.quest.khlopin.questlima.utills.DB;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
@@ -11,7 +12,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 @Getter
 public class QuestStarter {
-    //TODO в вынести в переменные класса и создать конструктор квест и сделать универсальным для любого квеста
+
+    //TODO вынести в переменные класса и создать конструктор квест и сделать универсальным для любого квеста
     private Game game;
     private Quest quest;
     private List<Question> questionList;
@@ -21,12 +23,11 @@ public class QuestStarter {
     private String finishTrueAnswer;
 
     private User user;
-
     private static final Logger log = LogManager.getLogger(QuestStarter.class);
 
 
     public void startQuest(HttpServletRequest request) {
-        user = (User) request.getSession().getAttribute("user");
+        user = (User) request.getSession().getAttribute(Constants.USER);
         long id = Long.parseLong(request.getParameter("id"));
         quest = DB.questDataBase.get(id);
         questionList = quest.getQuestionList();
@@ -34,8 +35,8 @@ public class QuestStarter {
         answerList = question.getAnswerList();
         game = new Game(quest, GameState.PLAY);
         user.getGameList().add(game);
-        request.setAttribute("question", question);
-        request.setAttribute("answers", answerList);
+        request.setAttribute(Constants.QUESTION, question);
+        request.setAttribute(Constants.ANSWERS, answerList);
         log.info("Была создана игра" + user + "для пользователя " + user);
     }
 
@@ -50,13 +51,13 @@ public class QuestStarter {
 
     public void checkWin(HttpServletRequest request, String answer, Question currentQuestion) {
 
-        if (answer.equals("false")) {
+        if (answer.equals(Constants.FALSE)) {
             game.setGameState(GameState.LOSE);
             String finishAnswer = answerList.get(1).getFinishAnswerText();
-            request.setAttribute("result", finishAnswer);
-        } else if (answer.equals("true")) {
-            request.setAttribute("question", currentQuestion);
-            request.setAttribute("answers", answerList);
+            request.setAttribute(Constants.RESULT, finishAnswer);
+        } else if (answer.equals(Constants.TRUE)) {
+            request.setAttribute(Constants.QUESTION, currentQuestion);
+            request.setAttribute(Constants.ANSWERS, answerList);
 
         }
     }

@@ -19,7 +19,7 @@ public class QuestRepository implements Repository<Quest> {
 
     public QuestRepository() {
         create(DB.userDataBase.get(1), "НЛО", findAllQustionsForQuest(1), findAllQustionsForQuest(1).size());
-        log.trace("quest repository was uploaded");
+        log.trace("Репозиторий с квестами был загружен");
     }
 
 

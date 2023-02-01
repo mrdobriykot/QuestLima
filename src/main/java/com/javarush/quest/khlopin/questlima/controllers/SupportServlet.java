@@ -1,6 +1,6 @@
 package com.javarush.quest.khlopin.questlima.controllers;
 
-import com.javarush.quest.khlopin.questlima.entity.user.User;
+import com.javarush.quest.khlopin.questlima.utills.RedirectPaths;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -15,9 +15,10 @@ public class SupportServlet extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger(SupportServlet.class);
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/topBarPages/support.jsp").forward(request,response);
+        request.getRequestDispatcher(RedirectPaths.TO_SUPPORT).forward(request,response);
         log.trace(request.getSession().getAttribute("user") + "посетил страницу с поддержкой");
     }
 
