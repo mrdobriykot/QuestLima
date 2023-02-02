@@ -1,28 +1,26 @@
 package com.javarush.quest.khlopin.questlima.services;
 
-import com.javarush.quest.khlopin.questlima.entity.game.Quest;
-import com.javarush.quest.khlopin.questlima.entity.game.Question;
-import com.javarush.quest.khlopin.questlima.entity.user.Role;
-import com.javarush.quest.khlopin.questlima.entity.user.User;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class QuestStarterTest {
 
-    private final QuestStarter questStarter = new QuestStarter();
-    private final HttpServletRequest request = Mockito.spy(HttpServletRequest.class);
-    private final HttpServletRequest session = Mockito.spy(HttpServletRequest.class);
+//    private final QuestStarter questStarter = new QuestStarter();
+//    private final HttpServletRequest request = Mockito.spy(HttpServletRequest.class);
+//    private final HttpServletRequest session = Mockito.spy(HttpServletRequest.class);
+
+
+    //Александр, пробовал сделать тесты, но не вышло, не знаю как мокнуть сессию. Метод кладёт в сессию атрибут, не знаю как проверить положился ли он...
+    // Не уверен что через verify правильно т.к я просто проверю вызывался ли этот метод, но положился ли атрибут в сессию не узнаю.
+    // Подскажите, пожалуйста, как сделать правильно
+
+
+
+
+
 
 //    @Test
 //    void  startQuest() {

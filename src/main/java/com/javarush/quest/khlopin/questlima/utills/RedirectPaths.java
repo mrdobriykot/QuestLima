@@ -14,7 +14,7 @@ public class RedirectPaths {
     public static final String TO_QUEST = "WEB-INF/quests/firstQuest/quest.jsp";
     public static final String ERROR = "WEB-INF/quests/errorCase.jsp";
     public static final String TO_DONATE = "WEB-INF/topBarPages/donate.jsp";
-    public static final String TO_HOME = "WEB-INF/index.jsp";
+    public static final String TO_HOME = "index.jsp";
 
     public static final String TO_SUPPORT = "WEB-INF/topBarPages/support.jsp";
 }

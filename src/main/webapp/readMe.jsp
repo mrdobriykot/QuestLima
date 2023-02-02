@@ -1,8 +1,8 @@
 <%@include file="WEB-INF/pageConstructor/header.jsp"%>
 
-<h1>Инфомрация для проверки работоспособности сайта</h1>
+<h1>Information to check the performance of the site</h1>
 <br>
-1. Access to the admin panel:
+1. Pre-made admin:
 <br>
 Login:1234
 Password:1234
