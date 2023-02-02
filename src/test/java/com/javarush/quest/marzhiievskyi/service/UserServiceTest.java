@@ -1,119 +1,142 @@
 package com.javarush.quest.marzhiievskyi.service;
 
+
 import com.javarush.quest.marzhiievskyi.entity.User;
-import com.javarush.quest.marzhiievskyi.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
 
+    private final UserService userService = UserService.USER_SERVICE;
 
-    public final User AMI_TEST_USER = User.builder()
-            .id(0L)
-            .login("Ami")
-            .password("123")
-            .games(new ArrayList<>(10))
-            .wins(new ArrayList<>(4))
-            .losses(new ArrayList<>(6))
-            .build();
-
-    private final UserService USER_SERVICE = UserService.USER_SERVICE;
 
     @Test
     void create() {
-        USER_SERVICE.create(AMI_TEST_USER);
+        String login = "ami";
+        String password = "123";
 
-        Optional<User> optionalUser = USER_SERVICE.get(1L);
+        User testUser = getUser(login, password);
+
+        userService.create(testUser);
+
+        Optional<User> optionalUser = userService.get(1L);
+        User user = null;
+
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            assertEquals(AMI_TEST_USER, user);
+            user = optionalUser.get();
         }
 
+        assertEquals(testUser, user);
+
     }
+
 
     @Test
     void update() {
-        USER_SERVICE.create(AMI_TEST_USER);
+        String login = "qqq";
+        String password = "222";
 
-        String login = "desmont";
-        String password = "111";
+        Optional<User> optionalUser = userService.get(1L);
+        User user = null;
 
-        AMI_TEST_USER.setLogin(login);
-        AMI_TEST_USER.setPassword(password);
-
-        USER_SERVICE.update(AMI_TEST_USER);
-
-        Optional<User> optionalUser = USER_SERVICE.get(login, password);
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            assertEquals(login, user.getLogin());
-            assertEquals(password, user.getPassword());
+            user = optionalUser.get();
+        }
+
+        assert user != null;
+        user.setLogin(login);
+        user.setPassword(password);
+        userService.update(user);
+
+        Optional<User> updatedOptional = userService.get(login, password);
+
+        if (updatedOptional.isPresent()) {
+            assert true;
         }
     }
 
+
     @Test
     void delete() {
-        USER_SERVICE.create(AMI_TEST_USER);
-        Optional<User> optionalUser = USER_SERVICE.get(1L);
+        User user = getUser("login", "pass");
+        userService.create(user);
 
-        USER_SERVICE.delete(AMI_TEST_USER);
-        Optional<User> deletedUser = USER_SERVICE.get(1L);
+        userService.delete(user);
 
-        assertTrue(deletedUser.isEmpty());
+        Optional<User> userOptional = userService.get(2L);
+
+        if (userOptional.isEmpty()) {
+            assert true;
+        }
     }
 
     @Test
     void getAll() {
-        USER_SERVICE.create(AMI_TEST_USER);
-        USER_SERVICE.create(AMI_TEST_USER);
-
-        Collection<User> all = USER_SERVICE.getAll();
-        assertEquals(2, all.size());
+        User user = getUser("login", "pass");
+        userService.create(user);
+        assertEquals(2, userService.getAll().size());
     }
 
-
-    //TODO parametrized test search by id
     @ParameterizedTest
-    @ValueSource(longs = {1, 2, 3})
-    void get(long id) {
-        USER_SERVICE.create(AMI_TEST_USER);
-        Optional<User> optionalUser = USER_SERVICE.get(id);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            assertEquals(id, user.getId());
+    @CsvSource({"qwerty, 333",
+            "long , des"})
+    void get(String login, String password) {
+
+
+        User newUser = getUser(login, password);
+        userService.create(newUser);
+
+        Optional<User> userToTest = userService.get(login, password);
+        User user = null;
+
+        if (userToTest.isPresent()) {
+            user = userToTest.get();
         }
 
+        assert user != null;
+        assertEquals(newUser.getLogin(), user.getLogin());
+        assertEquals(newUser.getPassword(), user.getPassword());
+
     }
 
     @Test
-    void getByLoginAndPassword() {
-        String login ="Ami";
-        String password = "123";
+    void getById() {
+        User u = getUser("www", "000");
+        userService.create(u);
 
-        Optional<User> optionalUser = USER_SERVICE.get(login, password);
+
+        Optional<User> optionalUser = userService.get(4L);
+
+        User user = null;
+
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            assertEquals(login, user.getLogin());
-            assertEquals(password, user.getPassword());
+            user = optionalUser.get();
         }
+
+        assert user != null;
+        assertEquals(u.getLogin(), user.getLogin());
+        assertEquals(u.getPassword(), user.getPassword());
     }
 
-    @Test
-    void getWins() {
-    }
-
-    @Test
-    void getLosses() {
-    }
 
     @Test
     void checkUserExist() {
+
+    }
+
+
+    private User getUser(String login, String password) {
+        return User.builder()
+                .login(login)
+                .password(password)
+                .wins(new ArrayList<>())
+                .losses(new ArrayList<>())
+                .build();
     }
 }

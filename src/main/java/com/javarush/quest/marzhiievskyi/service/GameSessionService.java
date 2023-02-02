@@ -30,10 +30,6 @@ public enum GameSessionService {
         return questRepository.getAll();
     }
 
-    public void loadQuestToRepository(Quest quest) {
-        questRepository.create(quest);
-    }
-
     public Optional<Question> getQuestion(Long questId, Long questionId) {
         Quest quest = questRepository.get(questId);
         Collection<Question> questions = quest.getQuestions();
@@ -45,8 +41,9 @@ public enum GameSessionService {
         return question.map(Question::getAnswerList).orElse(null);
     }
 
-    public void checkEndOfTheGame(Long userId, Long questionId, Long questId) {
+    public GameState checkEndOfTheGame(Long userId, Long questionId, Long questId) {
         Optional<Question> optionalQuestion = getQuestion(questId, questionId);
+        GameState result = GameState.PLAY;
         if (optionalQuestion.isPresent()) {
             Question question = optionalQuestion.get();
             GameState gameState = question.getGameState();
@@ -60,8 +57,10 @@ public enum GameSessionService {
                         .build();
                 gameSessionRepository.create(playedGameByUser);
                 writeGameToUserProfile(userId, playedGameByUser);
+                result = gameState;
             }
         }
+        return result;
     }
 
     private void writeGameToUserProfile(Long userId, GameSession playedGameByUser) {

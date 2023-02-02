@@ -33,8 +33,8 @@ public class Init {
     }
 
     public void initQuests() {
-        gameSessionService.loadQuestToRepository(new EscapeFromForestQuest());
-        gameSessionService.loadQuestToRepository(new DemoQuest());
+        gameSessionService.create(new EscapeFromForestQuest());
+        gameSessionService.create(new DemoQuest());
     }
 
 }
