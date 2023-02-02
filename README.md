@@ -16,6 +16,6 @@ To see your profile and edit them click "Your profile". If you have been registe
 5. Now there is only two quest first one on ru- language, 
    and the second one is en- test quest
 6. If any questions, please contact me
-7. I don't know what to write else, so enjoy =)
+7. Run on Tomcat 10.0.27, so enjoy =)
 
 2022-2023 JRU Lima, Dmytro Marzhiievskyi.
