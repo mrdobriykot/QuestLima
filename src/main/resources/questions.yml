@@ -1,0 +1,35 @@
+-
+  id: 0
+  questId: 0
+  text: Ты потерял память. Принять вызов НЛО?
+  questState: 0
+-
+  id: 1
+  questId: 0
+  text: Ты принял вызов. Поднимаешься на мостик к капитану?
+  questState: 0
+-
+  id: 2
+  questId: 0
+  text: Ты отклонил вызов. Поражение.
+  questState: 2
+-
+  id: 3
+  questId: 0
+  text: Ты поднялся на мостик. Ты кто?
+  questState: 0
+-
+  id: 4
+  questId: 0
+  text: Ты не пошел на переговоры. Поражение.
+  questState: 2
+-
+  id: 5
+  questId: 0
+  text: Тебя вернули домой. Победа.
+  questState: 1
+-
+  id: 6
+  questId: 0
+  text: Твою ложь разоблачили
+  questState: 2

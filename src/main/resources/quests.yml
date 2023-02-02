@@ -1,0 +1,10 @@
+-
+  id: 0
+  name: Название квеста 0
+  description: Описание квеста 0
+  startQuestionId: 0
+-
+  id: 1
+  name: Название квеста 1
+  description: Описание квеста 1
+  startQuestionId: 1
