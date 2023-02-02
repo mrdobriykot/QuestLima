@@ -8,9 +8,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "TrainingServlet", value = "/training")
-public class TrainingServlet extends HttpServlet {
+import static com.javarush.quest.osypenko.costants.Constant.*;
 
+@WebServlet(name = TRAINING_SERVLET, value = TRAINING)
+public class TrainingServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.WEB_INF_TRAINING_TRAINING_JSP);
         dispatcher.forward(request, response);

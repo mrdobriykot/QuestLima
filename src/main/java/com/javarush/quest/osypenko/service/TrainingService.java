@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static com.javarush.quest.osypenko.costants.Constant.*;
+
 public class TrainingService {
     public static final Logger log = LogManager.getLogger(TrainingService.class);
 
@@ -21,20 +23,19 @@ public class TrainingService {
         for (String str : parameterMap.keySet()) {
             parameter = str;
         }
-        log.debug("Push button {}", parameter);
-
+        log.debug(PUSH_BUTTON, parameter);
 
         for (Entity value : Entity.values()) {
             if (value.toString().equals(parameter)) {
                 TreeMap<Long, DB> dbTreeMap = objectHashMap.get(value).getMap();
                 Collection<DB> dbCollection = dbTreeMap.values();
 
-                request.setAttribute("attribute", parameter);
-                request.setAttribute("constantID", objectHashMap.get(value).getConstantID());
-                request.setAttribute("dbSize", dbCollection.size());
-                request.setAttribute("dbCollection", dbCollection);
+                request.setAttribute(ATTRIBUTE, parameter);
+                request.setAttribute(CONSTANT_ID, objectHashMap.get(value).getConstantID());
+                request.setAttribute(DB_SIZE, dbCollection.size());
+                request.setAttribute(DB_COLLECTION, dbCollection);
             }
         }
-        log.debug("Created table {}", parameter);
+        log.debug(CREATED_TABLE, parameter);
     }
 }

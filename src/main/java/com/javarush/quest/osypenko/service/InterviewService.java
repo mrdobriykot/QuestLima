@@ -1,6 +1,5 @@
 package com.javarush.quest.osypenko.service;
 
-import com.javarush.quest.osypenko.costants.Constant;
 import com.javarush.quest.osypenko.repository.Util;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -13,6 +12,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static com.javarush.quest.osypenko.costants.Constant.*;
+
 public class InterviewService {
     public static final Logger log = LogManager.getLogger(InterviewService.class);
     private final List<Object> questInterview = new Util().getQuestInterview();
@@ -21,37 +22,36 @@ public class InterviewService {
 
     public void questionInterview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         while (index < questInterview.size()) {
-            request.setAttribute("index", index + 1);
-            request.setAttribute("size", questInterview.size());
-            request.setAttribute("question", questInterview.get(index));
+            request.setAttribute(INDEX, index + 1);
+            request.setAttribute(SIZE, questInterview.size());
+            request.setAttribute(QUESTION, questInterview.get(index));
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.WEB_INF_INTERVIEW_INTERVIEW_JSP);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(WEB_INF_INTERVIEW_INTERVIEW_JSP);
             dispatcher.forward(request, response);
-            log.debug("Interview question {}", index + 1);
+            log.debug(INTERVIEW_QUESTION, index + 1);
         }
-        log.debug("Exit interview");
+        log.debug(EXIT_INTERVIEW);
         resultInterview(request);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.WEB_INF_INTERVIEW_RESULT_JSP);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(WEB_INF_INTERVIEW_RESULT_JSP);
         dispatcher.forward(request, response);
     }
 
     private void resultInterview(HttpServletRequest request) {
         index = 0;
         questInterview.clear();
-        log.debug("Clear list in interview");
+        log.debug(CLEAR_LIST_IN_INTERVIEW);
         new Util().getQuestInterview();
-        log.debug("Create new list question");
+        log.debug(CREATE_NEW_LIST_QUESTION);
 
         int percentage = (result * 100) / questInterview.size();
 
-        request.setAttribute("percentage", percentage);
-        request.setAttribute("result", result);
-        request.setAttribute("interviewSize", questInterview.size());
+        request.setAttribute(PERCENTAGE, percentage);
+        request.setAttribute(RESULT, result);
+        request.setAttribute(INTERVIEW_SIZE, questInterview.size());
 
         result = 0;
     }
-
 
     public void buttonResponse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, String[]> parameterMap = request.getParameterMap();
@@ -62,21 +62,21 @@ public class InterviewService {
 
         assert parameter != null;
         switch (parameter) {
-            case Constant.BUTTON_NO -> {
+            case BUTTON_NO -> {
                 index++;
-                log.debug("Push button no");
+                log.debug(PUSH_BUTTON_NO);
                 questionInterview(request, response);
             }
-            case Constant.BUTTON_YES -> {
+            case BUTTON_YES -> {
                 index++;
                 result++;
-                log.debug("Push button yes");
+                log.debug(PUSH_BUTTON_YES);
                 questionInterview(request, response);
             }
-            case Constant.BUTTON_ANSWER -> {
-                log.debug("Push button answer");
-                request.setAttribute("answer", questInterview.get(index));
-                RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.WEB_INF_INTERVIEW_ANSWER_JSP);
+            case BUTTON_ANSWER -> {
+                log.debug(PUSH_BUTTON_ANSWER);
+                request.setAttribute(ANSWER, questInterview.get(index));
+                RequestDispatcher dispatcher = request.getRequestDispatcher(WEB_INF_INTERVIEW_ANSWER_JSP);
                 dispatcher.forward(request, response);
             }
         }

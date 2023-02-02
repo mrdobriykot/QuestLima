@@ -8,7 +8,9 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "TableServlet", value = "/table")
+import static com.javarush.quest.osypenko.costants.Constant.*;
+
+@WebServlet(name = TABLE_SERVLET, value = TABLE)
 public class TableServlet extends HttpServlet {
     TrainingService trainingService = new TrainingService();
     @Override

@@ -7,7 +7,9 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "InterviewServlet", value = "/interview")
+import static com.javarush.quest.osypenko.costants.Constant.*;
+
+@WebServlet(name = INTERVIEW_SERVLET, value = INTERVIEW)
 public class InterviewServlet extends HttpServlet {
     InterviewService interviewService = new InterviewService();
 
@@ -16,11 +18,8 @@ public class InterviewServlet extends HttpServlet {
         interviewService.questionInterview(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         interviewService.buttonResponse(request, response);
     }
-
-
 }

@@ -1,12 +1,13 @@
 package com.javarush.quest.osypenko.repository;
 
-import com.javarush.quest.osypenko.costants.Constant;
 import com.javarush.quest.osypenko.repository.entityDB.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static com.javarush.quest.osypenko.costants.Constant.*;
 
 public class Util {
     public static final Logger log = LogManager.getLogger(Util.class);
@@ -25,7 +26,7 @@ public class Util {
         ALL_QUESTION.putAll(MULTITHREADING);
         ALL_QUESTION.putAll(ALGORITHMS);
         ALL_QUESTION.putAll(PATTERNS);
-        log.debug("The map with the contents of all the maps was filled with");
+        log.debug(THE_MAP_WITH_THE_CONTENTS_OF_ALL_THE_MAPS_WAS_FILLED_WITH);
     }
 
     public HashMap<Entity, Training> getAllEntityDB() {
@@ -35,9 +36,9 @@ public class Util {
             ALL_ENTITY_DB.put(Entity.MULTITHREADING, Multithreading.getInstance());
             ALL_ENTITY_DB.put(Entity.ALGORITHMS, Algorithms.getInstance());
             ALL_ENTITY_DB.put(Entity.PATTERNS, Patterns.getInstance());
-            log.debug("The map with the contents of all DB entities is filled");
+            log.debug(THE_MAP_WITH_THE_CONTENTS_OF_ALL_DB_ENTITIES_IS_FILLED);
         }
-        log.debug("A map with the contents of all entitiesDB has been return");
+        log.debug(A_MAP_WITH_THE_CONTENTS_OF_ALL_ENTITIES_DB_HAS_BEEN_RETURN);
         return ALL_ENTITY_DB;
     }
 
@@ -46,17 +47,17 @@ public class Util {
         if (ALL_QUESTION.isEmpty()) {
             getAllQuestion();
         }
-        while (random.size() < Constant.LENGTH_INTERVIEW) {
+        while (random.size() < LENGTH_INTERVIEW) {
             random.add(ThreadLocalRandom.current().nextInt(0, ALL_QUESTION.size()));
         }
-        log.debug("Created a map with {} random numbers", random.size());
+        log.debug(CREATED_A_MAP_WITH_RANDOM_NUMBERS, random.size());
 
         List<Long> idQuest = new ArrayList<>(ALL_QUESTION.keySet());
         for (Integer integers : random) {
             Object aLong = idQuest.get(integers);
             QUEST_INTERVIEW.add(ALL_QUESTION.get(aLong));
         }
-        log.debug("Received map with interview questions");
+        log.debug(RECEIVED_MAP_WITH_INTERVIEW_QUESTIONS);
         return QUEST_INTERVIEW;
     }
 }
