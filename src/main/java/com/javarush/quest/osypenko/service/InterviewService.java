@@ -6,12 +6,15 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 public class InterviewService {
+    public static final Logger log = LogManager.getLogger(InterviewService.class);
     private final List<Object> questInterview = new Util().getQuestInterview();
     private int index;
     private int result;
@@ -24,8 +27,9 @@ public class InterviewService {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.WEB_INF_INTERVIEW_INTERVIEW_JSP);
             dispatcher.forward(request, response);
+            log.debug("Interview question {}", index + 1);
         }
-
+        log.debug("Exit interview");
         resultInterview(request);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.WEB_INF_INTERVIEW_RESULT_JSP);
@@ -35,7 +39,9 @@ public class InterviewService {
     private void resultInterview(HttpServletRequest request) {
         index = 0;
         questInterview.clear();
+        log.debug("Clear list in interview");
         new Util().getQuestInterview();
+        log.debug("Create new list question");
 
         int percentage = (result * 100) / questInterview.size();
 
@@ -58,14 +64,17 @@ public class InterviewService {
         switch (parameter) {
             case Constant.BUTTON_NO -> {
                 index++;
+                log.debug("Push button no");
                 questionInterview(request, response);
             }
             case Constant.BUTTON_YES -> {
                 index++;
                 result++;
+                log.debug("Push button yes");
                 questionInterview(request, response);
             }
             case Constant.BUTTON_ANSWER -> {
+                log.debug("Push button answer");
                 request.setAttribute("answer", questInterview.get(index));
                 RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.WEB_INF_INTERVIEW_ANSWER_JSP);
                 dispatcher.forward(request, response);

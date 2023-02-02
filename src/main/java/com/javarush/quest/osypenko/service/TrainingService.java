@@ -2,12 +2,17 @@ package com.javarush.quest.osypenko.service;
 
 import com.javarush.quest.osypenko.repository.*;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class TrainingService {
+    public static final Logger log = LogManager.getLogger(TrainingService.class);
+
     public void trainingTable(HttpServletRequest request) {
         HashMap<Entity, Training> objectHashMap = new Util().getAllEntityDB();
 
@@ -16,6 +21,8 @@ public class TrainingService {
         for (String str : parameterMap.keySet()) {
             parameter = str;
         }
+        log.debug("Push button {}", parameter);
+
 
         for (Entity value : Entity.values()) {
             if (value.toString().equals(parameter)) {
@@ -28,5 +35,6 @@ public class TrainingService {
                 request.setAttribute("dbCollection", dbCollection);
             }
         }
+        log.debug("Created table {}", parameter);
     }
 }

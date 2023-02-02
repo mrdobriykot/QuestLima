@@ -10,7 +10,7 @@
 <div class="center">
     <h1 class="color_indigo">Результат собеседования</h1>
 
-    <h3 class="color_red">Вы ответили на ${requestScope.result} вопросов из ${requestScope.interviewSize}. Это составляет ${requestScope.percentage}%</h3>
+    <h2 class="color_red">Вы ответили на ${requestScope.result} вопросов из ${requestScope.interviewSize}. Это составляет ${requestScope.percentage}%</h2>
 
     <img src="images/view/1639314608_22-papik-pro-p-programmist-klipart-23.png">
     <br>

@@ -9,6 +9,7 @@ import java.io.IOException;
 
 @WebServlet(name = "IndexServlet", value = "")
 public class IndexServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher(Constant.WEB_INF_INDEX_JSP);

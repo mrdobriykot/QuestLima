@@ -7,11 +7,11 @@ public class Constant {
     public static final long MULTITHREADING_START_ID = 3000L;
     public static final long ALGORITHMS_START_ID = 4000L;
     public static final long PATTERNS_START_ID = 5000L;
-    public static final String CORE_1_JSON = "/core1.json";
-    public static final String CORE_2_JSON = "/core2.json";
-    public static final String MULTITHREADING_JSON = "/multithreading.json";
-    public static final String ALGORITHMS_JSON = "/algorithms.json";
-    public static final String PATTERNS_JSON = "/patterns.json";
+    public static final String CORE_1_JSON = "/db_json/core1.json";
+    public static final String CORE_2_JSON = "/db_json/core2.json";
+    public static final String MULTITHREADING_JSON = "/db_json/multithreading.json";
+    public static final String ALGORITHMS_JSON = "/db_json/algorithms.json";
+    public static final String PATTERNS_JSON = "/db_json/patterns.json";
     public static final String WEB_INF_INTERVIEW_INTERVIEW_JSP = "/WEB-INF/interview/interview.jsp";
     public static final String WEB_INF_INTERVIEW_RESULT_JSP = "/WEB-INF/interview/result.jsp";
     public static final String WEB_INF_INTERVIEW_ANSWER_JSP = "/WEB-INF/interview/answer.jsp";
