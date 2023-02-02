@@ -1,29 +1,27 @@
-# QuestLima
+# QuestLima (Ivanilov)
 
-Ребята и девчата, всем привет!
+This project was created for educational purpose on Java Rush University course. 
+Its purpose is to train web-app development using servlets and jsp technologies.
 
-На этот раз у нас более сложный проект, который будет трудно объединить 
-в один общий проект со всем зависимостями.
-Поэтому поступим просто. 
+## Quick start guide
+1. Mount the docker file. 
+2. Visit http://localhost:8080/ to open index page. 
+3. Create new account or use one of the following:
+   1. **(Admin)** login _admin_, password _admin_
+   2. login _testUser_, password _safari_
+   3. login _testUser2_, password _google_
 
-Тут первоначально лежит абсолютно пустой проект. Заготовка, такая же как может быть сгенерирована в IDEA.
-Договоримся, что Java у нас будет 17-я. У всех. Привыкайте использовать только LTS.
-Вот прямо без каких-либо плюшек, так что POM.xml в любом случае надо будет заменить на свой.
+## Key features:
+1. Play one of quest of your choice. Quests consist of **_questions_** of **_fights_**. 
+   1. Players are to choose only one option in each question. The answer may lead to win, lose or other question or fight.
+   2. During fight players choose one hit option and one block option, the opponents does the same. If a hit was blocked no damage dealt. Players damage is calculated as a random number between minimal damage ("1" by default) and strength (it depends on quest settings). 
+2. Account page provides statistics on number of played and won quests.
+3. Quest creator allows to build your own quest using special syntax.  
+4**(Admins only)** User management: create, modify or delete users and get their stats from one page.
+5**(Admins only)** Quest management: delete any quest you don't like :)
 
-## Что нужно сделать.
-
-1. Сделайте fork этого репозитория.
-2. Создайте в нем ветку со своей фамилией, например, ivanov (я же тут тоже сделаю такие ветки).
-3. Размещайте в этой ветке свое решение.
-4. В конце вам нужно будет сделать pull request из своей ветки (в своем fork-e) 
-   в такую же точно ветку (в этом удаленном репозитории) и как обычно заполнить форму проектов
-5. После сдачи ваших проектов я положу в **master/main** тот пример, который буду 
-   параллельно с вами разрабатывать на факультативах. На этот раз код копипастить не получится, 
-   смотрите видео, разбирайтесь, почему что и где сделано.
-   Не копируйте, нужно ВАШЕ решение. Но мы уже и не совсем зеленые, правда ведь ;)
-6. Проверять проекты по итогам третьего модуля буду я, скорее всего быстро не получится ;).
-7. Планируйте время так, первые две недели - основной функционал. 
-   Последняя неделя - плюшки, рефакторинг, тесты, красоты.
-8. Если будут какие-то моменты - я обновлю это README. Поглядывайте периодически.
-
-2022-2023 JRU Lima, Александр Хмелев.
+## Issues:
+1. Passwords are stored as plain text.
+2. Authorization is based on session information and can be easily hacked.
+3. No logging.
+4. Game progress in fights isn't saved. 
