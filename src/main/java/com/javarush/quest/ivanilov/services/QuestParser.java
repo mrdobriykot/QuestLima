@@ -50,6 +50,10 @@ public class QuestParser {
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
 
+            if (c == '\r' || c == '\n') {
+                continue;
+            }
+
             if (c == '\\') {
                 isPrevSlash = true;
                 continue;

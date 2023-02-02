@@ -14,7 +14,8 @@ import java.io.IOException;
 
 @WebFilter(
         filterName = "AuthFilter",
-        value = {Targets.PLAY,
+        value = {
+                Targets.PLAY,
                 Targets.MAIN,
                 Targets.CONSTRUCTOR,
                 Targets.USER_DELETE_ETC,

@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String login = req.getParameter(Attributes.LOGIN);
         String password = req.getParameter(Attributes.PASSWORD);
         User user = userService.find(login).orElse(null);
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
             Navigator.redirect(resp, Targets.MAIN);
         } else {
             req.setAttribute(Attributes.MESSAGE, Messages.NOT_AUTHORIZED);
-            Navigator.redirect(resp, Jsp.ERROR_MESSAGE_JSP);
+            Navigator.dispatch(req, resp, Jsp.ERROR_MESSAGE_JSP);
         }
     }
 

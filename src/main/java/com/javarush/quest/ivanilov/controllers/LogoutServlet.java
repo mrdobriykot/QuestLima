@@ -17,6 +17,7 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute(Attributes.IS_AUTHORIZED, false);
         session.setAttribute(Attributes.USER, null);
+        session.setAttribute(Attributes.FIGHT, null);
         Navigator.dispatch(req, resp, Targets.INDEX);
     }
 }

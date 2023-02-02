@@ -1,9 +1,9 @@
 package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.config.Config;
 import com.javarush.quest.ivanilov.services.*;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
+import com.javarush.quest.ivanilov.utils.constants.Strings;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import jakarta.servlet.ServletException;
@@ -19,7 +19,7 @@ public class ConstructorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute(Attributes.QUEST_SAMPLE, Config.BLACK_EARTH_QUEST);
+        req.setAttribute(Attributes.QUEST_SAMPLE, Strings.QUEST_SAMPLE);
         Navigator.dispatch(req, resp, Jsp.CONSTRUCTOR_JSP);
     }
 

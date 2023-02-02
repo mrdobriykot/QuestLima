@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -20,27 +21,16 @@ import java.io.IOException;
 @WebServlet(name = "IndexServlet", value = Targets.INDEX)
 public class IndexServlet extends HttpServlet {
 
+    @SneakyThrows
     @Override
-    public void init(ServletConfig config) throws ServletException {
-        QuestParser questParser = new QuestParser(
-                QuestService.QUEST_SERVICE,
+    public void init(ServletConfig config) {
+        QuestParser parser = new QuestParser(QuestService.QUEST_SERVICE,
                 EventService.EVENT_SERVICE,
                 TaskService.TASK_SERVICE,
                 HeroService.HERO_SERVICE);
 
-//        InputStream stream = getClass().getClassLoader().getResourceAsStream("users.json");
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            JsonNode jsonNode = mapper.readTree(bufferedReader);
-//            JsonNode next = jsonNode.iterator().next();
-//            User user = mapper.treeToValue(next, User.class);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
-        questParser.parse(Config.BLACK_EARTH_QUEST);
-        questParser.parse(Config.MORTAL_COMBAT_QUEST);
+        Config cfg = new Config(parser, UserService.USER_SERVICE);
+        cfg.readUsersAndQuestsFromResources();
     }
 
     @Override
