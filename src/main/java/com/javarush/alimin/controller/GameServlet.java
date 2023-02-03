@@ -48,9 +48,11 @@ public class GameServlet extends HttpServlet {
 
     private void setNextQuestionForRequest(HttpServletRequest request) {
         log.debug("Parsing answerId");
-        Long answerId = Long.parseLong(request.getParameter("answerId"));
-        Long nextQuestionId = findOutNextQuestionId(answerId);
-        request.setAttribute("question", questionService.get(nextQuestionId));
+        String answerId = request.getParameter("answerId");
+        if (Objects.nonNull(answerId)) {
+            Long nextQuestionId = findOutNextQuestionId(Long.parseLong(answerId));
+            request.setAttribute("question", questionService.get(nextQuestionId));
+        }
     }
 
 

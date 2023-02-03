@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 @WebServlet(name = "IntroServlet", value = URLPatterns.HOME)
 public class IntroServlet extends HttpServlet {
 
+
     private static final Logger log = LoggerFactory.getLogger(IntroServlet.class);
 
     @Override

@@ -13,6 +13,7 @@ import java.io.IOException;
 
 @UtilityClass
 public class Forward {
+
     private static final Logger log = LoggerFactory.getLogger(Forward.class);
     public void forward(HttpServletRequest request, HttpServletResponse response, String target) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(target);
