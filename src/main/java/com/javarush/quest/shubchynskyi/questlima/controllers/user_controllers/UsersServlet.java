@@ -19,11 +19,10 @@ public class UsersServlet extends HttpServlet {
 
     private final UserService userService = UserService.USER_SERVICE;
 
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    public void doGet(HttpServletRequest request, HttpServletResponse resp) throws IOException, ServletException {
         Collection<User> users = userService.getAll();
-        req.setAttribute(Key.USERS, users);
-        Jsp.forward(req, resp, Key.USERS);
-
+        request.setAttribute(Key.USERS, users);
+        Jsp.forward(request, resp, Go.USERS);
     }
 
 }

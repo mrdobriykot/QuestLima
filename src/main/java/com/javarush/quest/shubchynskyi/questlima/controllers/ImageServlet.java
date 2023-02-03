@@ -21,7 +21,7 @@ public class ImageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         String requestURI = req.getRequestURI();
         String target = req.getContextPath() + Go.IMAGES;
-        String nameImage = requestURI.replace(target, Key.EMPTY_STRING);
+        String nameImage = requestURI.replace(target, Key.REGEX_EMPTY_STRING);
         Path path = imageService.getImagePath(nameImage);
         Files.copy(path, resp.getOutputStream());
     }

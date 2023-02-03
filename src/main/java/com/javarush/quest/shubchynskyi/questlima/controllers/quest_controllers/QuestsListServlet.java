@@ -23,6 +23,6 @@ public class QuestsListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Collection<Quest> quests = questService.getAll();
         request.setAttribute(Key.QUESTS, quests);
-        Jsp.forward(request, response, Key.QUESTS_LIST);
+        Jsp.forward(request, response, Go.QUESTS_LIST);
     }
 }

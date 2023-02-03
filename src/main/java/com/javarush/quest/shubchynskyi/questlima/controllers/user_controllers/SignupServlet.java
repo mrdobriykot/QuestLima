@@ -31,21 +31,21 @@ public class SignupServlet extends HttpServlet {
     private final ImageService imageService = ImageService.IMAGE_SERVICE;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Jsp.forward(req, resp, Key.SIGNUP);
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        Jsp.forward(request, resp, Go.SIGNUP);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         User user = User.builder()
                 .id(0L)
-                .login(req.getParameter(Key.LOGIN))
-                .password(req.getParameter(Key.PASSWORD))
-                .role(Role.valueOf(req.getParameter(Key.ROLE)))
+                .login(request.getParameter(Key.LOGIN))
+                .password(request.getParameter(Key.PASSWORD))
+                .role(Role.valueOf(request.getParameter(Key.ROLE)))
                 .build();
 
         userService.create(user);
-        imageService.uploadImage(req, user.getImage());
-        Jsp.redirect(resp, Key.USERS);
+        imageService.uploadImage(request, user.getImage());
+        Jsp.redirect(resp, Go.USERS);
     }
 }

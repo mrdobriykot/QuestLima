@@ -17,7 +17,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -36,49 +35,40 @@ public class UserServlet extends HttpServlet {
     private final ImageService imageService = ImageService.IMAGE_SERVICE;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String parameterId = req.getParameter(Key.ID);
-        req.setAttribute(Key.ID, parameterId);
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        String parameterId = request.getParameter(Key.ID);
+        request.setAttribute(Key.ID, parameterId);
         if (Objects.nonNull(parameterId)) {
             long id = Long.parseLong(parameterId);
             Optional<User> optionalUser = userService.get(id);
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
-                req.setAttribute(Key.USER, user);
+                request.setAttribute(Key.USER, user);
             }
-            Jsp.forward(req, resp, Key.USER);
+            Jsp.forward(request, resp, Go.USER);
         }
-        Jsp.redirect(resp, Key.USERS);
+        Jsp.redirect(resp, Go.USERS);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO refactor
-        Map<String, String[]> parameterMap1 = req.getParameterMap();
-        for (var var : parameterMap1.entrySet()) {
-            System.out.println(var.getKey());
-            System.out.println(Arrays.toString(var.getValue()));
-            System.out.println();
-        }
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         User user = User.builder()
-                .id(Long.valueOf(req.getParameter(Key.ID)))
-                .login(req.getParameter(Key.LOGIN))
-                .password(req.getParameter(Key.PASSWORD))
-                .role(Role.valueOf(req.getParameter(Key.ROLE)))
+                .id(Long.valueOf(request.getParameter(Key.ID)))
+                .login(request.getParameter(Key.LOGIN))
+                .password(request.getParameter(Key.PASSWORD))
+                .role(Role.valueOf(request.getParameter(Key.ROLE)))
                 .build();
 
-        Map<String, String[]> parameterMap = req.getParameterMap();
-        if (parameterMap.containsKey("create")) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        if (parameterMap.containsKey(Key.CREATE)) {
             userService.create(user);
-        } else if (parameterMap.containsKey("update")) {
+        } else if (parameterMap.containsKey(Key.UPDATE)) {
             userService.update(user);
-        } else if (parameterMap.containsKey("delete")) {
+        } else if (parameterMap.containsKey(Key.DELETE)) {
             userService.delete(user);
-        } else throw new AppException("Unknown command");
+        } else throw new AppException(Key.UNKNOWN_COMMAND);
 
-        imageService.uploadImage(req, user.getImage());
-
-        resp.sendRedirect(Key.USERS);
+        imageService.uploadImage(request, user.getImage());
+        resp.sendRedirect(Go.USERS);
     }
 }

@@ -22,8 +22,6 @@ public enum QuestService {
     private final QuestParser questParser = QuestParser.QUEST_PARSER;
     private final QuestionService questionService = QuestionService.QUESTION_SERVICE;
 
-
-
     public Quest create(String name, String text, String description, Long authorId) {
         Quest quest = Quest.builder()
                 .name(name)
@@ -48,8 +46,6 @@ public enum QuestService {
     }
 
     public void parseQuestFromTextWall(Quest quest, String text) {
-        // TODO refactor
-
         Map<Integer, Question> questionsMapWithRawId = new HashMap<>();
         Map<Answer, Integer> answersMapWithNullNextQuestionId = new HashMap<>();
         Collection<Answer> answers = new ArrayList<>();
@@ -57,65 +53,84 @@ public enum QuestService {
         questParser.splitQuestToStrings(text);
 
         while (questParser.isStringPresent()) {
-            String currentLine = questParser.takeNextLine();
-            String[] logicBlock = questParser.extractLogicBlock(currentLine);
-            Integer blockNumber = Integer.valueOf(logicBlock[0]);
-            String blockData = logicBlock[1];
-            String blockType = logicBlock[2];
-
-            switch (blockType) {
-                case PLAY, WIN, LOST -> {
-                    Question question = Question.builder()
-                            .questId(quest.getId())
-                            .text(blockData)
-                            .gameState(GameState.getStateFromParser(blockType))
-                            .build();
-
-                    question.getAnswers().addAll(answers);
-                    answers.clear();
-                    questionService.create(question);
-                    question.getAnswers().forEach(answer -> answer.setQuestionId(question.getId()));
-                    quest.getQuestions().add(question);
-                    questionsMapWithRawId.put(blockNumber, question);
-
-                    if (!questParser.isStringPresent()) {
-                        quest.setStartQuestionId(question.getId());
-                    }
-                }
-                case ANSWER -> {
-                    Answer answer = Answer.builder()
-                            .text(blockData)
-                            .build();
-
-                    if (questionsMapWithRawId.containsKey(blockNumber)) {
-                        answer.setNextQuestionId(questionsMapWithRawId.get(blockNumber).getId());
-                    } else {
-                        answersMapWithNullNextQuestionId.put(answer, blockNumber);
-                    }
-
-                    config.answerRepository.create(answer);
-                    answers.add(answer);
-                }
-                default -> throw new AppException(Key.INCORRECT_TYPE);
-
-            }
+            buildNewLogicBlock(quest, questionsMapWithRawId, answersMapWithNullNextQuestionId, answers);
         }
-
 
         for (Map.Entry<Answer, Integer> integerAnswerEntry : answersMapWithNullNextQuestionId.entrySet()) {
             integerAnswerEntry.getKey()
-                    .setNextQuestionId(
-                            questionsMapWithRawId.get(integerAnswerEntry.getValue()).getId()
-                    );
+                    .setNextQuestionId(questionsMapWithRawId.get(integerAnswerEntry.getValue()).getId());
         }
 
         questionsMapWithRawId.clear();
         answersMapWithNullNextQuestionId.clear();
         Collections.reverse((List<?>) quest.getQuestions());
         config.questRepository.update(quest);
-
     }
 
+    private void buildNewLogicBlock(
+            Quest quest,
+            Map<Integer, Question> questionsMapWithRawId,
+            Map<Answer, Integer> answersMapWithNullNextQuestionId,
+            Collection<Answer> answers) {
+
+        String currentLine = questParser.takeNextLine();
+        String[] logicBlock = questParser.extractLogicBlock(currentLine);
+        Integer blockNumber = Integer.valueOf(logicBlock[0]);
+        String blockData = logicBlock[1];
+        String blockType = logicBlock[2];
+
+        switch (blockType) {
+            case PLAY, WIN, LOST ->
+                    buildNewQuestion(quest, questionsMapWithRawId, answers, blockNumber, blockData, blockType);
+            case ANSWER ->
+                    buildNewAnswer(questionsMapWithRawId, answersMapWithNullNextQuestionId, answers, blockNumber, blockData);
+            default -> throw new AppException(Key.INCORRECT_TYPE);
+        }
+    }
+
+    private void buildNewAnswer(
+            Map<Integer, Question> questionsMapWithRawId,
+            Map<Answer, Integer> answersMapWithNullNextQuestionId,
+            Collection<Answer> answers,
+            Integer blockNumber, String blockData) {
+
+        Answer answer = Answer.builder()
+                .text(blockData)
+                .build();
+
+        if (questionsMapWithRawId.containsKey(blockNumber)) {
+            answer.setNextQuestionId(questionsMapWithRawId.get(blockNumber).getId());
+        } else {
+            answersMapWithNullNextQuestionId.put(answer, blockNumber);
+        }
+
+        config.answerRepository.create(answer);
+        answers.add(answer);
+    }
+
+    private void buildNewQuestion(
+            Quest quest,
+            Map<Integer, Question> questionsMapWithRawId,
+            Collection<Answer> answers,
+            Integer blockNumber, String blockData, String blockType) {
+
+        Question question = Question.builder()
+                .questId(quest.getId())
+                .text(blockData)
+                .gameState(GameState.getStateFromParser(blockType))
+                .build();
+
+        question.getAnswers().addAll(answers);
+        answers.clear();
+        questionService.create(question);
+        question.getAnswers().forEach(answer -> answer.setQuestionId(question.getId()));
+        quest.getQuestions().add(question);
+        questionsMapWithRawId.put(blockNumber, question);
+
+        if (!questParser.isStringPresent()) {
+            quest.setStartQuestionId(question.getId());
+        }
+    }
 
     public Collection<Quest> getAll() {
         return config.questRepository.getAll();

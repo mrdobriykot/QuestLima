@@ -17,15 +17,13 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
 
     @Override
-    //TODO перенести в слушатель
     public void init(ServletConfig config) throws ServletException {
-        //TODO заполнить квесты и юзеров через метод в конфиге
         config.getServletContext().setAttribute(Key.ROLES, Role.values());
         super.init(config);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Jsp.forward(req, resp, Key.INDEX);
+        Jsp.forward(req, resp, Go.INDEX);
     }
 }

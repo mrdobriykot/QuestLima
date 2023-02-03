@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet(name = "CreateQuestServlet", value = Go.CREATE_QUEST)
 public class QuestCreateServlet extends HttpServlet {
@@ -22,21 +23,23 @@ public class QuestCreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (Jsp.isParameterPresent(request, Key.USER)) {
-            Jsp.forward(request, response, Key.CREATE_QUEST);
+            Jsp.forward(request, response, Go.CREATE_QUEST);
         } else {
-            response.sendRedirect(Key.LOGIN);
+            Jsp.redirect(response, Go.LOGIN);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        String questTitle = request.getParameter(Key.NAME);
-        String questText = request.getParameter(Key.TEXT);
-        String questDescription = request.getParameter(Key.DESCRIPTION);
-        //TODO если пользователя нет, то редирект на логин
+        String questTitle = request.getParameter(Key.QUEST_NAME);
+        String questText = request.getParameter(Key.QUEST_TEXT);
+        String questDescription = request.getParameter(Key.QUEST_DESCRIPTION);
         Long userId = ((User) request.getSession().getAttribute(Key.USER)).getId();
-        Quest quest = questService.create(questTitle, questText, questDescription, userId);
-
-        Jsp.redirect(response, Key.S_ID_S_URI_PATTERN.formatted(Go.QUEST_EDIT, quest.getId()));
+        if(Objects.nonNull(userId)) {
+            Quest quest = questService.create(questTitle, questText, questDescription, userId);
+            Jsp.redirect(response, Key.ID_URI_PATTERN.formatted(Go.QUEST_EDIT, quest.getId()));
+        } else {
+            Jsp.redirect(response, Go.LOGIN);
+        }
     }
 }

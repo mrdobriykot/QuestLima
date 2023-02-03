@@ -25,25 +25,23 @@ public class QuestServlet extends HttpServlet {
     private final QuestService questService = QuestService.QUEST_SERVICE;
     private final QuestionService questionService = QuestionService.QUESTION_SERVICE;
 
-    @Override //TODO refactor
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Optional<Quest> questOptional = questService.get(request.getParameter(Key.ID));
         if (questOptional.isPresent()) {
             Quest quest = questOptional.get();
             Map<String, String[]> parameterMap = request.getParameterMap();
             if (parameterMap.containsKey(Key.QUESTION)) {
-                String questionId = request.getParameter(Key.QUESTION);
-                Optional<Question> questionOptional = questionService.get(questionId);
-                questionOptional.ifPresent(question -> request.setAttribute(Key.QUESTION, question));
+                setQuestionToRequest(request);
             } else {
                 request.setAttribute(Key.START_QUESTION_ID, quest.getStartQuestionId());
                 request.setAttribute(Key.QUEST_DESCRIPTION, quest.getDescription());
             }
             request.setAttribute(Key.ID, quest.getId());
             request.setAttribute(Key.QUEST_NAME, quest.getName());
-            Jsp.forward(request, response, Key.QUEST);
+            Jsp.forward(request, response, Go.QUEST);
         } else {
-            Jsp.redirect(response, Key.QUESTS_LIST);
+            Jsp.redirect(response, Go.QUESTS_LIST);
         }
     }
 
@@ -51,11 +49,17 @@ public class QuestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         Map<String, String[]> parameterMap = request.getParameterMap();
         if (parameterMap.containsKey(Key.GAME_STATE) && !request.getParameter(Key.GAME_STATE).equals(GameState.PLAY.name())) {
-            Jsp.redirect(response, Key.QUESTS_LIST);
+            Jsp.redirect(response, Go.QUESTS_LIST);
         } else {
             String questionId = request.getParameter(Key.QUESTION_ID);
             fillRequestAndRedirect(request, response, questionId);
         }
+    }
+
+    private void setQuestionToRequest(HttpServletRequest request) {
+        String questionId = request.getParameter(Key.QUESTION);
+        Optional<Question> questionOptional = questionService.get(questionId);
+        questionOptional.ifPresent(question -> request.setAttribute(Key.QUESTION, question));
     }
 
     private void fillRequestAndRedirect(HttpServletRequest request, HttpServletResponse response, String questionId) {
@@ -67,10 +71,10 @@ public class QuestServlet extends HttpServlet {
             request.setAttribute(Key.QUESTION, question);
             request.setAttribute(Key.ID, questId);
             request.setAttribute(Key.QUEST_NAME, questName);
-            String newUri = Key.URI_PATTERN.formatted(Key.QUEST, Key.ID, questId, Key.QUESTION, question.getId());
+            String newUri = Key.NEXT_QUESTION_URI_PATTERN.formatted(Go.QUEST, Key.ID, questId, Key.QUESTION, question.getId());
             Jsp.redirect(response, newUri);
         } else {
-            Jsp.redirect(response, Key.QUESTS_LIST);
+            Jsp.redirect(response, Go.QUESTS_LIST);
         }
     }
 }

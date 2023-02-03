@@ -27,7 +27,7 @@ public class Jsp {
     }
 
     private String fixTarget(String target) {
-        target = target.replace(Key.SLASH_SIGN, Key.EMPTY_STRING);
+        target = target.replace(Key.REGEX_SLASH_SIGN, Key.REGEX_EMPTY_STRING);
         return target;
     }
 

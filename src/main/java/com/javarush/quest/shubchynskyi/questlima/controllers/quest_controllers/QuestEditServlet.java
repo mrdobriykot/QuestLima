@@ -35,7 +35,7 @@ public class QuestEditServlet extends HttpServlet {
         if (questService.get(questId).isPresent()) {
             request.setAttribute(Key.QUEST, questService.get(questId).get());
         }
-        Jsp.forward(request, response, Key.QUEST_EDIT);
+        Jsp.forward(request, response, Go.QUEST_EDIT);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class QuestEditServlet extends HttpServlet {
             quest.setName(request.getParameter(Key.QUEST_NAME));
             quest.setDescription(request.getParameter(Key.QUEST_DESCRIPTION));
             questService.update(quest);
-            Jsp.redirect(response, Key.S_ID_S_URI_PATTERN.formatted(Go.QUEST_EDIT, request.getParameter(Key.ID)));
+            Jsp.redirect(response, Key.ID_URI_PATTERN.formatted(Go.QUEST_EDIT, request.getParameter(Key.ID)));
         }
     }
 
@@ -73,7 +73,7 @@ public class QuestEditServlet extends HttpServlet {
                 answerService.update(answer);
             }
             Jsp.redirect(response,
-                    Key.S_ID_S_URI_PATTERN.formatted(Go.QUEST_EDIT, request.getParameter(Key.ID))
+                    Key.ID_URI_PATTERN.formatted(Go.QUEST_EDIT, request.getParameter(Key.ID))
                             + Key.LABEL_URI_PATTERN + question.getId());
         }
     }

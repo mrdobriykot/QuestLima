@@ -25,6 +25,6 @@ public class ProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute(Key.USER);
-        Jsp.redirect(response, Key.S_ID_S_URI_PATTERN.formatted(Go.USER, user.getId()));
+        Jsp.redirect(response, Key.ID_URI_PATTERN.formatted(Go.USER, user.getId()));
     }
 }

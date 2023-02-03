@@ -8,14 +8,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.javarush.quest.shubchynskyi.questlima.util.QuestMarks.ANSWER;
-import static com.javarush.quest.shubchynskyi.questlima.util.QuestMarks.QUESTION_MARKS;
+import static com.javarush.quest.shubchynskyi.questlima.util.QuestMarks.*;
 
 
 public enum QuestParser {
     QUEST_PARSER;
 
-    private List<String> stringList; // TODO перенести в серсис
+    private List<String> stringList;
 
     public String takeNextLine() {
         return stringList.remove(0);
@@ -104,7 +103,7 @@ public enum QuestParser {
     }
 
     private String extractMark(String currentLine, String number) {
-        String mark = currentLine.replaceFirst(number, Key.EMPTY_STRING);
+        String mark = currentLine.replaceFirst(number, Key.REGEX_EMPTY_STRING);
         mark = mark.substring(0, 2);
         return mark.trim();
     }
