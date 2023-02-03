@@ -1,7 +1,7 @@
 package com.bogdanov.controller;
 
 import com.bogdanov.entity.User;
-import com.bogdanov.entity.Role;
+
 import com.bogdanov.service.ImageService;
 import com.bogdanov.service.UserService;
 import com.bogdanov.util.Go;
@@ -31,15 +31,12 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idParametr = request.getParameter(Key.ID);
         if(Objects.nonNull(idParametr)) {
-            Long id = null;
+            long id;
 
             try {
-                id= Long.valueOf(idParametr);
+                id= Long.parseLong(idParametr);
                 Optional<User> user = service.get(id);
-                if(user.isPresent()){
-                    request.setAttribute(Key.USER, user.get());
-
-                }
+                user.ifPresent(value -> request.setAttribute(Key.USER, value));
                 Jsp.forward(request, response,Key.USER);
 
             }catch (Exception e){
@@ -65,7 +62,7 @@ public class UserServlet extends HttpServlet {
             service.delete(user);
         }else throw new IllegalArgumentException("unknown command");
 
-        imageService.uploadImage(request,user.getId());
+        imageService.uploadImage(request,user.getImage());
 
         Jsp.response(response,Go.USERS);
 

@@ -1,6 +1,5 @@
 package com.bogdanov.controller;
 
-import com.bogdanov.entity.Role;
 import com.bogdanov.entity.User;
 import com.bogdanov.service.ImageService;
 import com.bogdanov.service.UserService;
@@ -13,8 +12,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+
 
 @WebServlet(name = "SignupServlet", value = Go.SIGNUP)
 @MultipartConfig(fileSizeThreshold = 1<<20)
@@ -25,7 +23,7 @@ public class SignupServlet extends HttpServlet {
     ImageService imageService = ImageService.IMAGE_SERVICE;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Jsp.forward(request, response, Key.SIGNUP);
+        Jsp.forward(request, response, Key.USER);
     }
 
     @Override
@@ -40,7 +38,7 @@ public class SignupServlet extends HttpServlet {
             service.delete(user);
         }else throw new IllegalArgumentException("unknown command");
 
-        imageService.uploadImage(request,user.getId());
+        imageService.uploadImage(request,user.getImage());
 
         Jsp.response(response,Go.USERS);
     }

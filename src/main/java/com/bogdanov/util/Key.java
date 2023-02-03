@@ -11,6 +11,12 @@ public class Key {
     public static final String LOGIN = "login";
     public static final String PASSWORD = "password";
     public static final String ROLE = "role";
-    public static final String SIGNUP = "signup";
 
+    public static final String QUESTS = "quest";
+    public static final String ANSWER_TEXT = "answersText";
+    public static final String QUESTION_TEXT = "questionText";
+
+
+
+    public static final String NUM_QUESTION = "numQuestion";
 }

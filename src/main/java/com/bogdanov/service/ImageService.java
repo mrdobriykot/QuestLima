@@ -1,6 +1,6 @@
 package com.bogdanov.service;
 
-import com.example.Config;
+import com.bogdanov.Config;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
@@ -20,7 +20,6 @@ public enum ImageService {
 
     public static final String IMAGES_FOLDER = "images";
     public static final String PART_NAME = "images";
-    public static final String FILENAME_PREFIX = "image-";
     public static final String NO_IMAGE_PNG = "no-image.jpg";
     public static final  List<String> EXTENSIONS = List.of(
             ".jpg","jpeg",".png",".bmp",".gif",".webp"
@@ -41,8 +40,8 @@ public enum ImageService {
                 .orElse(imageFolder.resolve(NO_IMAGE_PNG));
     }
 
-    public void uploadImage(HttpServletRequest request, long id){
-        Part data= null;
+    public void uploadImage(HttpServletRequest request, String imageId){
+        Part data;
         try {
             data = request.getPart(PART_NAME);
         } catch (IOException | ServletException e) {
@@ -52,8 +51,8 @@ public enum ImageService {
             if(Objects.nonNull(data) && data.getInputStream().available()>0){
                 String filename = data.getSubmittedFileName();
                 String ext = filename.substring(filename.lastIndexOf("."));
-                deleteOldFiles(FILENAME_PREFIX+id);
-                filename = FILENAME_PREFIX+id+ext;
+                deleteOldFiles(imageId);
+                filename = imageId+ext;
                 uploadImageInternal(filename,data.getInputStream());
 
             }

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public interface Repository<T> {
     Stream<T> find(T pattern);
-    Collection<User> getAll();
+    Collection<T> getAll();
     T get(long id);
     void create(T entity);
 

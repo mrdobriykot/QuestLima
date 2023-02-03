@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.Map;
+
 import java.util.Optional;
 
 @WebServlet(name = "LogServlet", value = Go.LOGIN)
@@ -27,7 +27,7 @@ public class LogServlet extends HttpServlet {
     ImageService imageService = ImageService.IMAGE_SERVICE;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Jsp.forward(request, response, "log");
+        Jsp.forward(request, response, Go.LOGIN);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class LogServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User userActual = user.get();
             session.setAttribute(Key.USER, userActual);
-            imageService.uploadImage(request, userActual.getId());
+            imageService.uploadImage(request, userActual.getImage());
             Jsp.response(response,Go.PROFILE);
         }else {
             Jsp.response(response,Go.USERS);

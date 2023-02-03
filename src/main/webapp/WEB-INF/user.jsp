@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@include file="parts/header.jsp"%>
-<jsp:useBean id="user" scope="request" class="com.example.entity.User"/>
+<jsp:useBean id="user" scope="request" class="com.bogdanov.entity.User"/>
 <form class="form-horizontal" action="user?id=${user.id==null?0:user.id}" method="post" enctype="multipart/form-data">
     <fieldset>
 
@@ -22,7 +22,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Text Input</label>
             <div class="col-md-4">
-                <input id="textinput" name="login" type="text" placeholder="" class="form-control input-md" value="${user.getLogin()}">
+                <input id="textinput" name="login" type="text" placeholder="" class="form-control-user input-md" value="${user.getLogin()}">
 
             </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="passwordinput">Password Input</label>
             <div class="col-md-4">
-                <input id="passwordinput" name="password" type="password" placeholder="" class="form-control input-md" value="${user.getPassword()}">
+                <input id="passwordinput" name="password" type="password" placeholder="" class="form-control-user input-md" value="${user.getPassword()}">
 
             </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="role">Select Positon</label>
             <div class="col-md-4">
-                <select id="role" name="role" class="form-control">
+                <select id="role" name="role" class="form-control-user">
 
 
                     <c:forEach items="${applicationScope.roles}" var="role">
@@ -56,7 +56,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="updateOrCreate"></label>
             <div class="col-md-8">
-                <button id="updateOrCreate" name="${requestScope.user.getId()>0?"update":"create"}" class="btn btn-success">${requestScope.user.getId()>0?"Update":"Create"}</button>
+                <button id="updateOrCreate" name="${user.getId()>0?"update":"create"}" class="btn btn-success">${user.getId()>0?"Update":"Create"}</button>
                 <button id="delete" name="delete" class="btn btn-danger">Delete</button>
             </div>
         </div>
