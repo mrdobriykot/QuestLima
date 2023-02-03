@@ -1,0 +1,284 @@
+{
+  "1": {
+    "question": {
+      "1": {
+        "questState": "PLAYING",
+        "questId": 1,
+        "image": "245021af-a592-4acb-8719-80a5f343bcc01.jpg",
+        "text": "Узнали?",
+        "answers": [
+          {
+            "answer": "Жанин",
+            "id": 1,
+            "nextQuestionId": 2
+          },
+          {
+            "answer": "Мишель",
+            "id": 2,
+            "nextQuestionId": 6
+          },
+          {
+            "answer": "Жаклин",
+            "id": 3,
+            "nextQuestionId": 6
+          },
+          {
+            "answer": "Монро",
+            "id": 4,
+            "nextQuestionId": 6
+          }
+        ]
+      },
+      "2": {
+        "questState": "PLAYING",
+        "questId": 1,
+        "image": "mukmdaulgpe76djpksg91.png",
+        "text": "А это кто у нас такой?",
+        "answers": [
+          {
+            "answer": "Крошка Ру",
+            "id": 5,
+            "nextQuestionId": 3
+          },
+          {
+            "answer": "Малышка Ли",
+            "id": 6,
+            "nextQuestionId": 6
+          }
+        ]
+      },
+      "3": {
+        "questState": "PLAYING",
+        "questId": 1,
+        "image": "69886bc2-9d3e-479e-8f26-7dc2d992dba41.jpg",
+        "text": "Что это за ребята?",
+        "answers": [
+          {
+            "answer": "Братья Гримс",
+            "id": 7,
+            "nextQuestionId": 6
+          },
+          {
+            "answer": "Братья Гавс",
+            "id": 8,
+            "nextQuestionId": 4
+          },
+          {
+            "answer": "Братья Грипс",
+            "id": 9,
+            "nextQuestionId": 6
+          }
+        ]
+      },
+      "4": {
+        "questState": "PLAYING",
+        "questId": 1,
+        "image": "9733c2ce-f6d2-4489-8528-5c859038177e1.jpg",
+        "text": "Как зовут рыбку?",
+        "answers": [
+          {
+            "answer": "Флаундер",
+            "id": 10,
+            "nextQuestionId": 5
+          },
+          {
+            "answer": "Себастьян",
+            "id": 11,
+            "nextQuestionId": 6
+          },
+          {
+            "answer": "Скаттл",
+            "id": 12,
+            "nextQuestionId": 6
+          }
+        ]
+      },
+      "5": {
+        "questState": "WIN",
+        "questId": 1,
+        "image": "win.png",
+        "text": "Вы отлично знаете персонажей из мультфильмов!"
+      },
+      "6": {
+        "questState": "LOSE",
+        "questId": 1,
+        "image": "lose.png",
+        "text": "Вы не прошли тест на знание персонажей, надо бы пересмотреть мультфильмы более внимательно:)"
+      }
+    },
+    "author": "Login1",
+    "description": "А вы вставали как и я по утрам в выходные, чтобы посмотреть новую серию своего любимого мультфильма? Мультики из 90-х и их персонажи оставили глубокий и очень приятный след в моей и, я уверен, в памяти многих из нас.",
+    "id": 1,
+    "image": "multiki-90s-obzor.jpg",
+    "creationDate": "2022-12-31",
+    "views": 11,
+    "rating": 5,
+    "firstQuestionId": 1,
+    "title": "Помните персонажей мультиков из 90-х?"
+  },
+  "2": {
+    "question": {
+      "7": {
+        "questState": "PLAYING",
+        "questId": 2,
+        "image": "kakoj-gorod-yavlyaetsya-stoliczej-moldavii.jpg",
+        "text": "Какой город является столицей Молдавии?",
+        "answers": [
+          {
+            "answer": "Кишинёв",
+            "id": 13,
+            "nextQuestionId": 8
+          },
+          {
+            "answer": "Бельцы",
+            "id": 14,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Орхей",
+            "id": 15,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Единец",
+            "id": 16,
+            "nextQuestionId": 13
+          }
+        ]
+      },
+      "8": {
+        "questState": "PLAYING",
+        "questId": 2,
+        "image": "kakoj-gorod-yavlyaetsya-stoliczej-franczii.jpg",
+        "text": "Какой город является столицей Франции?",
+        "answers": [
+          {
+            "answer": "Варшава",
+            "id": 17,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Валетта",
+            "id": 18,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Париж",
+            "id": 19,
+            "nextQuestionId": 9
+          },
+          {
+            "answer": "Вена",
+            "id": 20,
+            "nextQuestionId": 13
+          }
+        ]
+      },
+      "9": {
+        "questState": "PLAYING",
+        "questId": 2,
+        "image": "kakoj-gorod-yavlyaetsya-stoliczej-azerbajdzhana.jpg",
+        "text": "Какой город является столицей Азербайджана?",
+        "answers": [
+          {
+            "answer": "Гобустан",
+            "id": 21,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Лиман",
+            "id": 22,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Лачин",
+            "id": 23,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Баку",
+            "id": 24,
+            "nextQuestionId": 10
+          }
+        ]
+      },
+      "10": {
+        "questState": "PLAYING",
+        "questId": 2,
+        "image": "kakoj-gorod-yavlyaetsya-stoliczej-bolgarii.jpg",
+        "text": "Какой город является столицей Болгарии?",
+        "answers": [
+          {
+            "answer": "София",
+            "id": 25,
+            "nextQuestionId": 11
+          },
+          {
+            "answer": "Пловдив",
+            "id": 26,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Варна",
+            "id": 27,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Бургас",
+            "id": 28,
+            "nextQuestionId": 13
+          }
+        ]
+      },
+      "11": {
+        "questState": "PLAYING",
+        "questId": 2,
+        "image": "kakoj-gorod-yavlyaetsya-stoliczej-armenii.jpg",
+        "text": "Какой город является столицей Армении?",
+        "answers": [
+          {
+            "answer": "Армавир ",
+            "id": 29,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Арарат",
+            "id": 30,
+            "nextQuestionId": 13
+          },
+          {
+            "answer": "Ереван",
+            "id": 31,
+            "nextQuestionId": 12
+          },
+          {
+            "answer": "Талин",
+            "id": 32,
+            "nextQuestionId": 13
+          }
+        ]
+      },
+      "12": {
+        "questState": "WIN",
+        "questId": 2,
+        "image": "win.png",
+        "text": "Тест на знание географии пройден! Отлично!"
+      },
+      "13": {
+        "questState": "LOSE",
+        "questId": 2,
+        "image": "lose.png",
+        "text": "Кто-то прогуливал уроки географии в школе?:) Тест не пройден, увы."
+      }
+    },
+    "author": "Login1",
+    "description": "Вы входите в общество знатоков географии? А столицы стран вы хорошо знаете? Мы проверим это в данном тесте легкого уровня. Отвечайте на вопросы теста быстро и узнайте о своем уровне знаний по географии. Может уже время открыть атлас и повторить?",
+    "id": 2,
+    "image": "geography-012256.jpg",
+    "creationDate": "2022-05-06",
+    "views": 222,
+    "rating": 12,
+    "firstQuestionId": 7,
+    "title": "Проверим ваше знание мировой географии в легком тесте по столицам?"
+  }
+}

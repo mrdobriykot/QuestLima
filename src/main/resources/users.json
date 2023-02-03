@@ -1,0 +1,50 @@
+{
+  "1671292196627": {
+    "id": 1671292196627,
+    "login": "Login1",
+    "password": "9dcefba6204adb4fefcdb5347d8baa2b7061dd9a7a2da981f6c307837668bbc0",
+    "profileImage": "5.png",
+    "playedQuestsCount": 60,
+    "role": "ADMIN"
+  },
+  "1674744328453": {
+    "id": 1674744328453,
+    "login": "Alex",
+    "password": "d82afabc029ecbcc4e9b25bf156165fd29a18b6a79d5213aaae584189f3a068c",
+    "profileImage": "3.png",
+    "playedQuestsCount": 10,
+    "role": "EDITOR"
+  },
+  "1674744328454": {
+    "id": 1674744328454,
+    "login": "Olga",
+    "password": "dfef456a1f4fe6fee315da36fcfa7509a6aeeafb358825639dd92773cd5c4544",
+    "profileImage": "2.png",
+    "playedQuestsCount": 33,
+    "role": "USER"
+  },
+  "1674744328455": {
+    "id": 1674744328455,
+    "login": "CamelCase",
+    "password": "f4006125d161af121eec2697d651df83ebfd5c87d181a6418bfca61236f514bb",
+    "profileImage": "8.png",
+    "playedQuestsCount": 25,
+    "role": "ADMIN"
+  },
+  "1674744328456": {
+    "id": 1674744328456,
+    "login": "Murzik",
+    "password": "54c6bc590efb56237a919a58673ed97cd882f31da9f82483d5c9754be3335d65",
+    "profileImage": "15.png",
+    "playedQuestsCount": 56,
+    "role": "USER"
+  },
+  "1674744328457": {
+    "id": 1674744328457,
+    "login": "Анатолий",
+    "password": "9c332218793425158997500c0e2224366d8798ccc7fb8aa1be7cd066ed82b889",
+    "profileImage": "18.png",
+    "playedQuestsCount": 2,
+    "role": "GUEST"
+  }
+}
