@@ -7,10 +7,11 @@ public class Answer implements AbstractEntity {
     private long questionId;
     private long answerId;
     private String answerText;
+    private Long answer_number;
 
-    public Answer(String answerText,long questionId) {
+    public Answer(String answerText) {
         this.answerText = answerText;
-        this.questionId = questionId;
+
     }
 
     public long getQuestionId() {
@@ -38,5 +39,22 @@ public class Answer implements AbstractEntity {
 
     public void setAnswerText(String answerText) {
         this.answerText = answerText;
+    }
+
+    public Long getAnswer_number() {
+        return answer_number;
+    }
+
+    public void setAnswer_number(Long answer_number) {
+        this.answer_number = answer_number;
+    }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "answerNumber=" + answer_number +
+                ", answerId=" + answerId +
+                ", answerText='" + answerText + '\'' +
+                '}';
     }
 }

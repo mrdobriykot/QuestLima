@@ -2,7 +2,6 @@ package com.javarush.dobrov.entity;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class Question implements AbstractEntity {
 
@@ -11,15 +10,15 @@ public class Question implements AbstractEntity {
     private Long questId;
     private Long questionId;
 
-    Map<Long, String> answers = new HashMap<>();
+    public Map<Long, Answer> answers = new HashMap<>();
 
-    public Question(String questionText, Long questId) {
+    public Question(String questionText) {
         this.questionText = questionText;
-
-        this.questId = questId;
     }
 
-
+    public Map<Long, Answer> getAnswers(){
+        return answers;
+    }
     public String getQuestionText() {
         return questionText;
     }
@@ -50,7 +49,6 @@ public class Question implements AbstractEntity {
     public String toString() {
         return "Question{" +
                 "questionText='" + questionText + '\'' +
-                ", questId=" + questId +
                 "questionId=" + questionId +
                 '}';
     }

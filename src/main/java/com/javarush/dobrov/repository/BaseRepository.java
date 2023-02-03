@@ -1,13 +1,15 @@
 package com.javarush.dobrov.repository;
 
 import com.javarush.dobrov.entity.AbstractEntity;
+import com.javarush.dobrov.entity.Question;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Stream;
 
-public class BaseRepository<T extends AbstractEntity> implements Repository<T> {
+public abstract class BaseRepository<T extends AbstractEntity> implements Repository<T> {
 
     protected final AtomicLong id = new AtomicLong(0L);
 
@@ -38,6 +40,10 @@ public class BaseRepository<T extends AbstractEntity> implements Repository<T> {
     @Override
     public void delete(T entity) {
         map.remove(entity.getId());
+    }
+
+    protected boolean nullOrEquals(Object patternField, Object repoField) {
+        return patternField == null || patternField.equals(repoField);
     }
 
 }

@@ -7,6 +7,8 @@ public interface Repository<T> {
 
     Collection<T> getAll();
 
+    Stream<T> find(T pattern);
+
     T get(long id);
 
     void create(T entity);
