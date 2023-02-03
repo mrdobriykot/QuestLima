@@ -6,7 +6,7 @@ import com.javarush.quest.shubchynskyi.questlima.repository.abstract_repo.BaseRe
 import java.util.stream.Stream;
 
 /**
- * repository for Users, must be changed in future
+ *  repository for Users, must be changed in future
  */
 public class UserRepository extends BaseRepository<User> {
 
