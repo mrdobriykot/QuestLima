@@ -1,4 +1,4 @@
-package com.example;
+package com.bogdanov;
 
 import java.net.URI;
 import java.nio.file.Path;

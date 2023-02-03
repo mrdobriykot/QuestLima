@@ -1,6 +1,6 @@
 package com.bogdanov.service;
 
-import com.example.Config;
+import com.bogdanov.Config;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
