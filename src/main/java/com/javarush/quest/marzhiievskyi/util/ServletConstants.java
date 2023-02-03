@@ -1,0 +1,47 @@
+package com.javarush.quest.marzhiievskyi.util;
+
+public class ServletConstants {
+    public static final String INDEX_SERVLET = "IndexServlet";
+    public static final String WEB_INF_INDEX_JSP = "/WEB-INF/index.jsp";
+    public static final String INDEX_VALUE = "";
+    public static final String QUESTS = "quests";
+    public static final String USER = "user";
+    public static final String WEB_INF_QUESTS_JSP = "WEB-INF/quests.jsp";
+    public static final String WEB_INF_LOGIN_JSP = "WEB-INF/login.jsp";
+    public static final String QUESTS_SERVLET = "QuestsServlet";
+    public static final String QUESTS_PATH = "/quests";
+    public static final String WEB_INF_GAME_JSP = "WEB-INF/game.jsp";
+    public static final String ANSWERS = "answers";
+    public static final String QUESTION_ID = "questionId";
+    public static final String QUESTION = "question";
+    public static final String NEXT_QUESTION_ID = "nextQuestionId";
+    public static final String QUEST = "quest";
+    public static final String ANSWER = "answer";
+    public static final String ID = "id";
+    public static final String GAME_SESSION_SERVLET = "GameSessionServlet";
+    public static final String GAME_PATH = "/game";
+    public static final String USERS_SERVLET = "UsersServlet";
+    public static final String USERS_PATH = "/users";
+    public static final String USERS = "users";
+    public static final String WEB_INF_USERS_JSP = "WEB-INF/users.jsp";
+    public static final String USER_PATH = "/user";
+    public static final String USER_SERVLET = "UserServlet";
+    public static final String WEB_INF_USER_JSP = "WEB-INF/user.jsp";
+    public static final String LOGIN = "login";
+    public static final String PASSWORD = "password";
+    public static final String CREATE = "create";
+    public static final String UPDATE = "update";
+    public static final String DELETE = "delete";
+    public static final String PROFILE = "profile";
+    public static final String LOG_OUT_SERVLET = "LogOutServlet";
+    public static final String LOGOUT = "/logout";
+    public static final String SIGN_UP_SERVLET = "SignUpServlet";
+    public static final String SIGNUP_PATH = "/signup";
+    public static final String WEB_INF_SIGNUP_JSP = "WEB-INF/signup.jsp";
+    public static final String SIGNUP = "signup";
+    public static final String WEB_INF_PROFILE_JSP = "WEB-INF/profile.jsp";
+    public static final String MY_PROFILE_SERVLET = "MyProfileServlet";
+    public static final String PROFILE_PATH = "/profile";
+    public static final String LOGIN_SERVLET = "LoginServlet";
+    public static final String LOGIN_PATH = "/login";
+}

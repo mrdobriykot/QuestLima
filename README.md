@@ -1,29 +1,21 @@
-# QuestLima
+# Quest games
 
-Ребята и девчата, всем привет!
 
-На этот раз у нас более сложный проект, который будет трудно объединить 
-в один общий проект со всем зависимостями.
-Поэтому поступим просто. 
+Hello and welcome to the quest game project. On navigation menu you can register or
+login if you already have account. Also, you can check other players and their info by clicking "Players".
+To see your profile and edit them click "Your profile". If you have been registered or logged click
+"Start quest" to start play the game. Only registered users can start game. Good luck!
 
-Тут первоначально лежит абсолютно пустой проект. Заготовка, такая же как может быть сгенерирована в IDEA.
-Договоримся, что Java у нас будет 17-я. У всех. Привыкайте использовать только LTS.
-Вот прямо без каких-либо плюшек, так что POM.xml в любом случае надо будет заменить на свой.
+## Quests
 
-## Что нужно сделать.
+1. All quest are hardcoded. It seems that developer can create any other quest, but only in code
+2. There were used primitive repository in memory only for quest and users
+3. When you are creating new quest, you should create questions and answers inside the quest
+4. In a web you can create or login as user (player) and play games.
+   Only registered users can play game. But all visitors can look statistics
+5. Now there is only two quest first one on ru- language, 
+   and the second one is en- test quest
+6. If any questions, please contact me
+7. Run on Tomcat 10.0.27, so enjoy =)
 
-1. Сделайте fork этого репозитория.
-2. Создайте в нем ветку со своей фамилией, например, ivanov (я же тут тоже сделаю такие ветки).
-3. Размещайте в этой ветке свое решение.
-4. В конце вам нужно будет сделать pull request из своей ветки (в своем fork-e) 
-   в такую же точно ветку (в этом удаленном репозитории) и как обычно заполнить форму проектов
-5. После сдачи ваших проектов я положу в **master/main** тот пример, который буду 
-   параллельно с вами разрабатывать на факультативах. На этот раз код копипастить не получится, 
-   смотрите видео, разбирайтесь, почему что и где сделано.
-   Не копируйте, нужно ВАШЕ решение. Но мы уже и не совсем зеленые, правда ведь ;)
-6. Проверять проекты по итогам третьего модуля буду я, скорее всего быстро не получится ;).
-7. Планируйте время так, первые две недели - основной функционал. 
-   Последняя неделя - плюшки, рефакторинг, тесты, красоты.
-8. Если будут какие-то моменты - я обновлю это README. Поглядывайте периодически.
-
-2022-2023 JRU Lima, Александр Хмелев.
+2022-2023 JRU Lima, Dmytro Marzhiievskyi.
