@@ -11,6 +11,7 @@ import java.util.Map;
 @UtilityClass
 public class Winter {
     private final Map<Class<?>, Object> container = new HashMap<>();
+    private static final String CONTEXT_BROKEN_ERROR = "Context broken for ";
 
     public <T> T getBean(Class<T> type) {
         try {
@@ -29,7 +30,7 @@ public class Winter {
                 return (T) component;
             }
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Context broken for " + type, e);
+            throw new RuntimeException(CONTEXT_BROKEN_ERROR + type, e);
         }
     }
 

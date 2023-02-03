@@ -28,3 +28,13 @@
   questionId: 3
   text: Солгать о себе
   nextQuestionId: 6
+-
+  id: 6
+  questionId: 7
+  text: 10
+  nextQuestionId: 8
+-
+  id: 7
+  questionId: 7
+  text: 2
+  nextQuestionId: 9
