@@ -26,6 +26,9 @@
         <li><a href="stats" class="nav-link px-2 link-dark">Статистика</a></li>
         <%-- admin--%>
         <li><a href="users" class="nav-link px-2 link-dark">Пользователи</a></li>
+        <li><a href="game?questId=1" class="nav-link px-2 link-dark">
+            Играть
+        </a></li>
     </ul>
 
     <ul class="nav col-md-3 text-end">
