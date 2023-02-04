@@ -53,7 +53,7 @@
             <div class="mb-3" style="padding-bottom: 10px">
                 <c:forEach var="answer" items="${question.answers}">
                     <label for="answerText">Ответ:</label>
-                    <input id="answerText" class="w-100" name="${answer.id}" value="${answer.text}">
+                    <input id="answerText" class="w-100" name="answer${answer.id}" value="${answer.text}">
                 </c:forEach>
             </div>
 

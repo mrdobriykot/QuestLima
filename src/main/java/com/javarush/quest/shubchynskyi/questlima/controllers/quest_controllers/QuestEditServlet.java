@@ -10,6 +10,7 @@ import com.javarush.quest.shubchynskyi.questlima.service.QuestionService;
 import com.javarush.quest.shubchynskyi.questlima.util.Go;
 import com.javarush.quest.shubchynskyi.questlima.util.Jsp;
 import com.javarush.quest.shubchynskyi.questlima.util.Key;
+import com.javarush.quest.shubchynskyi.questlima.util.QuestParser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -28,6 +29,7 @@ public class QuestEditServlet extends HttpServlet {
     private final QuestionService questionService = QuestionService.QUESTION_SERVICE;
     private final AnswerService answerService = AnswerService.ANSWER_SERVICE;
     private final ImageService imageService = ImageService.IMAGE_SERVICE;
+    private final QuestParser questParser = QuestParser.QUEST_PARSER;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,8 +55,12 @@ public class QuestEditServlet extends HttpServlet {
     private void questEdit(HttpServletRequest request, HttpServletResponse response) {
         if (questService.get(request.getParameter(Key.ID)).isPresent()) {
             Quest quest = questService.get(request.getParameter(Key.ID)).get();
-            quest.setName(request.getParameter(Key.QUEST_NAME));
-            quest.setDescription(request.getParameter(Key.QUEST_DESCRIPTION));
+            String newName = request.getParameter(Key.QUEST_NAME);
+            newName = fixedNameForHtmlOnly(newName);
+            quest.setName(newName);
+            String newDescription = request.getParameter(Key.QUEST_DESCRIPTION);
+            newDescription = fixedNameForHtmlOnly(newDescription);
+            quest.setDescription(newDescription);
             questService.update(quest);
             Jsp.redirect(response, Key.ID_URI_PATTERN.formatted(Go.QUEST_EDIT, request.getParameter(Key.ID)));
         }
@@ -65,16 +71,33 @@ public class QuestEditServlet extends HttpServlet {
         if (questionService.get(questionId).isPresent()) {
             Question question = questionService.get(questionId).get();
             imageService.uploadImage(request, question.getImage());
-            question.setText(request.getParameter(Key.QUESTION_TEXT));
-            questionService.update(question);
+            String newQuestionText = request.getParameter(Key.QUESTION_TEXT);
+            if(!newQuestionText.equals(question.getText())) {
+                newQuestionText = fixedNameForHtmlOnly(newQuestionText);
+                question.setText(newQuestionText);
+                questionService.update(question);
+            }
             for (Answer answer : question.getAnswers()) {
-                String answerText = request.getParameter(String.valueOf(answer.getId()));
-                answer.setText(answerText);
-                answerService.update(answer);
+                String answerNewText = request.getParameter(Key.ANSWER + answer.getId());
+                if(!answerNewText.equals(answer.getText())) {
+                    answerNewText = fixedNameForHtmlOnly(answerNewText);
+                    answer.setText(answerNewText);
+                    answerService.update(answer);
+                }
             }
             Jsp.redirect(response,
                     Key.ID_URI_PATTERN.formatted(Go.QUEST_EDIT, request.getParameter(Key.ID))
                             + Key.LABEL_URI_PATTERN + question.getId());
         }
+    }
+
+    /**
+     * only for html input value
+     */
+    private String fixedNameForHtmlOnly(String newName) {
+        if(questParser.isContainsSpecialHtmlSymbols(newName)) {
+            newName = questParser.replaceSpecialHtmlSymbols(newName);
+        }
+        return newName;
     }
 }
