@@ -22,6 +22,7 @@ public class QuestService {
     private Quest quest;
 
 
+
     public QuestService(QuestRepository questRepository, QuestionRepository questionRepository, AnswerRepository answerRepository) {
         this.questRepository = questRepository;
         this.questionRepository = questionRepository;
@@ -42,6 +43,7 @@ public class QuestService {
         questRepository.create(quest);
         quest.setHeader(questHeader);
 
+
         //find questions
         Matcher questionMatcher = Pattern.compile("\\d*:.*").matcher(questText);
         while (questionMatcher.find()) {
@@ -52,7 +54,6 @@ public class QuestService {
             question = new Question(questionText);
             questionRepository.create(question);
             quest.questions.put(Long.valueOf(question_number), question);
-
 
         }
 

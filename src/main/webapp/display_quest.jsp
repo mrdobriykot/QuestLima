@@ -6,8 +6,17 @@
 </head>
 <body>
 <%--${requestScope}--%>
-<h1><%=request.getAttribute("quest_header")%>
-</h1>
+<h1><%=request.getAttribute("quest_header")%></h1>
+<%--    <c:choose>--%>
+<%--        <c:when test="<%=request.getAttribute("quest_header")%>===null">--%>
+<%--            <br />--%>
+<%--        </c:when>--%>
+<%--        <c:otherwise>--%>
+<%--            <%=request.getAttribute("quest_header")%>--%>
+<%--            <br />--%>
+<%--        </c:otherwise>--%>
+<%--    </c:choose>--%>
+
 <br>
 <br>
 <%=request.getAttribute("question")%>
