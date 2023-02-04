@@ -17,8 +17,8 @@ Its purpose is to train web-app development using servlets and jsp technologies.
    2. During fight players choose one hit option and one block option, the opponents does the same. If a hit was blocked no damage dealt. Players damage is calculated as a random number between minimal damage ("1" by default) and strength (it depends on quest settings). 
 2. Account page provides statistics on number of played and won quests.
 3. Quest creator allows to build your own quest using special syntax.  
-4**(Admins only)** User management: create, modify or delete users and get their stats from one page.
-5**(Admins only)** Quest management: delete any quest you don't like :)
+4. **(Admins only)** User management: create, modify or delete users and get their stats from one page.
+5. **(Admins only)** Quest management: delete any quest you don't like :)
 
 ## Issues:
 1. Passwords are stored as plain text.
