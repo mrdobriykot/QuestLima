@@ -1,11 +1,11 @@
 package com.javarush.quest.khlopin.questlima.entity.game;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Answer extends GameEntity {
 
