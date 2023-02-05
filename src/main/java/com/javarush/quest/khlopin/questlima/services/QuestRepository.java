@@ -6,7 +6,6 @@ import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.utills.DB;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
