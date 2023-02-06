@@ -4,10 +4,7 @@ import com.javarush.quest.ivanilov.entities.users.Role;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.Navigator;
-import com.javarush.quest.ivanilov.utils.constants.Attributes;
-import com.javarush.quest.ivanilov.utils.constants.Jsp;
-import com.javarush.quest.ivanilov.utils.constants.Messages;
-import com.javarush.quest.ivanilov.utils.constants.Targets;
+import com.javarush.quest.ivanilov.utils.constants.*;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,9 +12,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 
+@Log4j2
 @WebServlet(name = "SignupServlet", value = Targets.SIGNUP)
 public class SignupServlet extends HttpServlet {
     private UserService userService;
@@ -44,6 +43,7 @@ public class SignupServlet extends HttpServlet {
             session.setAttribute(Attributes.IS_AUTHORIZED, true);
             session.setAttribute(Attributes.USER, user);
             Navigator.redirect(req, resp, Targets.MAIN);
+            log.info(Logs.USER_LOGGED_IN, user.getLogin());
         } else {
             Navigator.redirectError(req, resp, Messages.GENERIC_REASON);
         }

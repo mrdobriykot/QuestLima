@@ -19,9 +19,15 @@ import java.util.List;
 public class User extends AbstractEntity implements Serializable {
 
     private String login;
+
+    @ToString.Exclude
     private String password;
     private Role role;
+
+    @ToString.Exclude
     private long currentGameId;
+
+    @ToString.Exclude
     private List<Long> gamesPlayed;
 
     User(String login, String password, Role role, long currentGameId, List<Long> gamesPlayed) {

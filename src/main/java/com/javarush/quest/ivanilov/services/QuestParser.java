@@ -5,14 +5,11 @@ import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Strings;
 import com.javarush.quest.ivanilov.entities.game.*;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
 @AllArgsConstructor
 public class QuestParser {
     private QuestService questService;

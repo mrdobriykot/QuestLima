@@ -1,14 +1,8 @@
 package com.javarush.quest.ivanilov.controllers;
 
+import com.javarush.quest.ivanilov.entities.game.*;
 import com.javarush.quest.ivanilov.services.*;
-import com.javarush.quest.ivanilov.utils.constants.Attributes;
-import com.javarush.quest.ivanilov.utils.constants.Jsp;
-import com.javarush.quest.ivanilov.utils.constants.Messages;
-import com.javarush.quest.ivanilov.utils.constants.Targets;
-import com.javarush.quest.ivanilov.entities.game.Event;
-import com.javarush.quest.ivanilov.entities.game.Fight;
-import com.javarush.quest.ivanilov.entities.game.Game;
-import com.javarush.quest.ivanilov.entities.game.Task;
+import com.javarush.quest.ivanilov.utils.constants.*;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import jakarta.servlet.ServletConfig;
@@ -18,11 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.util.Collections;
 
+@Log4j2
 @WebServlet(name = "FightServlet", value = Targets.FIGHT)
 public class FightServlet extends HttpServlet {
     GameWorker gameWorker;
@@ -70,18 +66,21 @@ public class FightServlet extends HttpServlet {
                 case TASK -> {
                     session.setAttribute(Attributes.FIGHT, fight);
                     Navigator.redirect(req, resp, Targets.FIGHT);
+                    log.info(Logs.FIGHT_LOG, fight.getHero(), fight.getVillain(), fight.getStatus());
                 }
                 case WIN -> {
                     User user = (User) session.getAttribute(Attributes.USER);
                     finishFight(fight, user, true);
                     session.setAttribute(Attributes.FIGHT, null);
                     Navigator.redirect(req, resp, Targets.PLAY);
+                    log.info(Logs.FIGHT_RESULTS, fight.getHero(), fight.getVillain());
                 }
                 case LOSE -> {
                     User user = (User) session.getAttribute(Attributes.USER);
                     finishFight(fight, user, false);
                     session.setAttribute(Attributes.FIGHT, null);
                     Navigator.redirect(req, resp, Targets.PLAY);
+                    log.info(Logs.FIGHT_RESULTS, fight.getVillain(), fight.getHero());
                 }
                 default -> throw new UnsupportedOperationException();
             }
