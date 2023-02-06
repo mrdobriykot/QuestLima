@@ -4,8 +4,7 @@ package com.javarush.quest.ivanilov.services;
 import com.javarush.quest.ivanilov.entities.game.Task;
 import com.javarush.quest.ivanilov.repositories.Repository;
 import com.javarush.quest.ivanilov.repositories.TaskRepository;
-import lombok.extern.slf4j.Slf4j;
-@Slf4j
+
 public enum TaskService {
 
     TASK_SERVICE;

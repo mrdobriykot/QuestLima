@@ -3,9 +3,8 @@ package com.javarush.quest.ivanilov.services;
 import com.javarush.quest.ivanilov.entities.game.Game;
 import com.javarush.quest.ivanilov.repositories.GameRepository;
 import com.javarush.quest.ivanilov.repositories.Repository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 public enum GameService {
     GAME_SERVICE;
 

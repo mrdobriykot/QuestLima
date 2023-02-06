@@ -6,14 +6,13 @@ import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Strings;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@Slf4j
+
 @AllArgsConstructor
 public class GameWorkerImpl implements GameWorker {
     GameService gameService;
