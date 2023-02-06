@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 
@@ -15,10 +15,10 @@
 <div>Пожалуйста, авторизуйтесь, чтобы продолжить.</div>
 <br>
 <div>
-    <form action="/login">
+    <form action="${pageContext.request.contextPath}/login">
         <button class="button button-blue" id="signIn">Войти</button>
     </form>
-    <form action="/signup">
+    <form action="${pageContext.request.contextPath}/signup">
         <button class="button" id="signUp">Создать аккаунт</button>
     </form>
 </div>

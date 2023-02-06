@@ -1,5 +1,6 @@
 package com.javarush.quest.ivanilov.services;
 
+import com.javarush.quest.ivanilov.exceptions.QuestLimaException;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Strings;
 import com.javarush.quest.ivanilov.entities.game.*;
@@ -20,14 +21,18 @@ public class QuestParser {
     private HeroService heroService;
 
     public void parse(String text) {
-        List<String[]> lines = parseLines(text);
-        Quest newQuest = parseQuest(lines);
-        Hero hero = parseHero(lines);
-        newQuest.setHero(hero);
-        Map<String, Event> events = initEvents(lines, newQuest.getId());
-        newQuest.setCurrentEventId(events.get(Strings.EVENT_1).getId());
-        fillEventsWithParams(events, lines);
-        questService.update(newQuest);
+        try {
+            List<String[]> lines = parseLines(text);
+            Quest newQuest = parseQuest(lines);
+            Hero hero = parseHero(lines);
+            newQuest.setHero(hero);
+            Map<String, Event> events = initEvents(lines, newQuest.getId());
+            newQuest.setCurrentEventId(events.get(Strings.EVENT_1).getId());
+            fillEventsWithParams(events, lines);
+            questService.update(newQuest);
+        } catch (Exception e) {
+            throw new QuestLimaException(e);
+        }
     }
 
     private List<String[]> parseLines(String text) {

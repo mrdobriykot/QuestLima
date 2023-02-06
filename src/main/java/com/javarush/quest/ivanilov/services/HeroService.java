@@ -4,9 +4,7 @@ package com.javarush.quest.ivanilov.services;
 import com.javarush.quest.ivanilov.entities.game.Hero;
 import com.javarush.quest.ivanilov.repositories.HeroRepository;
 import com.javarush.quest.ivanilov.repositories.Repository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public enum HeroService {
 
     HERO_SERVICE;

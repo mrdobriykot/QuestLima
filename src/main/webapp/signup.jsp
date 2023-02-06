@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
     <title>Логин</title>
@@ -7,7 +7,7 @@
 </head>
 <body class="typewriter">
 <br>
-<form class="form" action="/signup" method="POST">
+<form class="form" action="${pageContext.request.contextPath}/signup" method="POST">
     <fieldset>
         <legend>Пожалуйста, создайте аккаунт</legend>
         <label for="text">Логин</label>

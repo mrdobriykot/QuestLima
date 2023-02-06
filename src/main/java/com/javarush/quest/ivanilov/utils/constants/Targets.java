@@ -20,4 +20,5 @@ public class Targets {
     public static final String CONSTRUCTOR = "/constructor";
     public static final String QUESTS = "/quests";
     public static final String QUEST_DELETE_ETC = "/questDelete/*";
+    public static final String ERROR = "/error";
 }

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <c:import url="elements/header.jsp"></c:import>
 <html>
@@ -12,7 +12,7 @@
     <button class="button button-red"
             name="questId" value="${requestScope.quest.id}">Удалить квест</button>
 </form>
-<form action="/quests" method="GET">
+<form action="${pageContext.request.contextPath}/quests" method="GET">
     <button class="button button-blue">Вернуться к списку квестов</button>
 </form>
 </body>

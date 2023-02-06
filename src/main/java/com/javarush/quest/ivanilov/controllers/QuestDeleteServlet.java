@@ -7,6 +7,7 @@ import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
 import com.javarush.quest.ivanilov.utils.constants.Messages;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,7 +18,13 @@ import java.io.IOException;
 
 @WebServlet(name = "QuestDeleteServlet", value = Targets.QUEST_DELETE_ETC)
 public class QuestDeleteServlet extends HttpServlet {
-    QuestService questService = QuestService.QUEST_SERVICE;
+    QuestService questService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        questService = QuestService.QUEST_SERVICE;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,10 +36,14 @@ public class QuestDeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long questId = Long.parseLong(req.getParameter(Attributes.QUEST_ID));
-        Quest questToBeDeleted = questService.get(questId);
-        questService.delete(questId);
-        req.setAttribute(Attributes.MESSAGE, new Messages().questDeleted(questToBeDeleted));
-        Navigator.dispatch(req, resp, Jsp.SUCCESS_MESSAGE_JSP);
+        try {
+            long questId = Long.parseLong(req.getParameter(Attributes.QUEST_ID));
+            Quest questToBeDeleted = questService.get(questId);
+            questService.delete(questId);
+            req.setAttribute(Attributes.MESSAGE, new Messages().questDeleted(questToBeDeleted));
+            Navigator.dispatch(req, resp, Jsp.SUCCESS_MESSAGE_JSP);
+        } catch (Exception e) {
+            Navigator.redirectError(req, resp, Messages.QUEST_NOT_DELETED, e);
+        }
     }
 }

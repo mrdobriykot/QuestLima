@@ -37,7 +37,7 @@ public class AuthFilter extends HttpFilter {
         if (currUser != null) {
             chain.doFilter(req, resp);
         } else {
-            Navigator.redirect(resp, Targets.INDEX);
+            Navigator.redirect(req, resp, Targets.INDEX);
         }
     }
 }

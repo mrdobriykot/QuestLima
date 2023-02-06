@@ -17,8 +17,8 @@ public class TaskDispatcherServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Event event = (Event) req.getSession().getAttribute(Attributes.CURR_EVENT);
         switch (event.getTask().getType()) {
-            case QUESTION -> Navigator.redirect(resp, Targets.QUESTION);
-            case FIGHT -> Navigator.redirect(resp, Targets.FIGHT);
+            case QUESTION -> Navigator.redirect(req, resp, Targets.QUESTION);
+            case FIGHT -> Navigator.redirect(req, resp, Targets.FIGHT);
         }
     }
 }

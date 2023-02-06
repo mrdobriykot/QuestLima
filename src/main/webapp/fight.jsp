@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <c:import url="elements/header.jsp"></c:import>
 <html>
@@ -12,7 +12,7 @@
 <div class="plaintext">${requestScope.message}</div>
 <br>
 <div>
-  <form action="/fight" method="POST">
+  <form action="${pageContext.request.contextPath}/fight" method="POST">
     <fieldset>
       <div>Нанести удар: </div>
       <c:forEach var="hitOption" items="${sessionScope.fight.hitOptions}">

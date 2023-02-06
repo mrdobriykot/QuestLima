@@ -1,6 +1,6 @@
 package com.javarush.quest.ivanilov.controllers;
 
-import com.javarush.quest.ivanilov.entities.users.Roles;
+import com.javarush.quest.ivanilov.entities.users.Role;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
@@ -22,11 +22,11 @@ class SignupServletTest {
 
         Mockito.doReturn("anyLogin").when(req).getParameter(Attributes.LOGIN);
         Mockito.doReturn("anyPassword").when(req).getParameter(Attributes.PASSWORD);
-        Mockito.doReturn(user).when(userService).createOrModifyUser("anyLogin", "anyPassword", Roles.USER, null);
+        Mockito.doReturn(user).when(userService).createOrModifyUser("anyLogin", "anyPassword", Role.USER, null);
 
         String login = req.getParameter(Attributes.LOGIN);
         String password = req.getParameter(Attributes.PASSWORD);
-        User testUser = userService.createOrModifyUser(login, password, Roles.USER, null);
+        User testUser = userService.createOrModifyUser(login, password, Role.USER, null);
         Assertions.assertNotNull(testUser);
     }
 

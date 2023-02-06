@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <c:import url="elements/header.jsp"></c:import>
 <html>
@@ -24,7 +24,7 @@
                 <td>${quest.questId}</td>
                 <td>${quest.authorName}</td>
                 <td>${quest.name}</td>
-                <td><a class="button button-red" href="/questDelete?questId=${quest.questId}">Удалить</a></td>
+                <td><a class="button button-red" href="${pageContext.request.contextPath}/questDelete?questId=${quest.questId}">Удалить</a></td>
             </tr>
             <br>
         </c:forEach>

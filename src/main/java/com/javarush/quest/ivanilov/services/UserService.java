@@ -1,7 +1,7 @@
 package com.javarush.quest.ivanilov.services;
 
 
-import com.javarush.quest.ivanilov.entities.users.Roles;
+import com.javarush.quest.ivanilov.entities.users.Role;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.repositories.Repository;
 import com.javarush.quest.ivanilov.repositories.UserRepository;
@@ -40,7 +40,7 @@ public enum UserService {
         return repo.find(pattern);
     }
 
-    public User createOrModifyUser(String login, String password, Roles role, User userOrNull) {
+    public User createOrModifyUser(String login, String password, Role role, User userOrNull) {
         if (!attributesAreValid(login, password)) {
             return null;
         }
@@ -71,7 +71,7 @@ public enum UserService {
         return !(StringUtils.isBlank(login) || StringUtils.isBlank(password));
     }
 
-    private User getUser(String login, String password, Roles role, User userOrNull) {
+    private User getUser(String login, String password, Role role, User userOrNull) {
         User newUser;
 
         if (userOrNull == null) {
@@ -92,7 +92,7 @@ public enum UserService {
         return newUser;
     }
 
-    private User getUserBuild(String login, String password, Roles role, User user) {
+    private User getUserBuild(String login, String password, Role role, User user) {
         User newUser = User.builder()
                 .login(login)
                 .password(password)
@@ -104,7 +104,7 @@ public enum UserService {
         return newUser;
     }
 
-    private User getUserBuild(String login, String password, Roles role) {
+    private User getUserBuild(String login, String password, Role role) {
         return User.builder()
                 .login(login)
                 .password(password)

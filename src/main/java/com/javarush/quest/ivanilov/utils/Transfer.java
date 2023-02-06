@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class Transfer {
-    public static final String DEFAULT = "default";
     private final GameService gameService = GameService.GAME_SERVICE;
     private final QuestService questService = QuestService.QUEST_SERVICE;
     private final UserService userService = UserService.USER_SERVICE;
@@ -50,7 +49,7 @@ public class Transfer {
             authorId = quest.getAuthorId();
             authorName = userService.get(authorId).getLogin();
         } else {
-            authorName = DEFAULT;
+            authorName = Strings.DEFAULT;
         }
 
         return QuestDto.builder()

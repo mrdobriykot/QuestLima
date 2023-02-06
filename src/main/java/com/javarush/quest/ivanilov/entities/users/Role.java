@@ -1,5 +1,5 @@
 package com.javarush.quest.ivanilov.entities.users;
 
-public enum Roles {
+public enum Role {
     USER, ADMIN
 }

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <c:import url="elements/header.jsp"></c:import>
 <html>
@@ -8,7 +8,7 @@
 </head>
 <body class="typewriter">
 <br>
-<form class="form" action="/userCreate" method="POST">
+<form class="form" action="${pageContext.request.contextPath}/userCreate" method="POST">
     <fieldset>
         <legend>Создание нового пользователя </legend>
         <label for="login">Логин</label>

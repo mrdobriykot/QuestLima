@@ -12,16 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-
+import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 
-@Slf4j
+@Log4j2
 @WebServlet(name = "IndexServlet", value = Targets.INDEX)
 public class IndexServlet extends HttpServlet {
 
-    @SneakyThrows
     @Override
     public void init(ServletConfig config) {
         QuestParser parser = new QuestParser(QuestService.QUEST_SERVICE,
@@ -31,13 +28,14 @@ public class IndexServlet extends HttpServlet {
 
         Config cfg = new Config(parser, UserService.USER_SERVICE);
         cfg.readUsersAndQuestsFromResources();
+        log.info("The app has been initialized.");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean isAuthorized = Boolean.getBoolean(req.getParameter(Attributes.IS_AUTHORIZED));
         if (isAuthorized) {
-            Navigator.redirect(resp, Targets.MAIN);
+            Navigator.redirect(req, resp, Targets.MAIN);
         } else {
             Navigator.dispatch(req, resp, Jsp.INDEX_JSP);
         }

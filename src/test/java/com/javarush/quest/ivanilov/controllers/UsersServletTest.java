@@ -1,7 +1,7 @@
 package com.javarush.quest.ivanilov.controllers;
 
 import com.javarush.quest.ivanilov.entities.game.Game;
-import com.javarush.quest.ivanilov.entities.users.Roles;
+import com.javarush.quest.ivanilov.entities.users.Role;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.Transfer;
@@ -33,7 +33,7 @@ class UsersServletTest {
                 .password("pass")
                 .currentGameId(0)
                 .gamesPlayed(gamesPlayed)
-                .role(Roles.USER).build();
+                .role(Role.USER).build();
 
         user.setId(1);
         List<User> users = new ArrayList<>();

@@ -10,6 +10,7 @@ import com.javarush.quest.ivanilov.utils.Navigator;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,8 +22,16 @@ import java.util.Collection;
 
 @WebServlet(name = "MainServlet", value = Targets.MAIN)
 public class MainServlet extends HttpServlet {
-    QuestService questService = QuestService.QUEST_SERVICE;
-    GameService gameService = GameService.GAME_SERVICE;
+    QuestService questService;
+    GameService gameService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        questService = QuestService.QUEST_SERVICE;
+        gameService = GameService.GAME_SERVICE;
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Collection<Quest> quests = questService.getAll();
