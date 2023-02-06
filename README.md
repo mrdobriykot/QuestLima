@@ -4,8 +4,8 @@ This project was created for educational purpose on Java Rush University course.
 Its purpose is to train web-app development using servlets and jsp technologies.
 
 ## Quick start guide
-1. Mount the docker file. 
-2. Visit http://localhost:8080/ to open index page. 
+1. Create TomCat configuration in IDEA and visit http://localhost:8080/ to open index page. 
+2. or pull the docker file from here https://hub.docker.com/r/aivanilov/quest-lima-ivanilov, mount it and open **/questapp** page.
 3. Create new account or use one of the following:
    1. **(Admin)** login _admin_, password _admin_
    2. login _testUser_, password _safari_

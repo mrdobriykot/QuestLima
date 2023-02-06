@@ -30,4 +30,5 @@ public class Attributes {
     public static final String QUEST = "quest";
     public static final String USERS_JSON = "/users.json";
     public static final String QUESTS_JSON = "/quests.json";
+    public static final String ERROR = "error";
 }

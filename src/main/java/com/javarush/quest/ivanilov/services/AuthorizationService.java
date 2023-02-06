@@ -1,6 +1,6 @@
 package com.javarush.quest.ivanilov.services;
 
-import com.javarush.quest.ivanilov.entities.users.Roles;
+import com.javarush.quest.ivanilov.entities.users.Role;
 import com.javarush.quest.ivanilov.entities.users.User;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +18,6 @@ public enum AuthorizationService {
     }
 
     public boolean isAdmin(User user) {
-        return user.getRole() == Roles.ADMIN;
+        return user.getRole() == Role.ADMIN;
     }
 }

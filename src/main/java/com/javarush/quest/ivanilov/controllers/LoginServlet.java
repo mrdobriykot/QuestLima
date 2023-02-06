@@ -4,31 +4,38 @@ import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.services.AuthorizationService;
 import com.javarush.quest.ivanilov.services.UserService;
 import com.javarush.quest.ivanilov.utils.Navigator;
-import com.javarush.quest.ivanilov.utils.constants.Attributes;
-import com.javarush.quest.ivanilov.utils.constants.Jsp;
-import com.javarush.quest.ivanilov.utils.constants.Messages;
-import com.javarush.quest.ivanilov.utils.constants.Targets;
+import com.javarush.quest.ivanilov.utils.constants.*;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 
-@Slf4j
+@Log4j2
 @WebServlet(name = "LoginServlet", value = Targets.LOGIN)
 public class LoginServlet extends HttpServlet {
-    private final AuthorizationService auth = AuthorizationService.AUTHORIZATION_SERVICE;
-    private final UserService userService = UserService.USER_SERVICE;
+    private AuthorizationService auth;
+    private UserService userService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        auth = AuthorizationService.AUTHORIZATION_SERVICE;
+        userService = UserService.USER_SERVICE;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = (User) req.getSession().getAttribute(Attributes.USER);
         boolean isAuthorized = Boolean.getBoolean(req.getParameter(Attributes.IS_AUTHORIZED));
         if (isAuthorized) {
-            Navigator.redirect(resp, Targets.MAIN);
+            Navigator.redirect(req, resp, Targets.MAIN);
+            log.info(Logs.USER_LOGGED_IN, user.getLogin());
         } else {
             Navigator.dispatch(req, resp, Jsp.LOGIN_JSP);
         }
@@ -45,10 +52,10 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute(Attributes.IS_AUTHORIZED, true);
             session.setAttribute(Attributes.USER, user);
-            Navigator.redirect(resp, Targets.MAIN);
+            Navigator.redirect(req, resp, Targets.MAIN);
+            log.info(Logs.USER_LOGGED_IN, user.getLogin());
         } else {
-            req.setAttribute(Attributes.MESSAGE, Messages.NOT_AUTHORIZED);
-            Navigator.dispatch(req, resp, Jsp.ERROR_MESSAGE_JSP);
+            Navigator.redirectError(req, resp, Messages.NOT_AUTHORIZED);
         }
     }
 

@@ -3,19 +3,18 @@ package com.javarush.quest.ivanilov.filters;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.services.AuthorizationService;
 import com.javarush.quest.ivanilov.utils.Navigator;
-import com.javarush.quest.ivanilov.utils.constants.Attributes;
-import com.javarush.quest.ivanilov.utils.constants.Jsp;
-import com.javarush.quest.ivanilov.utils.constants.Messages;
-import com.javarush.quest.ivanilov.utils.constants.Targets;
+import com.javarush.quest.ivanilov.utils.constants.*;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 
+@Log4j2
 @WebFilter(
         filterName = "AuthFilter",
         value = {Targets.USER_MODIFY_ETC})
@@ -29,6 +28,7 @@ public class UserModifyAuthFilter extends HttpFilter {
         long userId = Long.parseLong(req.getParameter(Attributes.USER_ID));
 
         if (auth.isAdmin(user) || user.getId() == userId) {
+            log.info(Logs.USER_AUTHORIZED, user, user.getRole(), req.getRequestURI());
             chain.doFilter(req, resp);
         } else {
             req.setAttribute(Attributes.MESSAGE, new Messages().forbidden(user.getLogin()));

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <c:import url="elements/header.jsp"></c:import>
 <html>
@@ -12,7 +12,7 @@
 <div class="plaintext">${requestScope.message}</div>
 <br>
 <div>
-    <form action="/question" method="POST">
+    <form action="${pageContext.request.contextPath}/question" method="POST">
         <fieldset>
         <c:forEach var="option" items="${options}">
         <input class="margin" type="radio" id="option${option.id}" name="optionId" value="${option.id}">

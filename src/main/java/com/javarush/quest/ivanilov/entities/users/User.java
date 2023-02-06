@@ -19,12 +19,18 @@ import java.util.List;
 public class User extends AbstractEntity implements Serializable {
 
     private String login;
+
+    @ToString.Exclude
     private String password;
-    private Roles role;
+    private Role role;
+
+    @ToString.Exclude
     private long currentGameId;
+
+    @ToString.Exclude
     private List<Long> gamesPlayed;
 
-    User(String login, String password, Roles role, long currentGameId, List<Long> gamesPlayed) {
+    User(String login, String password, Role role, long currentGameId, List<Long> gamesPlayed) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -40,7 +46,7 @@ public class User extends AbstractEntity implements Serializable {
     public static class UserBuilder {
         private String login;
         private String password;
-        private Roles role;
+        private Role role;
         private long currentGameId;
         private List<Long> gamesPlayed;
 
@@ -57,7 +63,7 @@ public class User extends AbstractEntity implements Serializable {
             return this;
         }
 
-        public UserBuilder role(Roles role) {
+        public UserBuilder role(Role role) {
             this.role = role;
             return this;
         }

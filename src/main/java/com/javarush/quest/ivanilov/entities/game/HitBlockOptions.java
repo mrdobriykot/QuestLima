@@ -2,29 +2,34 @@ package com.javarush.quest.ivanilov.entities.game;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 public class HitBlockOptions {
-    private final List<String> hitOptions = initHitOptions();
-    private final List<String> blockOptions = initBlockOptions();
 
-    private List<String> initBlockOptions() {
+    private final BodyPart[] bodyParts;
+    private final List<String> hitOptions;
+    private final List<String> blockOptions;
+
+    public HitBlockOptions(BodyPart[] bodyParts) {
+        this.bodyParts = bodyParts;
+        hitOptions = initHitOptions(bodyParts);
+        blockOptions = initBlockOptions(bodyParts);
+    }
+
+    private List<String> initBlockOptions(BodyPart[] bodyParts) {
         List<String> blockOptions = new ArrayList<>();
-        blockOptions.add(BodyParts.HEAD + " and " + BodyParts.CHEST);
-        blockOptions.add(BodyParts.CHEST + " and " + BodyParts.BELLY);
-        blockOptions.add(BodyParts.BELLY + " and " + BodyParts.LEGS);
+        for (int i = 0; i < bodyParts.length - 1; i++) {
+            blockOptions.add(bodyParts[i] + " and " + bodyParts[i + 1]);
+        }
         return blockOptions;
     }
 
-    private List<String> initHitOptions() {
+    private List<String> initHitOptions(BodyPart[] bodyParts) {
         List<String> hitOptions = new ArrayList<>();
 
-        for (var bodyPart : BodyParts.values()) {
+        for (var bodyPart : bodyParts) {
             hitOptions.add(bodyPart.toString());
         }
 
@@ -34,7 +39,7 @@ public class HitBlockOptions {
     public Set<String> parseBlock(String text) {
         Set<String> blockOptions = new HashSet<>();
 
-        for (var bodyPart : BodyParts.values()) {
+        for (var bodyPart : BodyPart.values()) {
             if (text.contains(bodyPart.toString())) {
                 blockOptions.add(bodyPart.toString());
             }

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <c:import url="elements/header.jsp"></c:import>
 <html>
@@ -12,7 +12,7 @@
     <table class="table">
             <tr>
                 <td>${requestScope.currentGameName}</td>
-                <td><form action="/play" method="GET"><button class="button button-green">Продолжить</button></form></td>
+                <td><form action="${pageContext.request.contextPath}/play" method="GET"><button class="button button-green">Продолжить</button></form></td>
             </tr>
     </table>
 </c:if>
@@ -22,7 +22,7 @@
     <c:forEach var="quest" items="${requestScope.quests}">
         <tr>
             <td>${quest.name}</td>
-            <td><form action="/newGame" method="POST">
+            <td><form action="${pageContext.request.contextPath}/newGame" method="POST">
                 <button class="button button-blue" name="questId" value="${quest.id}">Начать</button>
             </form></td>
         </tr>

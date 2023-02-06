@@ -9,20 +9,32 @@ import com.javarush.quest.ivanilov.services.QuestService;
 import com.javarush.quest.ivanilov.utils.Navigator;
 import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
+import com.javarush.quest.ivanilov.utils.constants.Logs;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.util.Collection;
 
+@Log4j2
 @WebServlet(name = "MainServlet", value = Targets.MAIN)
 public class MainServlet extends HttpServlet {
-    QuestService questService = QuestService.QUEST_SERVICE;
-    GameService gameService = GameService.GAME_SERVICE;
+    QuestService questService;
+    GameService gameService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        questService = QuestService.QUEST_SERVICE;
+        gameService = GameService.GAME_SERVICE;
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Collection<Quest> quests = questService.getAll();
@@ -40,5 +52,6 @@ public class MainServlet extends HttpServlet {
 
         req.setAttribute(Attributes.IS_IN_GAME, isInGame);
         Navigator.dispatch(req, resp, Jsp.MAIN_JSP);
+        log.info(Logs.USER_ENTERED_MAIN_PAGE, user.getLogin());
     }
 }

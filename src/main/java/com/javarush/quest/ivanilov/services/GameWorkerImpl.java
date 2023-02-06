@@ -79,7 +79,7 @@ public class GameWorkerImpl implements GameWorker {
             throw new RuntimeException(e);
         }
 
-        HitBlockOptions options = new HitBlockOptions();
+        HitBlockOptions options = new HitBlockOptions(BodyPart.values());
 
         return Fight.builder()
                 .eventId(eventId)
@@ -97,7 +97,7 @@ public class GameWorkerImpl implements GameWorker {
     public Fight fight(Fight currentFight, String hitOption, String blockOption) {
         Hero hero = currentFight.getHero();
         Hero villain = currentFight.getVillain();
-        HitBlockOptions hitBlockOptions = new HitBlockOptions();
+        HitBlockOptions hitBlockOptions = new HitBlockOptions(BodyPart.values());
         Set<String> blockOptions = hitBlockOptions.parseBlock(blockOption);
         String villainHitOption = hitBlockOptions.randomHit();
         Set<String> villainBlockOptions = hitBlockOptions.randomBlock(2);

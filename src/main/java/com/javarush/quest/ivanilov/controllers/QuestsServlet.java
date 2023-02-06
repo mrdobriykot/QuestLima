@@ -8,6 +8,7 @@ import com.javarush.quest.ivanilov.utils.constants.Attributes;
 import com.javarush.quest.ivanilov.utils.constants.Jsp;
 import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.utils.transfers.QuestDto;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +20,13 @@ import java.util.Collection;
 
 @WebServlet(name = "QuestsServlet", value = Targets.QUESTS)
 public class QuestsServlet extends HttpServlet {
-    QuestService questService = QuestService.QUEST_SERVICE;
+    QuestService questService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        questService = QuestService.QUEST_SERVICE;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

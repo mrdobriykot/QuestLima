@@ -8,6 +8,7 @@ import com.javarush.quest.ivanilov.utils.constants.Targets;
 import com.javarush.quest.ivanilov.entities.game.GameStatus;
 import com.javarush.quest.ivanilov.entities.users.User;
 import com.javarush.quest.ivanilov.utils.Navigator;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,8 +20,15 @@ import java.util.List;
 
 @WebServlet(name = "AccountServlet", value = Targets.ACCOUNT)
 public class AccountServlet extends HttpServlet {
-    UserService userService = UserService.USER_SERVICE;
-    GameService gameService = GameService.GAME_SERVICE;
+    UserService userService;
+    GameService gameService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        userService = UserService.USER_SERVICE;
+        gameService = GameService.GAME_SERVICE;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
