@@ -1,13 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>JSP - Hello World</title>
-</head>
-<body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
-</body>
-</html>
+<%@include file="WEB-INF/pageConstructor/header.jsp"%>
+
+<h1>Welcome</h1>
+
+You have reached the beta version of the site with quests.
+
+To start playing, create an account or log in to an existing one.
+
+<a href="readMe.jsp">ReadMe</a>
+<%@include file="WEB-INF/pageConstructor/footer.jsp"%>

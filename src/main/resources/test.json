@@ -1,0 +1,80 @@
+{
+  "id": 1,
+  "author": {
+    "id": 1,
+    "userName": "Mihail",
+    "password": "recd123",
+    "role": "ADMIN",
+    "gameList": []
+  },
+  "info": "НЛО",
+  "questionList": [
+    {
+      "id": 1,
+      "questId": 1,
+      "nextQuestionId": 2,
+      "text": "Ты потерял память. Принять вызов НЛО?",
+      "answerList": [
+        {
+          "answerId": 1,
+          "text": "Принять вызов",
+          "questionId": 1,
+          "answerState": "TRUE",
+          "finishAnswerText": null
+        },
+        {
+          "answerId": 2,
+          "text": "Отклонить вызов",
+          "questionId": 1,
+          "answerState": "FALSE",
+          "finishAnswerText": "Ты отклонил вызов. Поражение."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "questId": 1,
+      "nextQuestionId": 3,
+      "text": "Ты принял вызов, поднимешься на мостик к капитану?",
+      "answerList": [
+        {
+          "answerId": 3,
+          "text": "Подняться на мостик",
+          "questionId": 2,
+          "answerState": "TRUE",
+          "finishAnswerText": null
+        },
+        {
+          "answerId": 4,
+          "text": "Отказаться подниматься на мостик",
+          "questionId": 2,
+          "answerState": "FALSE",
+          "finishAnswerText": "Ты не пошел на переговоры. Поражение."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "questId": 1,
+      "nextQuestionId": null,
+      "text": "Ты поднялся на мостик. Ты кто?",
+      "answerList": [
+        {
+          "answerId": 5,
+          "text": "Рассказать правду о себе",
+          "questionId": 3,
+          "answerState": "TRUE",
+          "finishAnswerText": "Ты победил."
+        },
+        {
+          "answerId": 6,
+          "text": "Солгать о себе",
+          "questionId": 3,
+          "answerState": "FALSE",
+          "finishAnswerText": "Твою ложь разоблочили. Поражение."
+        }
+      ]
+    }
+  ],
+  "countOfStages": 3
+}
