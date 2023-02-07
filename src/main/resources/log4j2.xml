@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="MyApp" packages="">
+
+    <Appenders>
+        <Console name="MyFile">
+            <PatternLayout>
+                <Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} %c{1} - %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="MyFile"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
+
