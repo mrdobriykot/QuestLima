@@ -8,14 +8,15 @@ import com.bogdanov.repository.QuestRepository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public enum QuestService {
     QUEST_SERVICE;
 
-    QuestRepository  questRepository = new QuestRepository();
-    QuestionService questionService = QuestionService.QUESTION_SERVICE;
-    AnswerService answerService = AnswerService.ANSWER_SERVICE;
+     final QuestRepository  questRepository = new QuestRepository();
+    final QuestionService questionService = QuestionService.QUESTION_SERVICE;
+    final AnswerService answerService = AnswerService.ANSWER_SERVICE;
 
 
 
@@ -42,7 +43,7 @@ public enum QuestService {
             
             for (Answer answer : answers) {
                 
-                if(question.getId()==answer.getQuestionId()){
+                if(Objects.equals(question.getId(), answer.getQuestionId())){
                     question.getAnswers().add(answer);
                 }
                 answerService.create(answer);
@@ -60,11 +61,9 @@ public enum QuestService {
         return Optional.ofNullable(questRepository.get(id));
    }
     public List<Quest> getOfAutor(Long id){
-        return questRepository.getAll().stream().filter(u-> u.getAuthorId()==id).toList();
+        return questRepository.getAll().stream().filter(u-> Objects.equals(u.getAuthorId(), id)).toList();
 
     }
 
-    public void parsAnswers(String answer,String question){
 
-    }
 }
