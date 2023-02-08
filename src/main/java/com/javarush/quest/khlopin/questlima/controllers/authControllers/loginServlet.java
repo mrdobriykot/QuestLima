@@ -40,6 +40,9 @@ public class loginServlet extends HttpServlet {
                     CheckAdminService.checkAdmin(session);
                     request.getRequestDispatcher(RedirectPaths.TO_PROFILE).forward(request, response);
                     log.info("Пользователь" + user1 + "успешно авторизовался");
+                } else {
+                    request.getRequestDispatcher(RedirectPaths.NOT_SUCCESS).forward(request, response);
+                    log.info("неудачная попытка авторизации");
                 }
             } else {
                 request.getRequestDispatcher(RedirectPaths.NOT_SUCCESS).forward(request, response);

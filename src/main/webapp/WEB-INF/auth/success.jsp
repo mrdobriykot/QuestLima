@@ -1,6 +1,6 @@
 <%@include file="../pageConstructor/header.jsp"%>
 
-Success auth!
+Success!
 <a href="profile"> Go to profile </a>
 
 

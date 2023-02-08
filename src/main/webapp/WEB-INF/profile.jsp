@@ -8,6 +8,8 @@ Your Role: ${sessionScope.user.getRole()}
 <br>
 Your count of game: ${sessionScope.user.getGameList().size()}
 <br>
+<a href="userChangeProfile">Change your profile
+<br>
 <br>
 <c:if test="${sessionScope.isAdmin}">
 <a href="adminMenu">to Admin Panel</a>

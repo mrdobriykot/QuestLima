@@ -6,6 +6,7 @@ import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.utills.DB;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -17,7 +18,9 @@ public class QuestRepository implements Repository<Quest> {
 
 
     public QuestRepository() {
-        create(DB.userDataBase.get(1), "НЛО", findAllQustionsForQuest(1), findAllQustionsForQuest(1).size());
+        UploadQuestFromJson uploadQuestFromJson = new UploadQuestFromJson();
+        Quest quest = uploadQuestFromJson.readJsonAndCreateQuest();
+        questMap.put(id.incrementAndGet(), quest);
         log.trace("Репозиторий с квестами был загружен");
     }
 
@@ -50,7 +53,6 @@ public class QuestRepository implements Repository<Quest> {
 
 
     public List<Question> findAllQustionsForQuest(long questId) {
-
         List<Question> all = DB.questionDataBase.getAll();
         List<Question> questionList = new ArrayList<>();
         for (Question question : all) {

@@ -2,9 +2,6 @@ package com.javarush.quest.khlopin.questlima.services;
 
 import com.javarush.quest.khlopin.questlima.entity.game.Answer;
 import com.javarush.quest.khlopin.questlima.entity.game.Question;
-import com.javarush.quest.khlopin.questlima.utills.DB;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 import java.util.*;
@@ -14,17 +11,8 @@ public class QuestionRepository implements Repository<Question> {
 
     private final HashMap<Long,Question> questionsMap = new HashMap<>();
     private static final AtomicLong questionId = new AtomicLong(0);
-    private static final AtomicLong questionsId = new AtomicLong(0);
 
-    private static final Logger log = LogManager.getLogger(QuestionRepository.class);
 
-    public QuestionRepository() {
-
-        questionsMap.put(questionsId.incrementAndGet(),create(2L, 1,"Ты потерял память. Принять вызов НЛО?", DB.answerDataBase.get(1L)));
-               questionsMap.put(questionsId.incrementAndGet(),create(3L, 1,"Ты принял вызов, поднимешься на мостик к капитану?",DB.answerDataBase.get(2L)));
-                questionsMap.put(questionsId.incrementAndGet(),create(null, 1, "Ты поднялся на мостик. Ты кто?", DB.answerDataBase.get(3L)));
-        log.trace("Репозиторий с вопросами был загружен");
-    }
 
     public Question create(Long nextQuestionId, long questId, String value, List<Answer> answerList) {
         long idForQuest = questionId.incrementAndGet();
