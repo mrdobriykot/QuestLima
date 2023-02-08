@@ -14,6 +14,7 @@ import java.util.Collection;
 @Builder
 public class Question implements AbstaractEntity{
    private Long id;
+   private Long idQuestion;
    private Long questId;
    private String text;
    private GameState gameState;

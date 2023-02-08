@@ -42,7 +42,5 @@ public class AllQuestsServlet extends HttpServlet {
         super.doPost(req, resp);
     }
 
-    public void destroy() {
 
-    }
 }

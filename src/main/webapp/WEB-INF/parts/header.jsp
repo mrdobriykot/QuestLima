@@ -29,10 +29,13 @@
                     <a class="nav-link active" aria-current="page" href="users">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Game</a>
+                    <a class="nav-link" href="gameMenu">Game</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled">Statistics</a>
+                    <a class="nav-link" href="createQuest?id=0">New quest</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="getAllQuestsForSettings">Change quests</a>
                 </li>
 
                 <c:choose>

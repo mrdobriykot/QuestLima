@@ -39,6 +39,8 @@ public enum QuestService {
     private void collectionPutAnswers(Collection<Question> questions, Collection<Answer> answers, Long idQuests){
         for (Question question : questions) {
 
+
+
             question.setQuestId(idQuests);
             
             for (Answer answer : answers) {
