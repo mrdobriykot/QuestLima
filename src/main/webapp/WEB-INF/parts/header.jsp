@@ -1,5 +1,5 @@
 
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -23,41 +23,30 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse-navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="users">Home</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" href="gameMenu">Game</a>
+                    <a class="nav-link" href="#">Game</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link disabled">Statistics</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="createQuest?id=0">Create new quest</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="getAllQuestsForSettings">All quests</a>
-                </li>
-
-                    <ul class="block-login">
-                    <c:choose>
-                        <c:when test="${not empty sessionScope.user}">
-                            <li class="left"><a class="nav-link active" aria-current="page" href="profile">Profile</a></li>
-                            <li class="right"><a class="nav-link active" aria-current="page" href="logout">Logout</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li class="left"><a class="nav-link active" aria-current="page" href="logins">Login</a></li>
-                            <li class="right"><a class="nav-link active" aria-current="page" href="signup">Sign-up</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                    </ul>
-
+                <c:choose>
+                    <c:when test="${not empty sessionScope.user}">
+                        <li><a class="nav-link active" aria-current="page" href="profile">Profile</a></li>
+                        <li><a class="nav-link active" aria-current="page" href="logout">Logout</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a class="nav-link active" aria-current="page" href="logins">Login</a></li>
+                        <li><a class="nav-link active" aria-current="page" href="signup">Sign-up</a></li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
+
 <%--            <form class="d-flex" role="search">--%>
 <%--                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
 <%--                <button class="btn btn-outline-success" type="submit">Search</button>--%>
@@ -79,10 +68,6 @@
         </div>
     </div>
 </nav>
-<br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br>
 
 

@@ -15,7 +15,6 @@ import java.util.Collection;
 public class Question implements AbstaractEntity{
    private Long id;
    private Long questId;
-   private Long idQuestion;
    private String text;
    private GameState gameState;
    private final Collection<Answer> answers = new ArrayList<>();
@@ -23,5 +22,13 @@ public class Question implements AbstaractEntity{
        return "quest-"+id;
    }
 
+   @Override
+   public Long getId() {
+      return id;
+   }
 
+   @Override
+   public void setId(Long id) {
+      this.id = id;
+   }
 }

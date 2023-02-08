@@ -1,7 +1,7 @@
 package com.bogdanov.repository;
 
 import com.bogdanov.entity.AbstaractEntity;
-
+import com.bogdanov.entity.User;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -37,6 +37,7 @@ public abstract class BaseRepository<T extends AbstaractEntity> implements Repos
     public void create(T entity) {
         entity.setId((id.incrementAndGet()));
         update(entity);
+
 
     }
 

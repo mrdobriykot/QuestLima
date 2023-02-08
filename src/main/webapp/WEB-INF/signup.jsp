@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@include file="parts/header.jsp"%>
 <jsp:useBean id="user" scope="request" class="com.bogdanov.entity.User"/>
-<form class="form-horizontal" action="user?id=${user.id=0}" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" action="signup?id=${user.id=0}" method="post" enctype="multipart/form-data">
         <fieldset>
 
                 <!-- Form Name -->
