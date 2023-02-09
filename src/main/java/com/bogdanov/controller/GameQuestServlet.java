@@ -52,7 +52,7 @@ public class GameQuestServlet extends HttpServlet {
         request.getParameter(Key.ID);
         if(parameter.equals("true") &&(questionsQuantity!=Integer.parseInt(numQuestion))){
             doGet(request, response);
-        }else {
+        }else {//TODO на последнем вопросе выдает лож
             Jsp.forward(request,response,Go.LOSE_PAGE);
         }
     }
