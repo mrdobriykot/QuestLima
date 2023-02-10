@@ -1,0 +1,58 @@
+{
+  "id": 2,
+  "author": {
+    "id": 999,
+    "userName": "System",
+    "password": "System",
+    "role": "ADMIN",
+    "gameList": []
+  },
+  "info": "Второй квест",
+  "questionList": [
+    {
+      "id": 2,
+      "questId": 2,
+      "nextQuestionId": 2,
+      "text": "Тебе скучно. Выйти на прогулку?",
+      "answerList": [
+        {
+          "answerId": 1,
+          "text": "Да",
+          "questionId": 1,
+          "answerState": "TRUE",
+          "finishAnswerText": null
+        },
+        {
+          "answerId": 2,
+          "text": "Нет",
+          "questionId": 1,
+          "answerState": "FALSE",
+          "finishAnswerText": "Ты умер от скуки сидя дома."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "questId": 1,
+      "nextQuestionId": 3,
+      "text": "Ты вышел на улицу, посидеть около дома или пойти дальше?",
+      "answerList": [
+        {
+          "answerId": 3,
+          "text": "Посидеть у дома",
+          "questionId": 2,
+          "answerState": "TRUE",
+          "finishAnswerText": "Ты посидел у дома и успешно вернулся домой. Скука побеждена."
+        },
+        {
+          "answerId": 4,
+          "text": "Пойти гулять",
+          "questionId": 2,
+          "answerState": "FALSE",
+          "finishAnswerText": "Ты пошел гулять, заглянул в лес, на тебя напали разбойники и ты умер. Поражение"
+        }
+      ]
+    }
+  ],
+  "countOfStages": 2
+}

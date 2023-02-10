@@ -18,9 +18,10 @@ public class QuestRepository implements Repository<Quest> {
 
 
     public QuestRepository() {
-        UploadQuestFromJson uploadQuestFromJson = new UploadQuestFromJson();
-        Quest quest = uploadQuestFromJson.readJsonAndCreateQuest();
-        questMap.put(id.incrementAndGet(), quest);
+        UploadQuestFromJson uploadQuestFromJson = new UploadQuestFromJson(new String[]{"/quests/quest1.json", "/quests/quest2.json"});
+        for (Quest quest : uploadQuestFromJson.readJsonsAndCreateQuests()) {
+            questMap.put(id.incrementAndGet(), quest);
+        }
         log.trace("Репозиторий с квестами был загружен");
     }
 

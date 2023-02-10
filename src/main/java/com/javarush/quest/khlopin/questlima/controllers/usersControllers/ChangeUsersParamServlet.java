@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -15,6 +16,8 @@ import java.util.Optional;
 
 @WebServlet(name = "ChangeUsersParamServlet", value = "/userChangeProfile")
 public class ChangeUsersParamServlet extends HttpServlet {
+
+    //TODO вынести строки в константы
 
     private static final Logger log = LogManager.getLogger(ChangeUsersParamServlet.class);
 
@@ -30,15 +33,11 @@ public class ChangeUsersParamServlet extends HttpServlet {
         String oldLogin = user.getUserName();
         Optional<User> optionalUser = DB.userDataBase.find(oldLogin);
         if (optionalUser.isPresent()) {
-
             //Смена логина
             changeLogin(parameterMap, oldLogin, optionalUser.get());
             //Смена пароля
             changePassword(parameterMap, optionalUser.get());
         }
-
-        //TODO сделать, чтобы имя не могло совпадать с другими именами в БД
-
         request.getRequestDispatcher(RedirectPaths.TO_PROFILE).forward(request, response);
     }
 
@@ -52,13 +51,19 @@ public class ChangeUsersParamServlet extends HttpServlet {
             }
         }
     }
+
     //TODO перенести в UserRepository
+    //TODO Не показывает, что не получилось сменить имя т.к оно уже занято. Сделать возвращение тру или фолс, если тру, то тредирект на одно, если фолс, то на другое
     private static void changeLogin(Map<String, String[]> parameterMap, String oldLogin, User userFromDB) {
         if (parameterMap.containsKey("login")) {
             String newLogin = parameterMap.get("login")[0];
-            if (!newLogin.isEmpty()) {
-                userFromDB.setUserName(newLogin);
-                log.info(oldLogin + " изменил свой логин на " + newLogin);
+            if (DB.userDataBase.find(newLogin).isEmpty()) {
+                if (!newLogin.isEmpty()) {
+                    userFromDB.setUserName(newLogin);
+                    log.info(oldLogin + " изменил свой логин на " + newLogin);
+                }
+            } else {
+                log.info(oldLogin + " попытался изменить свой логин на уже существующий " + newLogin);
             }
         }
     }

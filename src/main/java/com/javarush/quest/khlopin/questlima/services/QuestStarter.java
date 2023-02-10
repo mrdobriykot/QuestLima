@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+
 @Getter
 public class QuestStarter {
 
@@ -66,8 +67,8 @@ public class QuestStarter {
         game.setGameState(GameState.WIN);
         finishTrueAnswer = question.getAnswerList().get(0).getFinishAnswerText();
         if (finishTrueAnswer != null) {
-        log.trace("найден правильный ответ в игре " + game + "ответ: " + finishTrueAnswer); }
-        else {
+            log.trace("найден правильный ответ в игре " + game + "ответ: " + finishTrueAnswer);
+        } else {
             log.trace(" правильный ответ для игры " + game + " не найден " + "пользователь " + user);
         }
     }
