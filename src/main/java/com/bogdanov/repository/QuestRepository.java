@@ -6,9 +6,9 @@ import com.bogdanov.entity.Quest;
 import java.util.stream.Stream;
 
 public class QuestRepository extends BaseRepository<Quest>{
-
-
-
+    public QuestRepository() {
+        create(new Quest(0L,0L,"Quest_1","Description","","",1L));
+    }
 
     @Override
     public Stream<Quest> find(Quest pattern) {

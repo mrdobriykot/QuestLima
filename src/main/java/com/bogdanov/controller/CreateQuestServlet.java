@@ -35,11 +35,11 @@ public class CreateQuestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idParametr = request.getParameter(Key.ID);
         if (Objects.nonNull(idParametr)) {
-            Long id;
+            long id;
 
             try {
-                id = Long.valueOf(idParametr);
-                Optional<Quest> quest = serviceQuest.get(id);
+                id = Long.parseLong(idParametr);
+                Optional<Quest> quest = serviceQuest.getQuestFromRep(id);
                 //request.setAttribute("questions", quest.get().getQuestions());
                 quest.ifPresent(value -> request.setAttribute(Key.QUESTS, value));
                 Jsp.forward(request, response, Go.CREATE_QUEST);

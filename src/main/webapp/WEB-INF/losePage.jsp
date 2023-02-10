@@ -5,7 +5,7 @@
 <form class="form-horizontal" action="gameMenu" method="get" enctype="multipart/form-data">
     <fieldset>
 
-        <h1>${requestScope.count==requestScope.size?"Выйграл, молодец!":"Проиграл."}</h1>
+        <h1>${requestScope.count==requestScope.size && requestScope.status?"Выйграл, молодец!":"Проиграл."}</h1>
 
         <div class="col-md-8">
             <button id="updateOrCreate" name="newChange" class="btn btn-success">Вернуться</button>

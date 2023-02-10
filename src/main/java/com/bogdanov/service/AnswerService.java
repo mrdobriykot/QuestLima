@@ -2,6 +2,7 @@ package com.bogdanov.service;
 
 import com.bogdanov.entity.Answer;
 
+import com.bogdanov.entity.Question;
 import com.bogdanov.repository.AnswerRepository;
 import com.bogdanov.repository.Repository;
 
@@ -9,6 +10,8 @@ import com.bogdanov.repository.Repository;
 
 import java.util.Collection;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -42,6 +45,9 @@ public enum AnswerService {
                     .build();
 
        return answerRepository.find(answer).findAny();
+    }
+    public List<Answer> getOfQuestion(Long id){
+        return answerRepository.getAll().stream().filter(u-> Objects.equals(u.getQuestionId(), id)).toList();
     }
 
 //    public Collection<Answer> parsAnswers(String answer){

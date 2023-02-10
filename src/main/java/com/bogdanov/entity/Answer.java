@@ -15,7 +15,7 @@ public class Answer implements AbstaractEntity {
     private Long questionId;
     private String text;
     private Long nextQuestionId;
-    private Boolean status=false;
+    private Boolean status;
 
 
 

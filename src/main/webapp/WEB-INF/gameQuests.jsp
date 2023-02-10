@@ -14,7 +14,7 @@
                         <div class="radio">
                             <label for="radios-0">
                                 <input type="radio" name="radios" id="radios-0" value="${answer.getStatus()}">
-                                    ${answer.getIdAnswer()}"."${answer.getText()}
+                                    ${answer.getIdAnswer()}.${answer.getText()}
                             </label>
                         </div>
                     </div>

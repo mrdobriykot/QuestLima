@@ -7,8 +7,16 @@ import java.util.stream.Stream;
 
 public class AnswerRepository extends BaseRepository<Answer>{
 
-    
 
+    public AnswerRepository() {
+        create(new Answer(0L,1L,1L,"Answer",2L ,true));
+        create(new Answer(0L,2L,1L,"Answer",2L ,false));
+        create(new Answer(0L,3L,2L,"Answer",3L ,true));
+        create(new Answer(0L,4L,2L,"Answer",3L ,false));
+        create(new Answer(0L,5L,3L,"Answer",2L ,true));
+        create(new Answer(0L,6L,3L,"Answer",2L ,false));
+
+    }
 
     @Override
     public Stream<Answer> find(Answer pattern) {

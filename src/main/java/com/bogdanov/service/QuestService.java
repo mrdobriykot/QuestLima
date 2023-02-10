@@ -6,10 +6,7 @@ import com.bogdanov.entity.Question;
 import com.bogdanov.repository.QuestRepository;
 
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public enum QuestService {
     QUEST_SERVICE;
@@ -39,8 +36,6 @@ public enum QuestService {
     private void collectionPutAnswers(Collection<Question> questions, Collection<Answer> answers, Long idQuests){
         for (Question question : questions) {
 
-
-
             question.setQuestId(idQuests);
             
             for (Answer answer : answers) {
@@ -59,12 +54,20 @@ public enum QuestService {
    public Collection<Quest> getAll(){
         return questRepository.getAll();
    }
+
    public Optional<Quest> get(Long id){
+       List<Question> ofQuest = questionService.getOfQuest(id);
+       Quest quest = questRepository.get(id);
+       quest.getQuestions().clear();
+       quest.getQuestions().addAll(ofQuest);
+       questRepository.update(quest);
+        return Optional.ofNullable(quest);
+   }
+   public Optional<Quest> getQuestFromRep(Long id){
         return Optional.ofNullable(questRepository.get(id));
    }
     public List<Quest> getOfAutor(Long id){
         return questRepository.getAll().stream().filter(u-> Objects.equals(u.getAuthorId(), id)).toList();
-
     }
 
 
