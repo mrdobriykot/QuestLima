@@ -1,5 +1,6 @@
 package com.javarush.quest.khlopin.questlima.controllers.usersControllers;
 
+import com.javarush.quest.khlopin.questlima.utills.Constants;
 import com.javarush.quest.khlopin.questlima.utills.DB;
 import com.javarush.quest.khlopin.questlima.entity.user.Role;
 import com.javarush.quest.khlopin.questlima.entity.user.User;
@@ -14,12 +15,13 @@ import java.util.Map;
 @WebServlet(name = "UserServlet", value = "/user")
 public class UserServlet extends HttpServlet {
 
+    //TODO исправить String на константы
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Long.parseLong(request.getParameter("id"));
         User user = DB.userDataBase.get(id);
-        request.setAttribute("user", user);
+        request.setAttribute(Constants.USER, user);
         request.getRequestDispatcher("WEB-INF/adminMenu/user.jsp").forward(request, response);
     }
 

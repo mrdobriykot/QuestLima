@@ -1,6 +1,5 @@
 package com.javarush.quest.khlopin.questlima.controllers.usersControllers;
 
-import com.javarush.quest.khlopin.questlima.entity.user.User;
 import com.javarush.quest.khlopin.questlima.utills.DB;
 import com.javarush.quest.khlopin.questlima.entity.user.Role;
 import jakarta.servlet.*;
@@ -12,6 +11,8 @@ import java.util.Map;
 
 @WebServlet(name = "CreateUserServlet", value = "/createNewUser")
 public class CreateUserServlet extends HttpServlet {
+
+    //TODO Заменить на коснтанты
 
     @Override
     public void init(ServletConfig config) throws ServletException {

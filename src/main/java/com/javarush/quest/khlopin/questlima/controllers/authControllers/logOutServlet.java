@@ -20,7 +20,7 @@ public class logOutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute(Constants.USER);
         CheckAdminService.offAdmin(session);
-        session.setAttribute(Constants.USER, null);
+        session.invalidate();
         log.info(user + " разлогинился");
         request.getRequestDispatcher("").forward(request,response);
     }

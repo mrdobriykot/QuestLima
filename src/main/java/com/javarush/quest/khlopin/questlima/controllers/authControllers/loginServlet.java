@@ -33,13 +33,13 @@ public class loginServlet extends HttpServlet {
         if (parameterMap.containsKey(Constants.CREATE)) {
             Optional<User> user = DB.userDataBase.find(parameterMap.get(Constants.LOGIN)[0]);
             if (user.isPresent()) {
-                User user1 = user.get();
-                if (user1.getPassword().equals(parameterMap.get(Constants.PASSWORD)[0])) {
+                User userFromDataBase = user.get();
+                if (userFromDataBase.getPassword().equals(parameterMap.get(Constants.PASSWORD)[0])) {
                     HttpSession session = request.getSession();
-                    session.setAttribute(Constants.USER, user1);
+                    session.setAttribute(Constants.USER, userFromDataBase);
                     CheckAdminService.checkAdmin(session);
                     request.getRequestDispatcher(RedirectPaths.TO_PROFILE).forward(request, response);
-                    log.info("Пользователь" + user1 + "успешно авторизовался");
+                    log.info("Пользователь" + userFromDataBase + "успешно авторизовался");
                 } else {
                     request.getRequestDispatcher(RedirectPaths.NOT_SUCCESS).forward(request, response);
                     log.info("неудачная попытка авторизации");

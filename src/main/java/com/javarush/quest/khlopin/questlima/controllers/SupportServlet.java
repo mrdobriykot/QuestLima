@@ -18,8 +18,8 @@ public class SupportServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(RedirectPaths.TO_SUPPORT).forward(request,response);
         log.trace(request.getSession().getAttribute("user") + "посетил страницу с поддержкой");
+        request.getRequestDispatcher(RedirectPaths.TO_SUPPORT).forward(request,response);
     }
 
     @Override

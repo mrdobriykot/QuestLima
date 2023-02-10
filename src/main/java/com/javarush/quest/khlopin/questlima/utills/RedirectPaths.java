@@ -1,6 +1,8 @@
 package com.javarush.quest.khlopin.questlima.utills;
 
 public class RedirectPaths {
+
+    //TODO приводить к имени вьюшки через метод(метод, который будет конструировать строку)
     public static final String TO_LOGIN = "WEB-INF/auth/login.jsp";
     public static final String TO_PROFILE = "WEB-INF/profile.jsp";
     public static final String NOT_SUCCESS = "WEB-INF/auth/noSuccess.jsp";
