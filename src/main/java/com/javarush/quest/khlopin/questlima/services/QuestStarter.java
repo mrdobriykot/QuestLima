@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+
 @Getter
 public class QuestStarter {
 
@@ -51,7 +52,6 @@ public class QuestStarter {
     }
 
     public void checkWin(HttpServletRequest request, String answer, Question currentQuestion) {
-
         if (answer.equals(Constants.FALSE)) {
             game.setGameState(GameState.LOSE);
             String finishAnswer = answerList.get(1).getFinishAnswerText();
@@ -59,7 +59,6 @@ public class QuestStarter {
         } else if (answer.equals(Constants.TRUE)) {
             request.setAttribute(Constants.QUESTION, currentQuestion);
             request.setAttribute(Constants.ANSWERS, answerList);
-
         }
     }
 

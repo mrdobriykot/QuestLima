@@ -57,5 +57,17 @@ public class AnswerRepository implements Repository<List<Answer>> {
     public Collection<List<Answer>> getAll() {
         return answersMap.values();
     }
+    public Optional<Answer> find(String answer) {
+        for (Map.Entry<Long, List<Answer>> longListEntry : answersMap.entrySet()) {
+            List<Answer> value = longListEntry.getValue();
+            for (Answer answerFromDB : value) {
+                String text = answerFromDB.getText();
+                if (text.equals(answer)) {
+                    return Optional.of(answerFromDB);
+                }
+            }
+        }
+        return Optional.empty();
+    }
 
 }

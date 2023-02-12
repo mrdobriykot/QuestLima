@@ -3,6 +3,7 @@ package com.javarush.quest.khlopin.questlima.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javarush.quest.khlopin.questlima.entity.game.Quest;
 import lombok.SneakyThrows;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -11,9 +12,7 @@ public class UploadQuestFromJson {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-
     private final String[] pathsToJsons;
-
 
 
     public UploadQuestFromJson(String[] pathsToJsons) {

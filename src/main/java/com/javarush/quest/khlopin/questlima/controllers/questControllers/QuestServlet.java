@@ -27,9 +27,7 @@ public class QuestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String answer = request.getParameter(Constants.ANSWER);
-        if (answer == null) { //TODO переработать метод, ерроры в конце
-            request.getRequestDispatcher(RedirectPaths.ERROR).forward(request, response);
-        } else {
+        if (answer != null) { //TODO переработать метод, ерроры в конце
             if (answer.equals(Constants.FALSE)) {
                 questStarter.nextStageOfQuest(request, answer, stage);
                 request.getRequestDispatcher(RedirectPaths.TO_QUEST).forward(request, response);
@@ -48,6 +46,8 @@ public class QuestServlet extends HttpServlet {
                     request.getRequestDispatcher(RedirectPaths.TO_QUEST).forward(request, response);
                 }
             }
+        } else {
+            request.getRequestDispatcher(RedirectPaths.ERROR).forward(request, response);
         }
     }
 }
