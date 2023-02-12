@@ -1,6 +1,7 @@
 package com.bogdanov.service;
 
 import com.bogdanov.entity.Answer;
+import com.bogdanov.entity.Quest;
 import com.bogdanov.entity.Question;
 
 import com.bogdanov.repository.QuestionRepository;
@@ -36,10 +37,7 @@ public enum QuestionService {
 
 
    public Optional<Question> get(Long id){
-        List<Answer> ofQuestion = answerService.getOfQuestion(id);
        Question question = questionRepository.get(id);
-       question.getAnswers().clear();
-       question.getAnswers().addAll(ofQuestion);
        return Optional.of(question);
    }
 
@@ -52,14 +50,14 @@ public enum QuestionService {
 
        return questionRepository.find(question).findAny();
     }
-    public List<Question> getOfQuest(Long id){
-        List<Question> questions = questionRepository
-                .getAll()
-                .stream()
-                .filter(u -> Objects.equals(u.getQuestId(), id))
-                .toList();
-                questions.forEach(u->this.get(u.getIdQuestion()));
-                return questions;
+    public List<Answer> getOfAnswers(Question question){//get list answers for specifically this question
+        return answerService.getAnswerByIdQuestion(question);
+    }
+    public List<Question> getOfQuest(Quest quest){//get list questions for specifically this quest
+        List<Question> questions = questionRepository.getAll().stream().filter(u -> quest.getIdQuestions().contains(u.getId())).toList();
+        questions.forEach(q->q.getAnswers().addAll(this.getOfAnswers(q)));
+        return questions;
+
     }
 
 }

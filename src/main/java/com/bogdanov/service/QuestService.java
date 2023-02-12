@@ -16,37 +16,32 @@ public enum QuestService {
     final AnswerService answerService = AnswerService.ANSWER_SERVICE;
 
 
-
-
     public void create(Quest quest, Collection<Question> questionCunstructor, Collection<Answer> answerCunstructor){
         questRepository.create(quest);
-        collectionPutAnswers(questionCunstructor,answerCunstructor,quest.getId());
-        quest.getQuestions().addAll(questionCunstructor);
-        questRepository.update(quest);
+        updateIdOfAnswerQuestionQuest(questionCunstructor,answerCunstructor,quest);
 
     }
     public void update(Quest quest, Collection<Question> questionCunstructor, Collection<Answer> answerCunstructor){
-        answerService.getAll().clear();
-        questionService.getAll().clear();
-        collectionPutAnswers(questionCunstructor,answerCunstructor,quest.getId());
-        quest.getQuestions().clear();
-        quest.getQuestions().addAll(questionCunstructor);
+        updateIdOfAnswerQuestionQuest(questionCunstructor,answerCunstructor,quest);
         questRepository.update(quest);
     }
-    private void collectionPutAnswers(Collection<Question> questions, Collection<Answer> answers, Long idQuests){
+    private void updateIdOfAnswerQuestionQuest(Collection<Question> questions, Collection<Answer> answers, Quest quest){
         for (Question question : questions) {
 
-            question.setQuestId(idQuests);
-            
             for (Answer answer : answers) {
-                
-                if(Objects.equals(question.getId(), answer.getQuestionId())){
-                    question.getAnswers().add(answer);
+
+                if(question.getIdQuestion()==answer.getQuestionId()){
+                    //question.getAnswers().add(answer);
+                    answerService.create(answer);
+                    question.getIdAnswers().add(answer.getId());
                 }
-                answerService.create(answer);
             }
             questionService.create(question);
+            question.setQuestId(quest.getId());
+            quest.getIdQuestions().add(question.getId());
+
         }
+
     }
     public void delete(Quest quest){
         questRepository.delete(quest);
@@ -56,19 +51,24 @@ public enum QuestService {
    }
 
    public Optional<Quest> get(Long id){
-       List<Question> ofQuest = questionService.getOfQuest(id);
        Quest quest = questRepository.get(id);
-       quest.getQuestions().clear();
-       quest.getQuestions().addAll(ofQuest);
-       questRepository.update(quest);
-        return Optional.ofNullable(quest);
+
+       if(quest.getQuestions().size()>0){
+           return Optional.ofNullable(quest);
+       }else {
+           List<Question> listQuestionsForQuest = questionService.getOfQuest(quest);
+           quest.getQuestions().addAll(listQuestionsForQuest);
+           return Optional.ofNullable(quest);
+       }
    }
    public Optional<Quest> getQuestFromRep(Long id){
         return Optional.ofNullable(questRepository.get(id));
    }
-    public List<Quest> getOfAutor(Long id){
-        return questRepository.getAll().stream().filter(u-> Objects.equals(u.getAuthorId(), id)).toList();
+
+
+    public Collection<Quest> getOfAutor(Long id) {
+        Quest quest = new Quest();
+        quest.setAuthorId(id);
+        return questRepository.find(quest).toList();
     }
-
-
 }

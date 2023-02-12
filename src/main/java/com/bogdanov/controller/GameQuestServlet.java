@@ -37,8 +37,7 @@ public class GameQuestServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String parameter = request.getParameter(Key.ID);
         Optional<Quest> quest;
-        quest = service.get(Long.valueOf(parameter));//TODO соеденить тесты созданные в ручную и нет
-
+        quest = service.get(Long.valueOf(parameter));
 
         Collection<Question> questions = quest.get().getQuestions();
         ArrayList<Question> questionArrayList = new ArrayList<>(questions);
@@ -55,19 +54,20 @@ public class GameQuestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String parameter = request.getParameter("radios");
         String numQuestion = request.getParameter(Key.NUM_QUESTION);
-        Optional<Quest> questOptional = service.getQuestFromRep(Long.valueOf(request.getParameter(Key.ID)));
+        String parameter1 = request.getParameter(Key.ID);
+        Optional<Quest> questOptional = service.getQuestFromRep(Long.valueOf(parameter1));
         int questionsQuantity = questOptional.get().getQuestions().size();
 
         request.setAttribute("size",questionsQuantity);
         request.setAttribute("count",numQuestion);
-        request.setAttribute("status",parameter);
-        request.getParameter(Key.ID);
 
         if(parameter.equals("true") &&(questionsQuantity!=Integer.parseInt(numQuestion))){
             doGet(request, response);
 
         }else {
-
+            if(parameter.equals("true") &&(questionsQuantity==Integer.parseInt(numQuestion))){
+                request.setAttribute("result",parameter);
+            }
             Jsp.forward(request,response,Go.LOSE_PAGE);
         }
     }

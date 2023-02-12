@@ -32,6 +32,7 @@ public class Jsp {
 
     public static Quest getQuestCunstructor(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute(Key.USER);
+
         String questDescription = request.getParameter("questDescription");
          Quest quest = Quest
                 .builder()
@@ -39,9 +40,11 @@ public class Jsp {
                 .authorId(user.getId())
                 .name((String) request.getParameter(Key.QUESTS))
                 .text((String) questDescription)
+                 .idQuestions(new ArrayList<>())
                 .build();
          quest.setAnswerText(request.getParameter(Key.ANSWER_TEXT));
          quest.setQuestionText(request.getParameter(Key.QUESTION_TEXT));
+
         return quest;
     }
     public static Collection<Question> getQuestionCunstructor(HttpServletRequest request) {
@@ -61,6 +64,7 @@ public class Jsp {
                     .id(Long.valueOf(split[0]))
                     .idQuestion(Long.valueOf(split[0]))
                     .text(split[1])
+                    .idAnswers(new ArrayList<>())
                     .build();
             questions.add(question);
 
@@ -68,6 +72,7 @@ public class Jsp {
 
         return questions;
     }
+
     public static Collection<Answer> getAnswerCunstructor(HttpServletRequest request) {
         ArrayList<String> answersStr = new ArrayList<>();
         ArrayList<Answer> answers = new ArrayList<>();

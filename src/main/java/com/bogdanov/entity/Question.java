@@ -18,6 +18,7 @@ public class Question implements AbstaractEntity{
    private Long questId;
    private String text;
    private GameState gameState;
+   private  Collection<Long> idAnswers = new ArrayList<>();
    private final Collection<Answer> answers = new ArrayList<>();
    public String getImage(){
        return "quest-"+id;

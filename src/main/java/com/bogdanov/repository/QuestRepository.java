@@ -3,11 +3,13 @@ package com.bogdanov.repository;
 import com.bogdanov.entity.Role;
 import com.bogdanov.entity.Quest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class QuestRepository extends BaseRepository<Quest>{
     public QuestRepository() {
-        create(new Quest(0L,0L,"Quest_1","Description","","",1L));
+        create(new Quest(0L,0L,"Quest_1","Description","","",1L, Arrays.asList(1L,2L,3L)));
     }
 
     @Override

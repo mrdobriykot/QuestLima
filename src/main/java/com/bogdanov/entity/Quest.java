@@ -21,6 +21,7 @@ public class Quest implements AbstaractEntity {
     private String QuestionText="";
     private Long startQuestionId;
     private final Collection<User> players = new ArrayList<>();
+    private  Collection<Long> idQuestions = new ArrayList<>();
     private final Collection<Question> questions = new ArrayList<>();
 
 

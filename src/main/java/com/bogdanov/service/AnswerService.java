@@ -46,8 +46,8 @@ public enum AnswerService {
 
        return answerRepository.find(answer).findAny();
     }
-    public List<Answer> getOfQuestion(Long id){
-        return answerRepository.getAll().stream().filter(u-> Objects.equals(u.getQuestionId(), id)).toList();
+    public List<Answer> getAnswerByIdQuestion(Question question){
+        return answerRepository.getAll().stream().filter(u->question.getIdAnswers().contains(u.getId())).toList();
     }
 
 //    public Collection<Answer> parsAnswers(String answer){
