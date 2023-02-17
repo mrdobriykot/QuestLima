@@ -1,5 +1,5 @@
 target/
-
+test.json
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -12,6 +12,7 @@ target/
 *.iws
 *.iml
 *.ipr
+
 
 ### Eclipse ###
 .apt_generated
