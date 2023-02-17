@@ -1,0 +1,71 @@
+{
+  "resourcesFolder": "resources/",
+  "usersJsonFilename": "users.json",
+  "questsJsonFilename": "quests.json",
+  "hikariConfig": "hikari.properties",
+  "hibernateConfig": "hibernate.cfg.xml",
+  "minQuestRating": -10000.0,
+  "maxQuestRating": 10000.0,
+  "upDownUnitQuestRating": 1.0,
+  "usersRecordsPerPagePaginator": 15,
+  "questsRecordsPerPagePaginator": 1,
+  "statBestQuestLimit": 3,
+  "statMostPlayingUsersLimit": 6,
+  "defaultAvatarImage": "avatar_no_image.jpg",
+  "imgDefaultAvatarsPath": "/img/default/avatars/",
+  "imagesFolder": "img",
+  "imagesSubFolders": {
+    "quest": "quest",
+    "avatars": "avatars"
+  },
+  "extensionImages": [
+    "jpeg",
+    "jpg",
+    "png",
+    "gif",
+    "bmp",
+    "webp"
+  ],
+  "pageTitleDefault": "Quests for JavaRush company",
+  "pageTitleMap": {
+    "": "Проект 3 модуля на JavaRush",
+    "/delete-user": "Удаление пользователя",
+    "/users": "Все пользователи",
+    "/login": "Войти",
+    "/logout": "До новых встреч",
+    "/home": "Проект 3 модуля на JavaRush",
+    "/delete-quest": "Удаление квеста",
+    "/quest": "Квест",
+    "/edit-quest": "Редактирование квеста",
+    "/quests": "Все квесты",
+    "/registration": "Регистрация",
+    "/edit-settings": "Редактирование настроек сайта",
+    "/edit-user": "Редактирование пользователя",
+    "/profile": "Профиль пользователя",
+    "/statistic": "Статистика сайта"
+  },
+  "allowedPagesForGuest": [
+    "",
+    "/",
+    "/home",
+    "/quests",
+    "/users",
+    "/login",
+    "/registration",
+    "/statistic",
+    "/logout",
+    "/profile"
+  ],
+  "allowedPagesForUser": [
+    "/quest",
+    "/edit-user"
+  ],
+  "allowedPagesForEditor": [
+    "/edit-quest",
+    "/delete-quest"
+  ],
+  "allowedPagesForAdmin": [
+    "/delete-user",
+    "/edit-settings"
+  ]
+}

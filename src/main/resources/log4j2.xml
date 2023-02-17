@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration status="all">
+
+    <Properties>
+        <!--logs folder path -->
+        <Property name="logDir">/home/quest-project-logs</Property>
+        <Property name="layout">%d %-5p [%t] %C{2} (%F:%L) - %m%n</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="RollingFile"
+                     fileName="${logDir}/quest.log"
+                     filePattern="${logDir}/${date:yyyy-MM}/log.%d{MM-dd-yyyy}-%i.log">
+            <PatternLayout pattern="${layout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
