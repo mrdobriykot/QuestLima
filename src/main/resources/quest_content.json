@@ -1,0 +1,59 @@
+[ {
+  "id" : 1,
+  "questionText" : "Ты потерял память.\nПринять вызов НЛО?",
+  "answers" : [ {
+    "id" : 1,
+    "questionId" : 1,
+    "answerText" : "Принять вызов",
+    "nextQuestionId" : 2
+  }, {
+    "id" : 2,
+    "questionId" : 1,
+    "answerText" : "Отклонить вызов",
+    "nextQuestionId" : 3
+  } ]
+}, {
+  "id" : 2,
+  "questionText" : "Ты принял вызов.\nПоднимаешься на мостик к капитану?",
+  "answers" : [ {
+    "id" : 3,
+    "questionId" : 2,
+    "answerText" : "Подняться на мостик",
+    "nextQuestionId" : 4
+  }, {
+    "id" : 4,
+    "questionId" : 2,
+    "answerText" : "Отказаться подниматься на мостик",
+    "nextQuestionId" : 5
+  } ]
+}, {
+  "id" : 3,
+  "questionText" : "Ты отклонил вызов.\nПоражение!",
+  "answers" : null
+}, {
+  "id" : 4,
+  "questionText" : "Ты поднялся на мостик.\nТы кто?",
+  "answers" : [ {
+    "id" : 5,
+    "questionId" : 4,
+    "answerText" : "Рассказать правду о себе",
+    "nextQuestionId" : 6
+  }, {
+    "id" : 6,
+    "questionId" : 4,
+    "answerText" : "Солгать о себе",
+    "nextQuestionId" : 7
+  } ]
+}, {
+  "id" : 5,
+  "questionText" : "Ты не пошел на переговоры.\nПоражение!",
+  "answers" : null
+}, {
+  "id" : 6,
+  "questionText" : "Тебя вернули домой.\nПобеда!",
+  "answers" : null
+}, {
+  "id" : 7,
+  "questionText" : "Твою ложь разоблачили.\nПоражение!",
+  "answers" : null
+} ]
