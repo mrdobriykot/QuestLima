@@ -1,19 +1,18 @@
 package com.javarush.mokropolov.service;
 
-
-
 import com.javarush.mokropolov.entity.User;
-import com.javarush.mokropolov.repository.Repository;
 import com.javarush.mokropolov.repository.UserRepository;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public enum UserService {
+public class UserService {
 
-    USER_SERVICE;
+    private final UserRepository userRepository;
 
-    private final Repository<User> userRepository = new UserRepository();
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public void create(User user) {
         userRepository.create(user);
@@ -34,8 +33,10 @@ public enum UserService {
     public Optional<User> get(long id) {
         return Optional.ofNullable(userRepository.get(id));
     }
+
     public Optional<User> get(String login, String password) {
-        User patternUser = User.builder()
+        User patternUser = User
+                .builder()
                 .login(login)
                 .password(password)
                 .build();

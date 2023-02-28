@@ -14,21 +14,19 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 
-public enum ImageService {
+public class ImageService {
 
-    IMAGE_SERVICE;
-
-    public static final String IMAGES_FOLDER = "images";
-    public static final String PART_NAME = "image";
-    public static final String NO_IMAGE_PNG = "no-image.png";
-    public static final List<String> EXTENSIONS = List.of(
+    private static final String IMAGES_FOLDER = "images";
+    private static final String PART_NAME = "image";
+    private static final String NO_IMAGE_PNG = "no-image.png";
+    private static final List<String> EXTENSIONS = List.of(
             ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp"
     );
 
     private final Path imagesFolder = Config.WEB_INF.resolve(IMAGES_FOLDER);
 
     @SneakyThrows
-    ImageService() {
+    public ImageService() {
         Files.createDirectories(imagesFolder);
     }
 

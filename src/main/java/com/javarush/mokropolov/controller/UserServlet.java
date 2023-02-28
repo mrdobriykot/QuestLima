@@ -1,13 +1,5 @@
 package com.javarush.mokropolov.controller;
 
-import com.javarush.mokropolov.entity.Role;
-import com.javarush.mokropolov.entity.User;
-import com.javarush.mokropolov.service.ImageService;
-import com.javarush.mokropolov.service.UserService;
-import com.javarush.mokropolov.util.Go;
-import com.javarush.mokropolov.util.Jsp;
-import com.javarush.mokropolov.util.Key;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,18 +12,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.javarush.mokropolov.config.Winter;
+import com.javarush.mokropolov.entity.Role;
+import com.javarush.mokropolov.entity.User;
+import com.javarush.mokropolov.service.ImageService;
+import com.javarush.mokropolov.service.UserService;
+import com.javarush.mokropolov.util.Go;
+import com.javarush.mokropolov.util.Jsp;
+import com.javarush.mokropolov.util.Key;
+
 @WebServlet(name = "UserServlet", value = Go.USER)
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 public class UserServlet extends HttpServlet {
 
-    private final UserService userService = UserService.USER_SERVICE;
-    private final ImageService imageService = ImageService.IMAGE_SERVICE;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        config.getServletContext().setAttribute(Key.ROLES, Role.values());
-        super.init(config);
-    }
+    private final UserService userService = Winter.getBean(UserService.class);
+    private final ImageService imageService = Winter.getBean(ImageService.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,11 +41,8 @@ public class UserServlet extends HttpServlet {
             }
             Jsp.forward(request, response, Go.USER);
         }
-
-        response.sendRedirect(Key.USERS);
+        Jsp.redirect(response,Go.USERS);
     }
-
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,7 +61,7 @@ public class UserServlet extends HttpServlet {
             userService.delete(user);
         } else throw new IllegalStateException("unknown command");
         imageService.uploadImage(request, user.getImage());
-        Jsp.redirect(response, Key.USER);
+        response.sendRedirect(Key.USERS);
     }
 }
 

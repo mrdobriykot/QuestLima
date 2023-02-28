@@ -2,51 +2,52 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <c:import url="parts/header.jsp"/>
 
-<form action="create-quest" method="post">
+<form class="form-horizontal">
     <fieldset>
 
         <!-- Form Name -->
-        <legend>Create Quest</legend>
+        <legend>Add question</legend>
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="questionName">Введите название квеста</label>
+            <label class="col-md-4 control-label" for="questionName">Question name</label>
             <div class="col-md-4">
                 <input id="questionName" name="questionName" type="text" placeholder="Name" class="form-control input-md">
-                <span class="help-block"></span>
+                <span class="help-block">Введите название квеста</span>
             </div>
         </div>
 
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="question">Введите вопрос 1</label>
+            <label class="col-md-4 control-label" for="question">Question</label>
             <div class="col-md-4">
-                <input id="question" name="question" type="text" placeholder="question" class="form-control input-md">
-                <span class="help-block"></span>
+                <input id="question" name="question" type="text" placeholder="Question" class="form-control input-md">
+                <span class="help-block">Введите вопрос</span>
             </div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="answer">Введите ответ 1</label>
+            <label class="col-md-4 control-label" for="answer">Answer</label>
             <div class="col-md-4">
-                <input id="answer" name="answer" type="text" placeholder="Введите ответ 1" class="form-control input-md">
-                <span class="help-block"></span>
+                <input id="answer" name="answer" type="text" placeholder="Введите ответ" class="form-control input-md">
+                <span class="help-block">Введите ответ</span>
             </div>
         </div>
+
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="anotherAnswer">Введите ответ 2</label>
+            <label class="col-md-4 control-label" for="anotherAnswer">Answer</label>
             <div class="col-md-4">
-                <input id="anotherAnswer" name="anotherAnswer" type="text" placeholder="Введите ответ 2" class="form-control input-md">
-                <span class="help-block"></span>
+                <input id="anotherAnswer" name="anotherAnswer" type="text" placeholder="Введите другой ответ" class="form-control input-md">
+                <span class="help-block">Введите другой ответ</span>
             </div>
         </div>
 
         <!-- File Button -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="questionImage">Выберите картинку</label>
+            <label class="col-md-4 control-label" for="questionImage">Question Image</label>
             <div class="col-md-4">
                 <input id="questionImage" name="questionImage" class="input-file" type="file">
             </div>
@@ -54,17 +55,17 @@
 
         <!-- Button -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="createButton"></label>
+            <label class="col-md-4 control-label" for="createButton">Create Button</label>
             <div class="col-md-4">
-                <button id="createButton" name="createButton" class="btn btn-primary">Создать квест</button>
+                <button id="createButton" name="createButton" class="btn btn-primary"> Create Button</button>
             </div>
         </div>
 
         <!-- Button -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="nextButton"></label>
+            <label class="col-md-4 control-label" for="nextButton">Next Button</label>
             <div class="col-md-4">
-                <button id="nextButton" name="nextButton" class="btn btn-primary">Следующий вопрос</button>
+                <button id="nextButton" name="nextButton" class="btn btn-primary"> Next Button</button>
             </div>
         </div>
 

@@ -13,7 +13,7 @@
 
                 <label class="col-md-4 control-label" for="image">
                     <div class="form-group">
-                        <img id="previewId" src="images/${requestScope.user.image}" width="150" alt="${requestScope.user.image}">
+                        <img id="previewId" src="images/${user.image}" width="150" alt="${user.image}">
                     </div>
                     Нажмите чтобы изменить
                 </label>
@@ -25,13 +25,13 @@
             </div>
 
             <script type="text/javascript">
-                function PreviewImage(inputFileId, imageId) {
-                    var oFReader = new FileReader();
-                    oFReader.readAsDataURL(document.getElementById(inputFileId).files[0]);
-                    oFReader.onload = function (oFREvent) {
-                        document.getElementById(imageId).src = oFREvent.target.result;
-                    };
-                }
+                                        function PreviewImage(inputFileId,imageId) {
+                                            var oFReader = new FileReader();
+                                            oFReader.readAsDataURL(document.getElementById(inputFileId).files[0]);
+                                            oFReader.onload = function (oFREvent) {
+                                                document.getElementById(imageId).src = oFREvent.target.result;
+                                            };
+                                        }
 
             </script>
 

@@ -1,21 +1,23 @@
 package com.javarush.mokropolov.controller;
 
-import com.javarush.mokropolov.service.ImageService;
-import com.javarush.mokropolov.util.Go;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import lombok.SneakyThrows;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import com.javarush.mokropolov.config.Winter;
+import com.javarush.mokropolov.service.ImageService;
+import com.javarush.mokropolov.util.Go;
+
 @WebServlet(name = "ImageServlet", value = Go.IMAGES)
 public class ImageServlet extends HttpServlet {
 
-    private final ImageService imageService = ImageService.IMAGE_SERVICE;
-
+    private final ImageService imageService = Winter.getBean(ImageService.class);
 
     @Override
     @SneakyThrows
@@ -27,6 +29,3 @@ public class ImageServlet extends HttpServlet {
         Files.copy(path, resp.getOutputStream());
     }
 }
-
-
-

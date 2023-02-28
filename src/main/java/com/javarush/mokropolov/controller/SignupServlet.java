@@ -1,12 +1,5 @@
 package com.javarush.mokropolov.controller;
 
-import com.javarush.mokropolov.entity.Role;
-import com.javarush.mokropolov.entity.User;
-import com.javarush.mokropolov.service.ImageService;
-import com.javarush.mokropolov.service.UserService;
-import com.javarush.mokropolov.util.Go;
-import com.javarush.mokropolov.util.Jsp;
-import com.javarush.mokropolov.util.Key;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -17,12 +10,22 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import com.javarush.mokropolov.config.Winter;
+import com.javarush.mokropolov.entity.Role;
+import com.javarush.mokropolov.entity.User;
+import com.javarush.mokropolov.service.ImageService;
+import com.javarush.mokropolov.service.UserService;
+import com.javarush.mokropolov.util.Go;
+import com.javarush.mokropolov.util.Jsp;
+import com.javarush.mokropolov.util.Key;
+
 @WebServlet(name = "SignupServlet", value = Go.SIGNUP)
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 public class SignupServlet extends HttpServlet {
 
-    UserService userService = UserService.USER_SERVICE;
-    ImageService imageService = ImageService.IMAGE_SERVICE;
+    private final UserService userService = Winter.getBean(UserService.class);
+    private final ImageService imageService = Winter.getBean(ImageService.class);
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         config.getServletContext().setAttribute(Key.ROLES, Role.values());
@@ -44,7 +47,7 @@ public class SignupServlet extends HttpServlet {
                 .build();
         userService.create(user);
         imageService.uploadImage(request, user.getImage());
-        Jsp.redirect(response, Key.USERS);
+        Jsp.redirect(response, Go.USERS);
     }
 }
 

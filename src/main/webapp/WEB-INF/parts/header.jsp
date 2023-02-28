@@ -21,30 +21,24 @@
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <%-- guest --%>
-        <li><a href="${pageContext.request.contextPath}/" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/" class="nav-link px-2 link-secondary">Главная</a></li>
         <%-- user --%>
-        <li><a href="#" class="nav-link px-2 link-dark disabled">Играть</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark disabled">Статистика</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark disabled">Статистика(Dont Work now)</a></li>
         <%-- admin--%>
         <li><a href="users" class="nav-link px-2">Пользователи</a></li>
-        <li><a href="create-quest" class="nav-link px-2">Создать квест</a></li>
-        <li><a href="#" class="nav-link px-2 disabled">Редактировать квест</a></li>
+        <li><a href="create-quest" class="nav-link px-2">Создать квест (Dont Work now)</a></li>
     </ul>
 
     <ul class="nav col-md-3 text-end">
         <c:choose>
             <c:when test="${not empty sessionScope.user}">
-                <li><a href="profile" class="nav-link px-2 link-dark">Profile</a></li>
-                <li><a href="logout" class="nav-link px-2 link-dark">Logout</a></li>
+                <li><a href="profile" class="nav-link px-2 link-dark">Профиль</a></li>
+                <li><a href="logout" class="nav-link px-2 link-dark">Выход</a></li>
             </c:when>
             <c:otherwise>
-                <li><a href="login" class="nav-link px-2 link-dark">Login</a></li>
-                <li><a href="signup" class="nav-link px-2 link-dark">Sign-up</a></li>
+                <li><a href="login" class="nav-link px-2 link-dark">Войти</a></li>
+                <li><a href="signup" class="nav-link px-2 link-dark">Регистрация</a></li>
             </c:otherwise>
         </c:choose>
     </ul>
 </header>
-
-
-
-

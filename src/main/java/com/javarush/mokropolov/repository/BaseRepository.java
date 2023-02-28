@@ -1,23 +1,22 @@
 package com.javarush.mokropolov.repository;
 
-
-
-import com.javarush.mokropolov.entity.Entity;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.javarush.mokropolov.entity.Entity;
+
 public abstract class BaseRepository<T extends Entity> implements Repository<T> {
+
     protected final Map<Long, T> map = new HashMap<>();
+
     public final AtomicLong id = new AtomicLong(0L);
 
     @Override
     public Collection<T> getAll() {
         return map.values();
     }
-
 
     @Override
     public T get(long id) {
@@ -40,8 +39,7 @@ public abstract class BaseRepository<T extends Entity> implements Repository<T> 
         map.remove(entity.getId());
     }
 
-    protected boolean nullOrEquals(Object patternField, Object repoField){
+    protected boolean nullOrEquals(Object patternField, Object repoField) {
         return patternField == null || patternField.equals(repoField);
     }
 }
-

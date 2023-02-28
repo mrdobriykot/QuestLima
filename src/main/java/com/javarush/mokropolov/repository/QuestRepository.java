@@ -1,27 +1,18 @@
 package com.javarush.mokropolov.repository;
 
-
+import java.util.stream.Stream;
 
 import com.javarush.mokropolov.entity.Quest;
 
-import java.util.stream.Stream;
-
 public class QuestRepository extends BaseRepository<Quest> {
-
-
     @Override
     public Stream<Quest> find(Quest pattern) {
         return map.values()
                 .stream()
-                .filter(quest -> nullOrEquals(pattern.getId(), quest.getId()))
-                .filter(quest -> nullOrEquals(pattern.getText(), quest.getText()))
-                .filter(quest -> nullOrEquals(pattern.getName(), quest.getName()))
-                .filter(quest -> nullOrEquals(pattern.getAuthorId(), quest.getAuthorId()))
-                .filter(quest -> nullOrEquals(pattern.getStartQuestionId(), quest.getStartQuestionId()));
-
+                .filter(u -> nullOrEquals(pattern.getId(), u.getId()))
+                .filter(u -> nullOrEquals(pattern.getText(), u.getText()))
+                .filter(u -> nullOrEquals(pattern.getName(), u.getName()))
+                .filter(u -> nullOrEquals(pattern.getAuthorId(), u.getAuthorId()))
+                .filter(u -> nullOrEquals(pattern.getStartQuestionId(), u.getStartQuestionId()));
     }
-
-
-
 }
-

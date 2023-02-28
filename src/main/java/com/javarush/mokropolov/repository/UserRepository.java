@@ -1,30 +1,17 @@
 package com.javarush.mokropolov.repository;
 
-
-
-import com.javarush.mokropolov.entity.Role;
-import com.javarush.mokropolov.entity.User;
-
 import java.util.stream.Stream;
 
-public class UserRepository extends BaseRepository<User> {
-    public UserRepository() {
-        create(new User(-1L,"admin","admin", Role.ADMIN));
-        create(new User(-1L,"user","user", Role.USER));
-        create(new User(-1L,"guest","guest", Role.GUEST));
-    }
+import com.javarush.mokropolov.entity.User;
 
+public class UserRepository extends BaseRepository<User> {
     @Override
     public Stream<User> find(User pattern) {
         return map.values()
                 .stream()
-                .filter(user -> nullOrEquals(pattern.getId(), user.getId()))
-                .filter(user -> nullOrEquals(pattern.getLogin(), user.getLogin()))
-                .filter(user -> nullOrEquals(pattern.getPassword(), user.getPassword()))
-                .filter(user -> nullOrEquals(pattern.getRole(), user.getRole()));
-
+                .filter(u -> nullOrEquals(pattern.getId(), u.getId()))
+                .filter(u -> nullOrEquals(pattern.getLogin(), u.getLogin()))
+                .filter(u -> nullOrEquals(pattern.getPassword(), u.getPassword()))
+                .filter(u -> nullOrEquals(pattern.getRole(), u.getRole()));
     }
-
-
 }
-

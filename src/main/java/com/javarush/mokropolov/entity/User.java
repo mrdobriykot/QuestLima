@@ -23,8 +23,8 @@ public class User implements Entity {
     private Role role;
 
     private final Collection<Quest> quests = new ArrayList<>();
-    private final Collection<Game> games = new ArrayList<>();
 
+    private final Collection<Game> games = new ArrayList<>();
     public String getImage() { //TODO move to DTO
         return "user-" + id;
     }
