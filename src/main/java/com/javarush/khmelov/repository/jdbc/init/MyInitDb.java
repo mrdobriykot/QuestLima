@@ -1,4 +1,4 @@
-package com.javarush.khmelov.repository.jdbc;
+package com.javarush.khmelov.repository.jdbc.init;
 
 import com.javarush.khmelov.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +62,7 @@ public class MyInitDb {
              Statement statement = connection.createStatement()) {
             int rowCount = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet generatedKeys = statement.getGeneratedKeys();
-            out.append("\nRows: " + rowCount + " Keys: ");
+            out.append("\nRows: ").append(rowCount).append(" Keys: ");
             while (generatedKeys.next()) {
                 out.append(generatedKeys.getString(1)).append(" ");
             }
