@@ -13,6 +13,7 @@ import java.util.concurrent.BlockingQueue;
 @UtilityClass
 public class CnnPool {
 
+    //need read cnn data from config
     public static final String DRIVER = "org.postgresql.Driver";
     public static final String URI = "jdbc:postgresql://localhost:2345/game";
     public static final String USER = "postgres";
@@ -21,6 +22,7 @@ public class CnnPool {
 
     public static final BlockingQueue<Object> queue = new ArrayBlockingQueue<>(SIZE);
     public static final ArrayList<Connection> connections = new ArrayList<>(SIZE);
+    public static final String CLOSE = "close";
 
 
     static {
@@ -39,8 +41,8 @@ public class CnnPool {
             Object proxyCnn = Proxy.newProxyInstance(
                     CnnPool.class.getClassLoader(),
                     new Class[]{Connection.class},
-                    (proxy, method, args) -> "close".equals(method.getName())
-                            ? Boolean.valueOf(queue.add(proxy))
+                    (cnn, method, args) -> CLOSE.equals(method.getName())
+                            ? queue.add(cnn)
                             : method.invoke(connection, args));
             queue.put(proxyCnn);
             connections.add(connection);
