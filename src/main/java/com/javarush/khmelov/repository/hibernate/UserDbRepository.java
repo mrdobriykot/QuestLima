@@ -20,21 +20,26 @@ public class UserDbRepository implements Repository<User> {
         return null;
     }
 
+    /* session->cb->cq->root
+     * predicates <- filter fields and add cb.equals(root.get(name), value)
+     * cq.select(root).where(predicates);
+     * result <- session.createQuery(cq).list(); */
     @Override
     public Stream<User> find(User pattern) {
         return null;
     }
 
+    // HQL
     @Override
     public User get(long id) {
         Session session = sessionCreator.getSession();
-        try (session){
+        try (session) {
             Transaction tx = session.beginTransaction();
             try {
                 User user = session.get(User.class, id);
                 tx.commit();
                 return user;
-            } catch (Exception e){
+            } catch (Exception e) {
                 tx.rollback();
                 throw new AppException(e);
             }
@@ -44,12 +49,12 @@ public class UserDbRepository implements Repository<User> {
     @Override
     public void create(User user) {
         Session session = sessionCreator.getSession();
-        try (session){
+        try (session) {
             Transaction tx = session.beginTransaction();
             try {
                 session.persist(user);
                 tx.commit();
-            } catch (Exception e){
+            } catch (Exception e) {
                 tx.rollback();
             }
         }
@@ -58,12 +63,12 @@ public class UserDbRepository implements Repository<User> {
     @Override
     public void update(User user) {
         Session session = sessionCreator.getSession();
-        try (session){
+        try (session) {
             Transaction tx = session.beginTransaction();
             try {
                 session.merge(user);
                 tx.commit();
-            } catch (Exception e){
+            } catch (Exception e) {
                 tx.rollback();
             }
         }
@@ -72,14 +77,15 @@ public class UserDbRepository implements Repository<User> {
     @Override
     public void delete(User user) {
         Session session = sessionCreator.getSession();
-        try (session){
+        try (session) {
             Transaction tx = session.beginTransaction();
             try {
                 session.remove(user);
                 tx.commit();
-            } catch (Exception e){
+            } catch (Exception e) {
                 tx.rollback();
             }
         }
     }
+
 }

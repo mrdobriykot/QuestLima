@@ -21,7 +21,7 @@ public class SessionCreator implements AutoCloseable{
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         sessionFactory.close();
     }
 }
