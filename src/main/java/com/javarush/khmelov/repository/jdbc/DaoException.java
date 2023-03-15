@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class DaoException extends RuntimeException {
 
-    public DaoException(SQLException cause) {
+    public DaoException(Exception cause) {
         super(cause);
     }
 

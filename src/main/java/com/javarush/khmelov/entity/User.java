@@ -1,11 +1,11 @@
 package com.javarush.khmelov.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
