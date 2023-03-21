@@ -15,10 +15,10 @@ public class Config {
     public static void fillEmptyRepository() {
         UserService userService = Winter.getBean(UserService.class);
         if (userService.get(1L).isEmpty()) {
-            User admin = new User(-1L, "admin", "qwerty", Role.ADMIN);
+            User admin = User.builder().login("admin").password("qwerty").role(Role.ADMIN).build();
             userService.create(admin);
-            userService.create(new User(-1L, "user", "user", Role.USER));
-            userService.create(new User(-1L, "guest", "guest", Role.GUEST));
+            userService.create(User.builder().login("user").password("user").role(Role.USER).build());
+            userService.create(User.builder().login("guest").password("guest").role(Role.GUEST).build());
 
             QuestService questService = Winter.getBean(QuestService.class);
             Long adminId = admin.getId();

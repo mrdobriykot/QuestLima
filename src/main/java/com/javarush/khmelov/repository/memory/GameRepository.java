@@ -1,4 +1,4 @@
-package com.javarush.khmelov.repository;
+package com.javarush.khmelov.repository.memory;
 
 import com.javarush.khmelov.entity.Game;
 

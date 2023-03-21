@@ -1,7 +1,7 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.Question;
-import com.javarush.khmelov.repository.QuestionRepository;
+import com.javarush.khmelov.repository.memory.QuestionRepository;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 

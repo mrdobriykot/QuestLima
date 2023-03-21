@@ -3,10 +3,7 @@ package com.javarush.khmelov.entity;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
@@ -21,12 +18,17 @@ public class Game implements AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "quest_id")
     private Long questId;
 
+    @Column(name = "users_id")
     private Long userId;
 
+    @Column(name = "current_question_id")
     private Long currentQuestionId;
 
+    @Column(name = "game_state")
+    @Enumerated(EnumType.STRING)
     private GameState gameState;
 
     @Override

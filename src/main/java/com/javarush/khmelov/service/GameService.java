@@ -1,7 +1,7 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.*;
-import com.javarush.khmelov.repository.*;
+import com.javarush.khmelov.repository.memory.*;
 import lombok.AllArgsConstructor;
 
 import java.util.Comparator;

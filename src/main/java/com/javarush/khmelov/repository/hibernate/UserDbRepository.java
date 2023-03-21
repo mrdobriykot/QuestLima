@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -60,7 +60,12 @@ public class UserDbRepository implements Repository<User> {
                     field.trySetAccessible();
                     Object value = field.get(pattern);
                     String name = field.getName();
-                    if (!field.isAnnotationPresent(Transient.class) && value!=null){
+                    if (!field.isAnnotationPresent(Transient.class) &&
+                        !field.isAnnotationPresent(ManyToOne.class) &&
+                        !field.isAnnotationPresent(OneToMany.class) &&
+                        !field.isAnnotationPresent(OneToOne.class) &&
+                        !field.isAnnotationPresent(ManyToMany.class)
+                        && value != null){
                         Predicate predicate = criteriaBuilder.equal(userRoot.get(name), value);
                         predicates.add(predicate);
                     }

@@ -1,6 +1,7 @@
-package com.javarush.khmelov.repository;
+package com.javarush.khmelov.repository.memory;
 
 import com.javarush.khmelov.entity.AbstractEntity;
+import com.javarush.khmelov.repository.Repository;
 
 import java.util.Collection;
 import java.util.HashMap;

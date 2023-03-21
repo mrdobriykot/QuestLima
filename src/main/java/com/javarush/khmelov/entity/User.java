@@ -1,6 +1,8 @@
 package com.javarush.khmelov.entity;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -28,15 +30,33 @@ public class User implements AbstractEntity{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Transient
+    @OneToMany(mappedBy = "author")
+    @ToString.Exclude
     private final Collection<Quest> quests = new ArrayList<>();
 
-    @Transient
+    @OneToMany
+    @JoinColumn(name = "users_id")
+    @ToString.Exclude
     private final Collection<Game> games = new ArrayList<>();
 
     public String getImage() { //TODO move to DTO
         return "user-" + id;
     }
+
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserInfo userInfo;
+
+
+    @ManyToMany
+    @JoinTable(name = "game",
+            joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "quest_id", referencedColumnName = "id"))
+    @ToString.Exclude
+    @LazyCollection(value = LazyCollectionOption.TRUE)
+
+    final Collection<Quest> questsInGame = new ArrayList<>();
+
 
 
 }

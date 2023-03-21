@@ -2,10 +2,10 @@ package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.*;
 import com.javarush.khmelov.exception.AppException;
-import com.javarush.khmelov.repository.AnswerRepository;
-import com.javarush.khmelov.repository.QuestRepository;
-import com.javarush.khmelov.repository.QuestionRepository;
-import com.javarush.khmelov.repository.UserRepository;
+import com.javarush.khmelov.repository.memory.AnswerRepository;
+import com.javarush.khmelov.repository.memory.QuestRepository;
+import com.javarush.khmelov.repository.memory.QuestionRepository;
+import com.javarush.khmelov.repository.memory.UserRepository;
 
 import java.util.Collection;
 import java.util.Map;
@@ -50,7 +50,7 @@ public class QuestService {
             return Optional.empty();
         }
         Quest quest = Quest.builder()
-                .authorId(userId)
+                .author(User.builder().id(userId).build())
                 .name(name)
                 .text(text)
                 .startQuestionId(0L)
