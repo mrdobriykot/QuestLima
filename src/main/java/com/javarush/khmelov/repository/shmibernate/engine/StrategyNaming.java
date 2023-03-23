@@ -22,7 +22,7 @@ public class StrategyNaming {
     static String getTableName(Class<?> type) {
         return type.isAnnotationPresent(Table.class)
                 ? type.getAnnotation(Table.class).name()
-                : "t_" + convertToSnakeStyle(type.getSimpleName());
+                : convertToSnakeStyle(type.getSimpleName());
     }
 
     private String convertToSnakeStyle(String camelCase) {

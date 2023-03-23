@@ -37,12 +37,12 @@ public class Quest implements AbstractEntity {
     private final Collection<Question> questions = new ArrayList<>();
 
 
-//    @ManyToMany
-//    @JoinTable(name = "game",
-//            joinColumns = @JoinColumn(name = "quest_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id")
-//    )
-//    @ToString.Exclude
-//    final Collection<User> players=new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "game",
+            joinColumns = @JoinColumn(name = "quest_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id")
+    )
+    @ToString.Exclude
+    final Collection<User> players=new ArrayList<>();
 
 }
