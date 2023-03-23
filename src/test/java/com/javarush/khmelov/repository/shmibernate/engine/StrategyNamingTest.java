@@ -49,7 +49,7 @@ class StrategyNamingTest {
     @Test
     void getTableName() {
         String actual = StrategyNaming.getTableName(TestEntityClass.class);
-        String expected = "t_test_entity_class";
+        String expected = "test_entity_class";
         Assertions.assertEquals(expected, actual);
 
         @Table(name = "customName")
