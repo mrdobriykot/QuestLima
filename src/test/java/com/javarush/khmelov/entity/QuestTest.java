@@ -10,12 +10,21 @@ import org.junit.jupiter.api.Test;
 class QuestTest extends BaseTest {
 
 
+    public static final long ID = 1L;
 
     @Test
     void getId() {
         Quest quest = session.get(Quest.class, ID);
         User author = quest.getAuthor();
         System.out.println(quest+" "+author);
+    }
+
+    @Test
+    void customFetchProfile(){
+        session.enableFetchProfile(Quest.LAZY_QUESTIONS_AND_JOIN_AUTHOR);
+        Quest quest = session.find(Quest.class, ID);
+        System.out.println(quest);
+        System.out.println(quest.getQuestions());
     }
 
 

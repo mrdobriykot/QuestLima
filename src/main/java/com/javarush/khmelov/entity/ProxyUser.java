@@ -1,6 +1,7 @@
 package com.javarush.khmelov.entity;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ProxyUser extends User{
 
@@ -25,7 +26,7 @@ public class ProxyUser extends User{
     }
 
     @Override
-    public Collection<Quest> getQuests() {
+    public List<Quest> getQuests() {
         return super.getQuests();
     }
 

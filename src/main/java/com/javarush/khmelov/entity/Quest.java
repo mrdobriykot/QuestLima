@@ -1,10 +1,14 @@
 package com.javarush.khmelov.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchProfile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,7 +17,22 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder
 @Entity
+@FetchProfile(name = Quest.LAZY_QUESTIONS_AND_JOIN_AUTHOR,
+        fetchOverrides={
+                @FetchProfile.FetchOverride(
+                        entity = Quest.class,
+                        association = "questions",
+                        mode = FetchMode.JOIN //тут и ниже надо было JOIN
+                ),
+                @FetchProfile.FetchOverride(
+                        entity = Quest.class,
+                        association ="author",
+                        mode = FetchMode.JOIN
+                )
+        }
+)
 public class Quest implements AbstractEntity {
+    public static final String LAZY_QUESTIONS_AND_JOIN_AUTHOR = "lazy_questions_and_join_author";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,7 +53,8 @@ public class Quest implements AbstractEntity {
     @OneToMany
     @JoinColumn(name = "quest_id")
     @ToString.Exclude
-    private final Collection<Question> questions = new ArrayList<>();
+//    @Fetch(FetchMode.SUBSELECT)
+    private List<Question> questions;
 
 
     @ManyToMany

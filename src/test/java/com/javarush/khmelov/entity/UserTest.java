@@ -3,10 +3,13 @@ package com.javarush.khmelov.entity;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest extends BaseTest{
+
+    public static final long PRIMARY_KEY = 1L;
 
     @Test
     void getId() {
@@ -28,5 +31,28 @@ class UserTest extends BaseTest{
         System.out.println(user.getGames());
         //ManyToMany
         System.out.println(user.getQuestsInGame());
+    }
+
+    @Test
+    void print(){
+        User user = session.find(User.class, PRIMARY_KEY);
+        System.out.println(user);
+        List<Quest> quests = user.getQuests();
+        for (Quest quest : quests) {
+            System.out.println(quest);
+            Collection<Question> questions = quest.getQuestions();
+            for (Question question : questions) {
+                System.out.println(question);
+            }
+        }
+    }
+
+    @Test
+    void tryCacheSecondLevel(){
+        User user = session.find(User.class, PRIMARY_KEY);
+        for (int i = 0; i < 10; i++) {
+            User tmpUser = session.find(User.class, PRIMARY_KEY);
+            System.out.println(tmpUser);
+        }
     }
 }

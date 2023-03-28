@@ -1,13 +1,16 @@
 package com.javarush.khmelov.entity;
 
 import lombok.*;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Proxy;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,6 +20,8 @@ import java.util.Collection;
 @Entity
 @ToString
 @Table(name = "users")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "user_region")
 public class User implements AbstractEntity{
 
     @Id
@@ -32,7 +37,8 @@ public class User implements AbstractEntity{
 
     @OneToMany(mappedBy = "author")
     @ToString.Exclude
-    private final Collection<Quest> quests = new ArrayList<>();
+//    @Fetch(FetchMode.JOIN)
+    private List<Quest> quests;
 
     @OneToMany
     @JoinColumn(name = "users_id")
@@ -53,8 +59,6 @@ public class User implements AbstractEntity{
             joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "quest_id", referencedColumnName = "id"))
     @ToString.Exclude
-    @LazyCollection(value = LazyCollectionOption.TRUE)
-
     final Collection<Quest> questsInGame = new ArrayList<>();
 
 

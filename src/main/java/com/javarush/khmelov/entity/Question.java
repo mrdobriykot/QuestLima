@@ -2,6 +2,8 @@ package com.javarush.khmelov.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchProfile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
