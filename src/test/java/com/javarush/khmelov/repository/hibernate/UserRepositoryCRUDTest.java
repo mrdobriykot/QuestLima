@@ -22,16 +22,16 @@ class UserRepositoryCRUDTest {
     public static Stream<Arguments> getSamplePatternForSearch() {
         //several users with different nullable fields (need skipped)
         return Stream.of(
-                Arguments.of(User.builder().login("Elena").password("123").build(), 1),
-                Arguments.of(User.builder().login("Elena").password("badpass").build(), 0),
-                Arguments.of(User.builder().login("Elena").build(), 1),
+                Arguments.of(User.builder().login("admin").password("456").build(), 1),
+                Arguments.of(User.builder().login("admin").password("badpass").build(), 0),
+                Arguments.of(User.builder().login("admin").build(), 1),
 
-                Arguments.of(User.builder().login("Andrew").build(), 1),
+                Arguments.of(User.builder().login("guest").build(), 1),
                 Arguments.of(User.builder().password("789").build(), 1),
                 Arguments.of(User.builder().role(Role.GUEST).build(), 1),
 
-                Arguments.of(User.builder().login("Ivan").password("456").build(), 1),
-                Arguments.of(User.builder().login("Ivan").password("456").role(Role.ADMIN).build(), 1),
+                Arguments.of(User.builder().login("ivan").password("123").build(), 1),
+                Arguments.of(User.builder().login("ivan").password("123").role(Role.USER).build(), 1),
 
                 Arguments.of(User.builder().build(), 3),
                 Arguments.of(User.builder().id(0L).build(), 0)
@@ -55,7 +55,7 @@ class UserRepositoryCRUDTest {
     @Test
     void get() {
         User user = userRepository.get(1L);
-        assertEquals(user.getLogin(),"Ivan");
+        assertEquals(user.getLogin(),"admin");
     }
 
     @Test

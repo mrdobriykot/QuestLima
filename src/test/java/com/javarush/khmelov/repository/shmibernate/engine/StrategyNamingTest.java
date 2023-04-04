@@ -16,8 +16,6 @@ class StrategyNamingTest {
 
     @SuppressWarnings("unused")
     private static class TestEntityClass {
-        private final String login = "login";
-        private final Object companyId = "company_id";
         protected String HelloWorld = "hello_world";
         public String UPPER = "upper";
         String First = "first";
