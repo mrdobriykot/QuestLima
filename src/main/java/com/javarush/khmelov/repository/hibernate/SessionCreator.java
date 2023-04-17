@@ -3,6 +3,7 @@ package com.javarush.khmelov.repository.hibernate;
 import com.javarush.khmelov.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
 import org.hibernate.cfg.Configuration;
 
 public class SessionCreator implements AutoCloseable{
@@ -10,6 +11,7 @@ public class SessionCreator implements AutoCloseable{
     private final SessionFactory sessionFactory;
 
     public SessionCreator() {
+
         Configuration configuration = new Configuration();
         configuration.configure();
         configuration.addAnnotatedClass(User.class);
@@ -18,6 +20,8 @@ public class SessionCreator implements AutoCloseable{
         configuration.addAnnotatedClass(Answer.class);
         configuration.addAnnotatedClass(Game.class);
         configuration.addAnnotatedClass(UserInfo.class);
+
+        configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());
         sessionFactory = configuration.buildSessionFactory();
     }
 

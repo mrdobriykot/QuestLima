@@ -28,7 +28,6 @@ public class Question implements AbstractEntity {
 
     private String text;
 
-    @Column(name = "game_state")
     @Enumerated(EnumType.STRING)
     private GameState gameState;
 

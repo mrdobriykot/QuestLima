@@ -24,10 +24,8 @@ public class Game implements AbstractEntity {
     @Column(name = "users_id")
     private Long userId;
 
-    @Column(name = "current_question_id")
     private Long currentQuestionId;
 
-    @Column(name = "game_state")
     @Enumerated(EnumType.STRING)
     private GameState gameState;
 

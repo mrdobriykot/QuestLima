@@ -13,7 +13,6 @@ import javax.persistence.*;
 @ToString
 
 @Entity
-@Table(name = "user_info")
 public class UserInfo {
 
     @Id

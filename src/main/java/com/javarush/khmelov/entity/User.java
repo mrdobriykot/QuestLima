@@ -37,8 +37,7 @@ public class User implements AbstractEntity{
 
     @OneToMany(mappedBy = "author")
     @ToString.Exclude
-//    @Fetch(FetchMode.JOIN)
-    private List<Quest> quests;
+    private final List<Quest> quests = new ArrayList<>();
 
     @OneToMany
     @JoinColumn(name = "users_id")
@@ -49,18 +48,15 @@ public class User implements AbstractEntity{
         return "user-" + id;
     }
 
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserInfo userInfo;
-
-
     @ManyToMany
     @JoinTable(name = "game",
             joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "quest_id", referencedColumnName = "id"))
     @ToString.Exclude
-    final Collection<Quest> questsInGame = new ArrayList<>();
+    private final Collection<Quest> questsInGame = new ArrayList<>();
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserInfo userInfo;
 
 
 }

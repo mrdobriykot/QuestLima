@@ -23,7 +23,6 @@ public class Answer implements AbstractEntity {
 
     private String text;
 
-    @Column(name = "next_question_id")
     private Long nextQuestionId;
 
     @Override
