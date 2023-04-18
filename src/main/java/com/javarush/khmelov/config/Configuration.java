@@ -4,15 +4,20 @@ import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.service.UserService;
+import lombok.AllArgsConstructor;
 
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-public class Config {
+@AllArgsConstructor
+public class Configuration {
 
-    public static void fillEmptyRepository() {
+    private final ValidatorDataBase validatorDataBase;
+
+    public void fillEmptyRepository() {
+        validatorDataBase.update();
         UserService userService = Spring.getBean(UserService.class);
         if (userService.get(1L).isEmpty()) {
             User admin = User.builder().login("admin").password("456").role(Role.ADMIN).build();
@@ -120,9 +125,9 @@ public class Config {
 
     }
 
-    public static final Path WEB_INF = Paths.get(URI.create(
+    public final Path WEB_INF = Paths.get(URI.create(
                     Objects.requireNonNull(
-                            Config.class.getResource("/")
+                            Configuration.class.getResource("/")
                     ).toString()))
             .getParent();
 }

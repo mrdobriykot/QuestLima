@@ -1,4 +1,4 @@
-package com.javarush.khmelov.repository.helper;
+package com.javarush.khmelov.config;
 
 import liquibase.Contexts;
 import liquibase.LabelExpression;
@@ -34,7 +34,7 @@ public class ValidatorDataBase {
     public static final String CLASSPATH_DB_CHANGELOG_XML = "classpath:/db/changelog.xml";
 
     @SneakyThrows
-    public static void main(String[] args) {
+    public void update() {
         Map<String, Object> config = new HashMap<>();
         Scope.child(config, () -> {
             try (Connection connection = DriverManager.getConnection(URI, USER, PASSWORD);) {

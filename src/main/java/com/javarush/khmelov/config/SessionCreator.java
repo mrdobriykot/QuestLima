@@ -1,4 +1,4 @@
-package com.javarush.khmelov.repository.helper;
+package com.javarush.khmelov.config;
 
 import com.javarush.khmelov.entity.*;
 import org.hibernate.Session;

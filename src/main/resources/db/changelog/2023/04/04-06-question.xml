@@ -30,27 +30,4 @@
                                  referencedTableName="quest"/>
     </changeSet>
 
-    <changeSet id="1680637199740-10" author="akhmelev">
-        <insert tableName="question">
-            <column name="quest_id">1</column>
-            <column name="text">Знаешь арифметику?</column>
-            <column name="game_state">PLAY</column>
-        </insert>
-        <insert tableName="question">
-            <column name="quest_id">1</column>
-            <column name="text">Сколько будет дважды два?</column>
-            <column name="game_state">PLAY</column>
-        </insert>
-        <insert tableName="question">
-            <column name="quest_id">1</column>
-            <column name="text">Эх... это проигрыш. Надо мне было лучше учиться в школе.</column>
-            <column name="game_state">LOST</column>
-        </insert>
-        <insert tableName="question">
-            <column name="quest_id">1</column>
-            <column name="text">Ура, победа в сложнейшем квесте!!!</column>
-            <column name="game_state">WIN</column>
-        </insert>
-    </changeSet>
-
 </databaseChangeLog>

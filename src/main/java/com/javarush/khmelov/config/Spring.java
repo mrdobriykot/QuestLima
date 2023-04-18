@@ -1,6 +1,5 @@
 package com.javarush.khmelov.config;
 
-import com.javarush.khmelov.repository.helper.SessionCreator;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import net.bytebuddy.ByteBuddy;
@@ -45,7 +44,7 @@ public class Spring {
         }
     }
 
-    private static <T> boolean checkTransactional(Class<T> type) {
+    private <T> boolean checkTransactional(Class<T> type) {
         return Arrays.stream(type.getMethods())
                 .anyMatch(method -> method.isAnnotationPresent(Transactional.class));
     }
@@ -64,7 +63,7 @@ public class Spring {
         return constructor.newInstance(parameters);
     }
 
-    public static class Interceptor {
+    public class Interceptor {
 
         private static final SessionCreator sessionCreator = getBean(SessionCreator.class);
 

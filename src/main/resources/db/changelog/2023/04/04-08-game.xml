@@ -31,44 +31,5 @@
                                  onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
-    <changeSet id="1680637327579-12" author="akhmelev">
-        <insert tableName="game">
-            <column name="quest_id">1</column>
-            <column name="users_id">1</column>
-            <column name="current_question_id">1</column>
-            <column name="game_state">PLAY</column>
-        </insert>
-        <insert tableName="game">
-            <column name="quest_id">1</column>
-            <column name="users_id">1</column>
-            <column name="game_state">WIN</column>
-        </insert>
-        <insert tableName="game">
-            <column name="quest_id">1</column>
-            <column name="users_id">1</column>
-            <column name="game_state">WIN</column>
-        </insert>
-        <insert tableName="game">
-            <column name="quest_id">1</column>
-            <column name="users_id">1</column>
-            <column name="game_state">LOST</column>
-        </insert>
-        <insert tableName="game">
-            <column name="quest_id">1</column>
-            <column name="users_id">2</column>
-            <column name="current_question_id">1</column>
-            <column name="game_state">PLAY</column>
-        </insert>
-        <insert tableName="game">
-            <column name="quest_id">1</column>
-            <column name="users_id">2</column>
-            <column name="game_state">WIN</column>
-        </insert>
-        <insert tableName="game">
-            <column name="quest_id">1</column>
-            <column name="users_id">1</column>
-            <column name="game_state">WIN</column>
-        </insert>
-    </changeSet>
 
 </databaseChangeLog>

@@ -22,25 +22,4 @@
                                  referencedTableName="users"/>
     </changeSet>
 
-    <changeSet id="1680637058606-6" author="akhmelev">
-        <insert tableName="quest">
-            <column name="users_id">1</column>
-            <column name="name">Проверим арифметику</column>
-            <column name="text">исходный текст квеста</column>
-            <column name="start_question_id">-1</column>
-        </insert>
-        <insert tableName="quest">
-            <column name="users_id">1</column>
-            <column name="name">Второй квест</column>
-            <column name="text">исходный текст второго квеста</column>
-            <column name="start_question_id">-1</column>
-        </insert>
-        <insert tableName="quest">
-            <column name="users_id">1</column>
-            <column name="name">Третий квест</column>
-            <column name="text">исходный текст третьего квеста</column>
-            <column name="start_question_id">-1</column>
-        </insert>
-    </changeSet>
-
 </databaseChangeLog>

@@ -1,7 +1,7 @@
 package com.javarush.khmelov.repository;
 
 import com.javarush.khmelov.entity.AbstractEntity;
-import com.javarush.khmelov.repository.helper.SessionCreator;
+import com.javarush.khmelov.config.SessionCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.Session;
@@ -80,7 +80,8 @@ public class BaseRepository<T extends AbstractEntity> implements Repository<T> {
     @Override
     @Transactional
     public void update(T entity) {
-        sessionCreator.getSession().merge(entity);
+        Session session = sessionCreator.getSession();
+        session.merge(entity);
     }
 
     @Override
