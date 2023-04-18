@@ -1,7 +1,9 @@
-package com.javarush.khmelov.repository.hibernate;
+package com.javarush.khmelov.repository;
 
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.repository.helper.SessionCreator;
+import com.javarush.khmelov.repository.impl.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

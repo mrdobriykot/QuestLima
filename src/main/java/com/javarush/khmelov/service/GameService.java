@@ -1,12 +1,14 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.*;
-import com.javarush.khmelov.repository.memory.*;
+import com.javarush.khmelov.repository.impl.*;
 import lombok.AllArgsConstructor;
 
+import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.Optional;
 
+@Transactional
 @AllArgsConstructor
 public class GameService {
 

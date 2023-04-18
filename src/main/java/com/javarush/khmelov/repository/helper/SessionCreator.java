@@ -1,4 +1,4 @@
-package com.javarush.khmelov.repository.hibernate;
+package com.javarush.khmelov.repository.helper;
 
 import com.javarush.khmelov.entity.*;
 import org.hibernate.Session;
@@ -22,7 +22,6 @@ public class SessionCreator implements AutoCloseable {
         configuration.addAnnotatedClass(Question.class);
         configuration.addAnnotatedClass(Answer.class);
         configuration.addAnnotatedClass(Game.class);
-        configuration.addAnnotatedClass(UserInfo.class);
         configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());
         sessionFactory = configuration.buildSessionFactory();
     }

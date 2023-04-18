@@ -2,11 +2,12 @@ package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.*;
 import com.javarush.khmelov.exception.AppException;
-import com.javarush.khmelov.repository.memory.AnswerRepository;
-import com.javarush.khmelov.repository.memory.QuestRepository;
-import com.javarush.khmelov.repository.memory.QuestionRepository;
-import com.javarush.khmelov.repository.memory.UserRepository;
+import com.javarush.khmelov.repository.impl.AnswerRepository;
+import com.javarush.khmelov.repository.impl.QuestRepository;
+import com.javarush.khmelov.repository.impl.QuestionRepository;
+import com.javarush.khmelov.repository.impl.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Transactional
 public class QuestService {
 
     public static final String QUEST_SYMBOL = ":";

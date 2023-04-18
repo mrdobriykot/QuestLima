@@ -1,12 +1,14 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.Question;
-import com.javarush.khmelov.repository.memory.QuestionRepository;
+import com.javarush.khmelov.repository.impl.QuestionRepository;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
+@Transactional
 @AllArgsConstructor
 public class QuestionService {
 

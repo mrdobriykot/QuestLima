@@ -1,6 +1,6 @@
 package com.javarush.khmelov.entity;
 
-import com.javarush.khmelov.repository.hibernate.SessionCreator;
+import com.javarush.khmelov.repository.helper.SessionCreator;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.AfterEach;

@@ -1,6 +1,6 @@
 package com.javarush.khmelov.config;
 
-import com.javarush.khmelov.repository.hibernate.SessionCreator;
+import com.javarush.khmelov.repository.helper.SessionCreator;
 import lombok.experimental.UtilityClass;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

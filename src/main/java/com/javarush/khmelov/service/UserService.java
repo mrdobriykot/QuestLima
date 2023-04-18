@@ -1,7 +1,7 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.User;
-import com.javarush.khmelov.repository.hibernate.UserRepository;
+import com.javarush.khmelov.repository.impl.UserRepository;
 
 import javax.transaction.Transactional;
 import java.util.Collection;

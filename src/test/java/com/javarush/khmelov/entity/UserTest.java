@@ -15,8 +15,6 @@ class UserTest extends BaseTest{
     void getId() {
         User user = session.get(User.class, ID);
         System.out.println(user);
-        //OneToOne
-        System.out.println(user.getUserInfo());
         //bidirectional OneToMany
         Collection<Quest> quests = user.getQuests();
         System.out.println(quests);

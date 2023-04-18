@@ -1,4 +1,4 @@
-package com.javarush.khmelov.repository.liquibase;
+package com.javarush.khmelov.repository.helper;
 
 import liquibase.Contexts;
 import liquibase.LabelExpression;

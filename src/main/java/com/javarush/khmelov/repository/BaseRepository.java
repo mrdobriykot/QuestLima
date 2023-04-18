@@ -1,7 +1,7 @@
-package com.javarush.khmelov.repository.hibernate;
+package com.javarush.khmelov.repository;
 
 import com.javarush.khmelov.entity.AbstractEntity;
-import com.javarush.khmelov.repository.Repository;
+import com.javarush.khmelov.repository.helper.SessionCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.Session;

@@ -55,8 +55,5 @@ public class User implements AbstractEntity{
     @ToString.Exclude
     private final Collection<Quest> questsInGame = new ArrayList<>();
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserInfo userInfo;
-
 
 }

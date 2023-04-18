@@ -8,8 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ConfigTest {
     @Test
-    void checkWebInf(){
-        String fullPath = Objects.requireNonNull(ConfigTest.class.getResource("/")).toString();
+    void checkWebInf() {
+        String fullPath = Objects
+                .requireNonNull(ConfigTest.class.getResource("/"))
+                .toString();
         assertTrue(fullPath.contains(Config.WEB_INF.toString()));
     }
 }
