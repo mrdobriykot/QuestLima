@@ -45,12 +45,6 @@ public class SessionCreator implements AutoCloseable {
         log(level.get(), "begin level: ");
     }
 
-    private static void log(int level, String message) {
-        String simpleName = Thread.currentThread().getStackTrace()[4].toString();
-        System.out.println("\t".repeat(level) + message + level+" from "+simpleName);
-        System.out.flush();
-    }
-
 
     public void endTransactional() {
         AtomicInteger level = levelBox.get();
@@ -64,6 +58,12 @@ public class SessionCreator implements AutoCloseable {
                 throw e;
             }
         }
+    }
+
+    private void log(int level, String message) {
+        String simpleName = Thread.currentThread().getStackTrace()[4].toString();
+        System.out.println("\t".repeat(level) + message + level+" from "+simpleName);
+        System.out.flush();
     }
 
     @Override

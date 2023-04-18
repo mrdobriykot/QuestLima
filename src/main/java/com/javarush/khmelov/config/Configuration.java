@@ -15,10 +15,10 @@ import java.util.Objects;
 public class Configuration {
 
     private final ValidatorDataBase validatorDataBase;
+    private final UserService userService;
 
     public void fillEmptyRepository() {
         validatorDataBase.update();
-        UserService userService = Spring.getBean(UserService.class);
         if (userService.get(1L).isEmpty()) {
             User admin = User.builder().login("admin").password("456").role(Role.ADMIN).build();
             userService.create(admin);
