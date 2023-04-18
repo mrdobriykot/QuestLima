@@ -26,7 +26,7 @@ import static com.javarush.khmelov.util.Key.QUEST;
 
 
 @MultipartConfig(fileSizeThreshold = 1 << 20)
-@WebServlet(value = {Go.QUEST}, name = "QuestServlet")
+@WebServlet(Go.QUEST)
 public class QuestServlet extends HttpServlet {
 
     private final QuestService questService = Winter.getBean(QuestService.class);

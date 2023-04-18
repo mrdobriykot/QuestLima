@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "SignupServlet", value = Go.SIGNUP)
+@WebServlet(Go.SIGNUP)
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 public class SignupServlet extends HttpServlet {
 

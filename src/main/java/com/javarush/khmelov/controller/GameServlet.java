@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet(value = Go.GAME, name = "GameServlet")
+@WebServlet(Go.GAME)
 public class GameServlet extends HttpServlet {
 
     private final GameService gameService = Winter.getBean(GameService.class);

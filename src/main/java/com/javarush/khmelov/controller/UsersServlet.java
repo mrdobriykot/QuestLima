@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
-@WebServlet(name = "UsersServlet", value = Go.USERS)
+@WebServlet(Go.USERS)
 public class UsersServlet extends HttpServlet {
 
     private final UserService userService = Winter.getBean(UserService.class);
@@ -24,9 +24,5 @@ public class UsersServlet extends HttpServlet {
         Collection<User> users = userService.getAll();
         request.setAttribute(Key.USERS, users);
         Jsp.forward(request, response, Key.USERS);
-    }
-
-
-    public void destroy() {
     }
 }

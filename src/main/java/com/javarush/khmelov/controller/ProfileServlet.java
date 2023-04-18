@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(name = "ProfileServlet", value = Go.PROFILE)
+@WebServlet(Go.PROFILE)
 public class ProfileServlet extends HttpServlet {
 
     @Override

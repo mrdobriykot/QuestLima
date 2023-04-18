@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet(name = "LoginServlet", value = Go.LOGIN)
+@WebServlet(Go.LOGIN)
 public class LoginServlet extends HttpServlet {
 
     private final UserService userService = Winter.getBean(UserService.class);

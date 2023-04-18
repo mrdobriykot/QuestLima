@@ -19,7 +19,7 @@ import java.io.IOException;
 import static com.javarush.khmelov.util.Key.INDEX;
 import static com.javarush.khmelov.util.Key.QUESTS;
 
-@WebServlet(name = "IndexServlet", value = Go.HOME, loadOnStartup = 0)
+@WebServlet(value = Go.HOME, loadOnStartup = 0)
 public class IndexServlet extends HttpServlet {
 
     @Override

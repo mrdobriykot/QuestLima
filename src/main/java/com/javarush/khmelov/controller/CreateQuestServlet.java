@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet(name = "CreateQuestServlet", value = Go.CREATE)
+@WebServlet(Go.CREATE)
 public class CreateQuestServlet extends HttpServlet {
 
     private final QuestService questService = Winter.getBean(QuestService.class);

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@WebServlet(name = "UserServlet", value = Go.USER)
+@WebServlet(Go.USER)
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 public class UserServlet extends HttpServlet {
 
