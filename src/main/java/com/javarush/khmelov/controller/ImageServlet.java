@@ -1,6 +1,6 @@
 package com.javarush.khmelov.controller;
 
-import com.javarush.khmelov.config.Winter;
+import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.service.ImageService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +14,7 @@ import java.nio.file.Path;
 @WebServlet("/images/*")
 public class ImageServlet extends HttpServlet {
 
-    private final ImageService imageService = Winter.getBean(ImageService.class);
+    private final ImageService imageService = Spring.getBean(ImageService.class);
 
 
     @Override

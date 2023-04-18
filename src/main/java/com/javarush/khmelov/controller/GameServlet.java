@@ -1,6 +1,6 @@
 package com.javarush.khmelov.controller;
 
-import com.javarush.khmelov.config.Winter;
+import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.Game;
 import com.javarush.khmelov.entity.Question;
 import com.javarush.khmelov.entity.User;
@@ -22,8 +22,8 @@ import java.util.Optional;
 @WebServlet(Go.GAME)
 public class GameServlet extends HttpServlet {
 
-    private final GameService gameService = Winter.getBean(GameService.class);
-    private final QuestionService questionService = Winter.getBean(QuestionService.class);
+    private final GameService gameService = Spring.getBean(GameService.class);
+    private final QuestionService questionService = Spring.getBean(QuestionService.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

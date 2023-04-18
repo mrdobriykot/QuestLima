@@ -1,6 +1,6 @@
 package com.javarush.khmelov.controller;
 
-import com.javarush.khmelov.config.Winter;
+import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.ImageService;
@@ -22,8 +22,8 @@ import java.io.IOException;
 @MultipartConfig(fileSizeThreshold = 1 << 20)
 public class SignupServlet extends HttpServlet {
 
-    private final UserService userService = Winter.getBean(UserService.class);
-    private final ImageService imageService = Winter.getBean(ImageService.class);
+    private final UserService userService = Spring.getBean(UserService.class);
+    private final ImageService imageService = Spring.getBean(ImageService.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {

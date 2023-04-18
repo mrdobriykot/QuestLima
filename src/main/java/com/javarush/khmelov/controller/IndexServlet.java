@@ -1,7 +1,7 @@
 package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.config.Config;
-import com.javarush.khmelov.config.Winter;
+import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.util.Go;
@@ -29,7 +29,7 @@ public class IndexServlet extends HttpServlet {
         super.init(config);
     }
 
-    private final QuestService questService = Winter.getBean(QuestService.class);
+    private final QuestService questService = Spring.getBean(QuestService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

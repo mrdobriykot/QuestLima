@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Config {
 
     public static void fillEmptyRepository() {
-        UserService userService = Winter.getBean(UserService.class);
+        UserService userService = Spring.getBean(UserService.class);
         if (userService.get(1L).isEmpty()) {
             User admin = User.builder().login("admin").password("456").role(Role.ADMIN).build();
             userService.create(admin);
@@ -21,7 +21,7 @@ public class Config {
             userService.create(User.builder().login("guest").password("guest").role(Role.GUEST).build());
         }
 
-        QuestService questService = Winter.getBean(QuestService.class);
+        QuestService questService = Spring.getBean(QuestService.class);
         Long adminId = userService
                 .get("admin", "456")
                 .orElseThrow()

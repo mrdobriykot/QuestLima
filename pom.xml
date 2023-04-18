@@ -114,9 +114,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.datastax.oss</groupId>
-            <artifactId>java-driver-core</artifactId>
-            <version>4.15.0</version>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.9.0</version>
         </dependency>
 
     </dependencies>

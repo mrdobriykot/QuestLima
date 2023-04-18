@@ -1,19 +1,23 @@
 package com.javarush.khmelov.config;
 
 import com.javarush.khmelov.repository.helper.SessionCreator;
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.MethodInterceptor;
+import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.implementation.MethodDelegation;
+import net.bytebuddy.implementation.bind.annotation.*;
+import net.bytebuddy.matcher.ElementMatchers;
 
 import javax.transaction.Transactional;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 @UtilityClass
-public class Winter {
+public class Spring {
     private final Map<Class<?>, Object> container = new HashMap<>();
 
     @SuppressWarnings("unchecked")
@@ -42,38 +46,39 @@ public class Winter {
     }
 
     private static <T> boolean checkTransactional(Class<T> type) {
-        if (type.isAnnotationPresent(Transactional.class)) {
-            return true;
-        }
-        for (Method declaredMethod : type.getDeclaredMethods()) {
-            if (declaredMethod.isAnnotationPresent(Transactional.class)) {
-                return true;
+        return Arrays.stream(type.getMethods())
+                .anyMatch(method -> method.isAnnotationPresent(Transactional.class));
+    }
+
+    @SneakyThrows
+    private Object proxyTransactional(Object component, Class<?>[] parameterTypes, Object[] parameters) {
+        Class<?> type = component.getClass();
+        Class<?> proxy = new ByteBuddy()
+                .subclass(type)
+                .method(ElementMatchers.isAnnotatedWith(Transactional.class))
+                .intercept(MethodDelegation.to(Interceptor.class))
+                .make()
+                .load(type.getClassLoader())
+                .getLoaded();
+        Constructor<?> constructor = proxy.getConstructor(parameterTypes);
+        return constructor.newInstance(parameters);
+    }
+
+    public static class Interceptor {
+
+        private static final SessionCreator sessionCreator = getBean(SessionCreator.class);
+
+        @RuntimeType
+        public static Object intercept(@This Object self,
+                                       @Origin Method method,
+                                       @AllArguments Object[] args,
+                                       @SuperMethod Method superMethod) throws Throwable {
+            sessionCreator.beginTransactional();
+            try {
+                return superMethod.invoke(self, args);
+            } finally {
+                sessionCreator.endTransactional();
             }
         }
-        return false;
     }
-
-
-    private Object proxyTransactional(Object component, Class<?>[] parameterTypes, Object[] parameters) {
-        SessionCreator sessionCreator = getBean(SessionCreator.class);
-        Enhancer enhancer = new Enhancer();
-        Class<?> type = component.getClass();
-        enhancer.setSuperclass(type);
-        enhancer.setCallback((MethodInterceptor) (obj, method, args, proxy) -> {
-                    if (type.isAnnotationPresent(Transactional.class)
-                        || method.isAnnotationPresent(Transactional.class)) {
-                        sessionCreator.beginTransactional();
-                        try {
-                            return proxy.invokeSuper(obj, args);
-                        } finally {
-                            sessionCreator.endTransactional();
-                        }
-                    } else {
-                        return proxy.invokeSuper(obj, args);
-                    }
-                }
-        );
-        return enhancer.create(parameterTypes, parameters);
-    }
-
 }

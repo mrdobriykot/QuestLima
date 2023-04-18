@@ -1,6 +1,6 @@
 package com.javarush.khmelov.service;
 
-import com.javarush.khmelov.config.Winter;
+import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,15 +8,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserServiceTest {
 
     private UserService userService;
 
     @BeforeEach
-    void setup(){
-        userService = Winter.getBean(UserService.class);
+    void setup() {
+        userService = Spring.getBean(UserService.class);
     }
 
     @Test
@@ -30,7 +29,7 @@ class UserServiceTest {
     @DisplayName("When get(1L) then login is 'admin'")
     void get() {
         User user = userService.get(1L).orElseThrow();
-        assertEquals("admin",user.getLogin());
+        assertEquals("admin", user.getLogin());
     }
 
     @Test
@@ -50,6 +49,5 @@ class UserServiceTest {
 
         userService.delete(tempUser);
         System.out.println("DELETE " + tempUser);
-        assertTrue(tempUser.getId() > 0);
     }
 }

@@ -15,7 +15,6 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Transactional
 public class QuestService {
 
     public static final String QUEST_SYMBOL = ":";
@@ -36,16 +35,17 @@ public class QuestService {
         this.answerRepository = answerRepository;
     }
 
-
+    @Transactional
     public Collection<Quest> getAll() {
         return questRepository.getAll();
     }
 
+    @Transactional
     public Optional<Quest> get(long id) {
         return Optional.ofNullable(questRepository.get(id));
     }
 
-
+    @Transactional
     public Optional<Quest> create(String name, String text, Long userId) {
         Map<Long, Question> map = fillDraftMap(text);
         if (map.size() < 1) {
@@ -85,6 +85,7 @@ public class QuestService {
         }
         throw new AppException("not found start index in text");
     }
+
 
     private Map<Long, Question> fillDraftMap(String text) {
         Map<Long, Question> map = new TreeMap<>();

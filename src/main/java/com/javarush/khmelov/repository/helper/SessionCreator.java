@@ -27,9 +27,9 @@ public class SessionCreator implements AutoCloseable {
     }
 
     public Session getSession() {
-        return sessionBox.get()==null
-                ?sessionFactory.openSession()
-                :sessionBox.get();
+        return sessionBox.get() == null
+                ? sessionFactory.openSession()
+                : sessionBox.get();
     }
 
     public void beginTransactional() {
@@ -42,12 +42,20 @@ public class SessionCreator implements AutoCloseable {
             sessionBox.set(session);
             session.beginTransaction();
         }
+        log(level.get(), "begin level: ");
+    }
+
+    private static void log(int level, String message) {
+        String simpleName = Thread.currentThread().getStackTrace()[4].toString();
+        System.out.println("\t".repeat(level) + message + level+" from "+simpleName);
+        System.out.flush();
     }
 
 
     public void endTransactional() {
         AtomicInteger level = levelBox.get();
         Session session = sessionBox.get();
+        log(level.get(), "end level: ");
         if (level.decrementAndGet() == 0) {
             try {
                 session.getTransaction().commit();
@@ -55,8 +63,6 @@ public class SessionCreator implements AutoCloseable {
                 session.getTransaction().rollback();
                 throw e;
             }
-        } else {
-            session.flush();
         }
     }
 

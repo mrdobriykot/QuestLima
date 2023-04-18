@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.Optional;
 
-@Transactional
 @AllArgsConstructor
 public class GameService {
 
@@ -18,6 +17,7 @@ public class GameService {
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
 
+    @Transactional
     public Optional<Game> getGame(Long questId, Long userId) {
         Game gamePattern = Game.builder().questId(questId).build();
         gamePattern.setGameState(GameState.PLAY);
@@ -49,6 +49,7 @@ public class GameService {
         return newGame;
     }
 
+    @Transactional
     public Optional<Game> checkAnswer(Long gameId, Long answerId) {
         Game game = gameRepository.get(gameId);
         if (game.getGameState() == GameState.PLAY) {

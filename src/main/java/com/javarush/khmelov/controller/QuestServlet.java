@@ -1,6 +1,6 @@
 package com.javarush.khmelov.controller;
 
-import com.javarush.khmelov.config.Winter;
+import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.Quest;
 import com.javarush.khmelov.entity.Question;
 import com.javarush.khmelov.entity.Role;
@@ -29,9 +29,9 @@ import static com.javarush.khmelov.util.Key.QUEST;
 @WebServlet(Go.QUEST)
 public class QuestServlet extends HttpServlet {
 
-    private final QuestService questService = Winter.getBean(QuestService.class);
-    private final QuestionService questionService = Winter.getBean(QuestionService.class);
-    private final ImageService imageService = Winter.getBean(ImageService.class);
+    private final QuestService questService = Spring.getBean(QuestService.class);
+    private final QuestionService questionService = Spring.getBean(QuestionService.class);
+    private final ImageService imageService = Spring.getBean(ImageService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -1,6 +1,6 @@
 package com.javarush.khmelov.controller;
 
-import com.javarush.khmelov.config.Winter;
+import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @WebServlet(Go.LOGIN)
 public class LoginServlet extends HttpServlet {
 
-    private final UserService userService = Winter.getBean(UserService.class);
+    private final UserService userService = Spring.getBean(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
