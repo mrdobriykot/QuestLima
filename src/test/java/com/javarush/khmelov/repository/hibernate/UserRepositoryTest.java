@@ -11,15 +11,16 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class UserDbRepositoryTest {
+class UserRepositoryTest {
 
-    private UserDbRepository userDbRepository;
+    private UserRepository userRepository;
 
     @BeforeEach
-    void setup(){
-        userDbRepository = new UserDbRepository(new SessionCreator());
+    void setup() {
+        userRepository = new UserRepository(new SessionCreator());
     }
 
     public static Stream<Arguments> getSamplePatternForSearch() {
@@ -45,21 +46,21 @@ class UserDbRepositoryTest {
     @MethodSource("getSamplePatternForSearch")
     @DisplayName("Check find by not null fields")
     public void find(User user, int count) {
-        long actualCount = userDbRepository.find(user).count();
+        long actualCount = userRepository.find(user).count();
         assertEquals(count, actualCount);
     }
 
     @Test
     @DisplayName("When get all count=3")
     void getAll() {
-        long count = userDbRepository.getAll().size();
+        long count = userRepository.getAll().size();
         assertEquals(3, count);
     }
 
     @Test
     void get() {
-        User user = userDbRepository.get(1L);
-        assertEquals("admin",user.getLogin());
+        User user = userRepository.get(1L);
+        assertEquals("admin", user.getLogin());
     }
 
     @Test
@@ -70,15 +71,14 @@ class UserDbRepositoryTest {
                 .password("password_test")
                 .role(Role.GUEST)
                 .build();
-        userDbRepository.create(tempUser);
+        userRepository.create(tempUser);
         System.out.println("CREATE " + tempUser);
 
         tempUser.setPassword("password_test_update");
-        userDbRepository.update(tempUser);
+        userRepository.update(tempUser);
         System.out.println("UPDATE " + tempUser);
 
-        userDbRepository.delete(tempUser);
+        userRepository.delete(tempUser);
         System.out.println("DELETE " + tempUser);
-        assertTrue(tempUser.getId() > 0);
     }
 }

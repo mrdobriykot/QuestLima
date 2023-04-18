@@ -1,11 +1,13 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.entity.User;
-import com.javarush.khmelov.repository.memory.UserRepository;
+import com.javarush.khmelov.repository.hibernate.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;

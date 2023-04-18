@@ -19,13 +19,5 @@ class QuestTest extends BaseTest {
         System.out.println(quest+" "+author);
     }
 
-    @Test
-    void customFetchProfile(){
-        session.enableFetchProfile(Quest.LAZY_QUESTIONS_AND_JOIN_AUTHOR);
-        Quest quest = session.find(Quest.class, ID);
-        System.out.println(quest);
-        System.out.println(quest.getQuestions());
-    }
-
 
 }

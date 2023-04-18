@@ -1,9 +1,14 @@
 package com.javarush.khmelov.config;
 
+import com.javarush.khmelov.repository.hibernate.SessionCreator;
 import lombok.experimental.UtilityClass;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
 
+import javax.transaction.Transactional;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +30,9 @@ public class Winter {
                     parameters[i] = getBean(parameterTypes[i]);
                 }
                 Object component = constructor.newInstance(parameters);
+                if (checkTransactional(type)) {
+                    component = proxyTransactional(component, parameterTypes, parameters);
+                }
                 container.put(type, component);
                 return (T) component;
             }
@@ -32,4 +40,40 @@ public class Winter {
             throw new RuntimeException("Context broken for " + type, e);
         }
     }
+
+    private static <T> boolean checkTransactional(Class<T> type) {
+        if (type.isAnnotationPresent(Transactional.class)) {
+            return true;
+        }
+        for (Method declaredMethod : type.getDeclaredMethods()) {
+            if (declaredMethod.isAnnotationPresent(Transactional.class)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private Object proxyTransactional(Object component, Class<?>[] parameterTypes, Object[] parameters) {
+        SessionCreator sessionCreator = getBean(SessionCreator.class);
+        Enhancer enhancer = new Enhancer();
+        Class<?> type = component.getClass();
+        enhancer.setSuperclass(type);
+        enhancer.setCallback((MethodInterceptor) (obj, method, args, proxy) -> {
+                    if (type.isAnnotationPresent(Transactional.class)
+                        || method.isAnnotationPresent(Transactional.class)) {
+                        sessionCreator.beginTransactional();
+                        try {
+                            return proxy.invokeSuper(obj, args);
+                        } finally {
+                            sessionCreator.endTransactional();
+                        }
+                    } else {
+                        return proxy.invokeSuper(obj, args);
+                    }
+                }
+        );
+        return enhancer.create(parameterTypes, parameters);
+    }
+
 }
