@@ -5,7 +5,6 @@ import lombok.experimental.UtilityClass;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.implementation.bind.annotation.*;
-import net.bytebuddy.matcher.ElementMatcher;
 import net.bytebuddy.matcher.ElementMatchers;
 
 import javax.transaction.Transactional;
@@ -16,7 +15,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.util.function.Predicate.not;
 import static net.bytebuddy.matcher.ElementMatchers.isDeclaredBy;
 
 @UtilityClass
@@ -70,17 +68,19 @@ public class Spring {
     }
 
 
-    public class Interceptor {
+    public static class Interceptor {
+        private static final SessionCreator sessionCreator = getBean(SessionCreator.class);
+
         @RuntimeType
         public static Object intercept(@This Object self,
                                        @Origin Method method,
                                        @AllArguments Object[] args,
                                        @SuperMethod Method superMethod) throws Throwable {
-            sessionCreator.beginTransactional();
+            getBean(SessionCreator.class).beginTransactional();
             try {
                 return superMethod.invoke(self, args);
             } finally {
-                sessionCreator.endTransactional();
+                getBean(SessionCreator.class).endTransactional();
             }
         }
     }
