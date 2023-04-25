@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.implementation.bind.annotation.*;
+import net.bytebuddy.matcher.ElementMatcher;
 import net.bytebuddy.matcher.ElementMatchers;
 
 import javax.transaction.Transactional;
@@ -15,9 +16,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.util.function.Predicate.not;
+import static net.bytebuddy.matcher.ElementMatchers.isDeclaredBy;
+
 @UtilityClass
 public class Spring {
     private final Map<Class<?>, Object> container = new HashMap<>();
+
+    private static final SessionCreator sessionCreator = getBean(SessionCreator.class);
 
     @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> type) { //QuestService.class
@@ -32,10 +38,9 @@ public class Spring {
                 for (int i = 0; i < parameters.length; i++) {
                     parameters[i] = getBean(parameterTypes[i]);
                 }
-                Object component = constructor.newInstance(parameters);
-                if (checkTransactional(type)) {
-                    component = proxyTransactional(component, parameterTypes, parameters);
-                }
+                Object component = checkTransactional(type)
+                        ? constructProxyInstance(type, parameterTypes, parameters)
+                        : constructor.newInstance(parameters);
                 container.put(type, component);
                 return (T) component;
             }
@@ -45,16 +50,17 @@ public class Spring {
     }
 
     private <T> boolean checkTransactional(Class<T> type) {
-        return Arrays.stream(type.getMethods())
-                .anyMatch(method -> method.isAnnotationPresent(Transactional.class));
+        return type.isAnnotationPresent(Transactional.class)
+               || Arrays.stream(type.getMethods())
+                       .anyMatch(method -> method.isAnnotationPresent(Transactional.class));
     }
 
     @SneakyThrows
-    private Object proxyTransactional(Object component, Class<?>[] parameterTypes, Object[] parameters) {
-        Class<?> type = component.getClass();
+    private Object constructProxyInstance(Class<?> type, Class<?>[] parameterTypes, Object[] parameters) {
         Class<?> proxy = new ByteBuddy()
                 .subclass(type)
-                .method(ElementMatchers.isAnnotatedWith(Transactional.class))
+                .method(isDeclaredBy(ElementMatchers.isAnnotatedWith(Transactional.class))
+                        .or(ElementMatchers.isAnnotatedWith(Transactional.class)))
                 .intercept(MethodDelegation.to(Interceptor.class))
                 .make()
                 .load(type.getClassLoader())
@@ -63,10 +69,8 @@ public class Spring {
         return constructor.newInstance(parameters);
     }
 
+
     public class Interceptor {
-
-        private static final SessionCreator sessionCreator = getBean(SessionCreator.class);
-
         @RuntimeType
         public static Object intercept(@This Object self,
                                        @Origin Method method,

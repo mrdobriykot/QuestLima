@@ -20,12 +20,12 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
+@Transactional
 public class BaseRepository<T extends AbstractEntity> implements Repository<T> {
 
     private final SessionCreator sessionCreator;
     private final Class<T> type;
 
-    @Transactional
     @Override
     public Collection<T> getAll() {
         Session session = sessionCreator.getSession();
@@ -39,7 +39,6 @@ public class BaseRepository<T extends AbstractEntity> implements Repository<T> {
      * result <- session.createQuery(cq).list(); */
     @SneakyThrows
     @Override
-    @Transactional
     public Stream<T> find(T pattern) {
         Session session = sessionCreator.getSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -66,26 +65,22 @@ public class BaseRepository<T extends AbstractEntity> implements Repository<T> {
 
     // HQL
     @Override
-    @Transactional
     public T get(long id) {
         return sessionCreator.getSession().get(type, id);
     }
 
     @Override
-    @Transactional
     public void create(T entity) {
         sessionCreator.getSession().persist(entity);
     }
 
     @Override
-    @Transactional
     public void update(T entity) {
         Session session = sessionCreator.getSession();
         session.merge(entity);
     }
 
     @Override
-    @Transactional
     public void delete(T entity) {
         sessionCreator.getSession().remove(entity);
     }
