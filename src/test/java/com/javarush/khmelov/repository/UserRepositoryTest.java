@@ -1,8 +1,9 @@
 package com.javarush.khmelov.repository;
 
+import com.javarush.khmelov.ContainerIT;
+import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
-import com.javarush.khmelov.config.SessionCreator;
 import com.javarush.khmelov.repository.impl.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +23,8 @@ class UserRepositoryTest {
 
     @BeforeEach
     void setup() {
-        userRepository = new UserRepository(new SessionCreator());
+        ContainerIT.init();
+        userRepository = Spring.getBean(UserRepository.class);
     }
 
     public static Stream<Arguments> getSamplePatternForSearch() {

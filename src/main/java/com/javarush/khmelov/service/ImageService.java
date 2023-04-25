@@ -1,11 +1,10 @@
 package com.javarush.khmelov.service;
 
-import com.javarush.khmelov.config.Configuration;
+import com.javarush.khmelov.config.ApplicationProperties;
+import com.javarush.khmelov.config.Configurator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
@@ -28,8 +27,8 @@ public class ImageService {
     private final Path imagesFolder;
 
     @SneakyThrows
-    public ImageService(Configuration configuration) {
-        imagesFolder=configuration.WEB_INF.resolve(IMAGES_FOLDER);
+    public ImageService(ApplicationProperties applicationProperties) {
+        imagesFolder= applicationProperties.WEB_INF.resolve(IMAGES_FOLDER);
         Files.createDirectories(imagesFolder);
     }
 

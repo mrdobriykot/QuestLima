@@ -1,6 +1,6 @@
 package com.javarush.khmelov.controller;
 
-import com.javarush.khmelov.config.Configuration;
+import com.javarush.khmelov.config.Configurator;
 import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.service.QuestService;
@@ -22,11 +22,11 @@ import static com.javarush.khmelov.util.Key.QUESTS;
 @WebServlet(value = Go.HOME, loadOnStartup = 0)
 public class IndexServlet extends HttpServlet {
 
-    private final Configuration configuration = Spring.getBean(Configuration.class);
+    private final Configurator configurator = Spring.getBean(Configurator.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        configuration.fillEmptyRepository();
+        configurator.fillEmptyRepository();
         config.getServletContext().setAttribute(Key.ROLES, Role.values());
         super.init(config);
     }

@@ -6,15 +6,13 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ConfigurationTest {
-
-    private final Configuration configuration = Spring.getBean(Configuration.class);
+class ApplicationPropertiesTest {
 
     @Test
     void checkWebInf() {
         String fullPath = Objects
-                .requireNonNull(ConfigurationTest.class.getResource("/"))
+                .requireNonNull(ApplicationPropertiesTest.class.getResource("/"))
                 .toString();
-        assertTrue(fullPath.contains(configuration.WEB_INF.toString()));
+        assertTrue(fullPath.contains(ApplicationProperties.WEB_INF.toString()));
     }
 }

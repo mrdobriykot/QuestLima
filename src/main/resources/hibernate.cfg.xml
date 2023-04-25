@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-configuration PUBLIC
+<!DOCTYPE hibernate-configurator PUBLIC
     "-//Hibernate/Hibernate Configuration DTD//EN"
-    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<hibernate-configuration>
+    "http://www.hibernate.org/dtd/hibernate-configurator-3.0.dtd">
+<hibernate-configurator>
   <session-factory>
   <property name="connection.url">jdbc:postgresql://localhost:2345/game</property>
   <property name="connection.driver_class">org.postgresql.Driver</property>
@@ -24,4 +24,4 @@
   <!-- DB schema will be updated if needed -->
   <!--     <property name="hibernate.hbm2ddl.auto">validate</property> -->
 </session-factory>
-</hibernate-configuration>
+</hibernate-configurator>

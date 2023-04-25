@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SessionCreator implements AutoCloseable {
@@ -14,9 +15,9 @@ public class SessionCreator implements AutoCloseable {
     private final ThreadLocal<AtomicInteger> levelBox = new ThreadLocal<>();
     private final ThreadLocal<Session> sessionBox = new ThreadLocal<>();
 
-    public SessionCreator() {
+    public SessionCreator(ApplicationProperties applicationProperties) {
         Configuration configuration = new Configuration();
-        configuration.configure();
+        configuration.setProperties(applicationProperties);
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Quest.class);
         configuration.addAnnotatedClass(Question.class);
@@ -27,7 +28,7 @@ public class SessionCreator implements AutoCloseable {
     }
 
     public Session getSession() {
-        return sessionBox.get() == null
+        return sessionBox.get() == null || !sessionBox.get().isOpen()
                 ? sessionFactory.openSession()
                 : sessionBox.get();
     }

@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 @AllArgsConstructor
-public class Configuration {
+public class Configurator {
 
     private final ValidatorDataBase validatorDataBase;
     private final UserService userService;
@@ -122,12 +122,5 @@ public class Configuration {
                     adminId
             );
         }
-
     }
-
-    public final Path WEB_INF = Paths.get(URI.create(
-                    Objects.requireNonNull(
-                            Configuration.class.getResource("/")
-                    ).toString()))
-            .getParent();
 }
