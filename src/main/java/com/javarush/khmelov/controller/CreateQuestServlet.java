@@ -1,7 +1,7 @@
 package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.config.Spring;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.util.Go;
 import com.javarush.khmelov.util.Jsp;
@@ -30,7 +30,7 @@ public class CreateQuestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter(Key.NAME);
         String text = request.getParameter(Key.TEXT);
-        Optional<User> optionalUser = Parser.getUser(request.getSession());
+        Optional<UserTo> optionalUser = Parser.getUser(request.getSession());
         optionalUser.ifPresent(user -> questService.create(name, text, user.getId()));
         Jsp.redirect(response, Go.HOME);
     }

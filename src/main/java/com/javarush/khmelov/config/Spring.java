@@ -21,8 +21,6 @@ import static net.bytebuddy.matcher.ElementMatchers.isDeclaredBy;
 public class Spring {
     private final Map<Class<?>, Object> container = new HashMap<>();
 
-    private static final SessionCreator sessionCreator = getBean(SessionCreator.class);
-
     @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> type) { //QuestService.class
         try {
@@ -69,8 +67,6 @@ public class Spring {
 
 
     public static class Interceptor {
-        private static final SessionCreator sessionCreator = getBean(SessionCreator.class);
-
         @RuntimeType
         public static Object intercept(@This Object self,
                                        @Origin Method method,

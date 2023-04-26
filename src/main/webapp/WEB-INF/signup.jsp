@@ -6,7 +6,7 @@
         <fieldset>
 
             <!-- Form Name -->
-            <legend>User Form</legend>
+            <legend>Registration</legend>
 
             <!-- File Button -->
             <div class="form-group">
@@ -52,18 +52,6 @@
                            class="form-control input-md"
                            required="">
 
-                </div>
-            </div>
-
-            <!-- Select Basic -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="role">Role</label>
-                <div class="col-md-4">
-                    <select id="role" name="role" class="form-control">
-                        <c:forEach items="${applicationScope.roles}" var="role">
-                            <option value="${role}" ${"GUEST"==role?"selected":""}>${role}</option>
-                        </c:forEach>
-                    </select>
                 </div>
             </div>
 

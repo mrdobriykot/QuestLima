@@ -1,7 +1,9 @@
 package com.javarush.khmelov.service;
 
+import com.javarush.khmelov.dto.QuestTo;
 import com.javarush.khmelov.entity.*;
 import com.javarush.khmelov.exception.AppException;
+import com.javarush.khmelov.mapping.Dto;
 import com.javarush.khmelov.repository.impl.AnswerRepository;
 import com.javarush.khmelov.repository.impl.QuestRepository;
 import com.javarush.khmelov.repository.impl.QuestionRepository;
@@ -23,7 +25,7 @@ public class QuestService {
     public static final String LINK_SYMBOL = "<";
     public static final String DIGITS = "\\d+";
 
-    private final UserRepository userRepository ;
+    private final UserRepository userRepository;
     private final QuestRepository questRepository;
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
@@ -36,17 +38,21 @@ public class QuestService {
     }
 
     @Transactional
-    public Collection<Quest> getAll() {
-        return questRepository.getAll();
+    public Collection<QuestTo> getAll() {
+        return questRepository.getAll()
+                .stream()
+                .map(Dto.MAPPER::from)
+                .toList();
     }
 
     @Transactional
-    public Optional<Quest> get(long id) {
-        return Optional.ofNullable(questRepository.get(id));
+    public Optional<QuestTo> get(long id) {
+        return Optional.ofNullable(questRepository.get(id))
+                .map(Dto.MAPPER::from);
     }
 
     @Transactional
-    public Optional<Quest> create(String name, String text, Long userId) {
+    public Optional<QuestTo> create(String name, String text, Long userId) {
         Map<Long, Question> map = fillDraftMap(text);
         if (map.size() < 1) {
             return Optional.empty();
@@ -75,7 +81,8 @@ public class QuestService {
         map.values().stream()
                 .flatMap(q -> q.getAnswers().stream())
                 .forEach(answerRepository::create);
-        return Optional.ofNullable(quest);
+        return Optional.of(quest)
+                .map(Dto.MAPPER::from);
     }
 
     private Long findStartQuestionLabel(String text) {

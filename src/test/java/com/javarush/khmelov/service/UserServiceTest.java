@@ -2,11 +2,14 @@ package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.ContainerIT;
 import com.javarush.khmelov.config.Spring;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,26 +33,20 @@ class UserServiceTest {
     @Test
     @DisplayName("When get(1L) then login is 'admin'")
     void get() {
-        User user = userService.get(1L).orElseThrow();
+        UserTo user = userService.get(1L).orElseThrow();
         assertEquals("admin", user.getLogin());
     }
 
     @Test
     @DisplayName("When create+update+delete tempUser then no Exception")
     void createUpdateDelete() {
-        User tempUser = User.builder()
-                .login("login_test")
-                .password("password_test")
-                .role(Role.GUEST)
-                .build();
-        userService.create(tempUser);
-        System.out.println("CREATE " + tempUser);
+        UserTo user = userService.create("login_test", "password_test").orElseThrow();
+        System.out.println("CREATE " + user);
 
-        tempUser.setPassword("password_test_update");
-        userService.update(tempUser);
-        System.out.println("UPDATE " + tempUser);
+        user = userService.update(user.getId(), user.getLogin(), "new_password", "GUEST").orElseThrow();
+        System.out.println("UPDATE " + user);
 
-        userService.delete(tempUser);
-        System.out.println("DELETE " + tempUser);
+        userService.delete(user.getId());
+        System.out.println("DELETE " + user);
     }
 }

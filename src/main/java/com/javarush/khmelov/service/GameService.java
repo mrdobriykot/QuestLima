@@ -1,6 +1,8 @@
 package com.javarush.khmelov.service;
 
+import com.javarush.khmelov.dto.GameTo;
 import com.javarush.khmelov.entity.*;
+import com.javarush.khmelov.mapping.Dto;
 import com.javarush.khmelov.repository.impl.*;
 import lombok.AllArgsConstructor;
 
@@ -18,7 +20,7 @@ public class GameService {
     private final AnswerRepository answerRepository;
 
     @Transactional
-    public Optional<Game> getGame(Long questId, Long userId) {
+    public Optional<GameTo> getGame(Long questId, Long userId) {
         Game gamePattern = Game.builder().questId(questId).build();
         gamePattern.setGameState(GameState.PLAY);
         gamePattern.setUserId(userId);
@@ -26,12 +28,33 @@ public class GameService {
                 .find(gamePattern)
                 .max(Comparator.comparingLong(Game::getId));
         if (currentGame.isPresent()) {
-            return currentGame;
+            return currentGame
+                    .map(Dto.MAPPER::from);
         } else if (gamePattern.getQuestId() != null) {
-            return Optional.of(getNewGame(userId, gamePattern.getQuestId()));
+            return Optional.of(getNewGame(userId, gamePattern.getQuestId()))
+                    .map(Dto.MAPPER::from);
         } else {
             return Optional.empty();
         }
+    }
+
+    @Transactional
+    public Optional<GameTo> checkAnswer(Long gameId, Long answerId) {
+        Game game = gameRepository.get(gameId);
+        if (game.getGameState() == GameState.PLAY) {
+            Answer answer = answerRepository.get(answerId);
+            Long nextQuestionId = answer != null
+                    ? answer.getNextQuestionId()
+                    : game.getCurrentQuestionId();
+            game.setCurrentQuestionId(nextQuestionId);
+            Question question = questionRepository.get(nextQuestionId);
+            game.setGameState(question.getGameState());
+            gameRepository.update(game);
+        } else {
+            game = getNewGame(game.getUserId(), game.getQuestId());
+        }
+        return Optional.of(game)
+                .map(Dto.MAPPER::from);
     }
 
     private Game getNewGame(Long userId, Long questId) {
@@ -47,24 +70,6 @@ public class GameService {
         userRepository.get(userId).getGames().add(newGame);
         gameRepository.create(newGame);
         return newGame;
-    }
-
-    @Transactional
-    public Optional<Game> checkAnswer(Long gameId, Long answerId) {
-        Game game = gameRepository.get(gameId);
-        if (game.getGameState() == GameState.PLAY) {
-            Answer answer = answerRepository.get(answerId);
-            Long nextQuestionId = answer != null
-                    ? answer.getNextQuestionId()
-                    : game.getCurrentQuestionId();
-            game.setCurrentQuestionId(nextQuestionId);
-            Question question = questionRepository.get(nextQuestionId);
-            game.setGameState(question.getGameState());
-            gameRepository.update(game);
-        } else {
-            game = getNewGame(game.getUserId(), game.getQuestId());
-        }
-        return Optional.ofNullable(game);
     }
 
 }

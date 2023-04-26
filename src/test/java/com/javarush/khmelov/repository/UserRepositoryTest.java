@@ -82,7 +82,7 @@ class UserRepositoryTest {
         userRepository.update(tempUser);
         System.out.println("UPDATE " + tempUser);
 
-        userRepository.delete(tempUser);
+        userRepository.delete(tempUser.getId());
         System.out.println("DELETE " + tempUser);
     }
 }

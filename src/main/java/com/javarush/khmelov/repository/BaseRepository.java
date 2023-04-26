@@ -1,7 +1,7 @@
 package com.javarush.khmelov.repository;
 
-import com.javarush.khmelov.entity.AbstractEntity;
 import com.javarush.khmelov.config.SessionCreator;
+import com.javarush.khmelov.entity.AbstractEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.hibernate.Session;
@@ -81,8 +81,8 @@ public class BaseRepository<T extends AbstractEntity> implements Repository<T> {
     }
 
     @Override
-    public void delete(T entity) {
-        sessionCreator.getSession().remove(entity);
+    public void delete(Long id) {
+        sessionCreator.getSession().remove(get(id));
     }
 
 }

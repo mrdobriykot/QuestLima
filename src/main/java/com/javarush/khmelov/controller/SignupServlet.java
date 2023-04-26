@@ -1,8 +1,8 @@
 package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.config.Spring;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.ImageService;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet(Go.SIGNUP)
 @MultipartConfig(fileSizeThreshold = 1 << 20)
@@ -38,14 +39,11 @@ public class SignupServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = User.builder()
-                .id(0L)
-                .login(request.getParameter(Key.LOGIN))
-                .password(request.getParameter(Key.PASSWORD))
-                .role(Role.valueOf(request.getParameter(Key.ROLE)))
-                .build();
-        userService.create(user);
-        imageService.uploadImage(request, user.getImage());
+        String login = request.getParameter(Key.LOGIN);
+        String password = request.getParameter(Key.PASSWORD);
+
+        Optional<UserTo> userTo = userService.create(login, password);
+        imageService.uploadImage(request, userTo.orElseThrow().getImage());
         Jsp.redirect(response, Go.USERS);
     }
 }

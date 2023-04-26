@@ -11,16 +11,15 @@ public interface Dto {
 
     Dto MAPPER = Mappers.getMapper(Dto.class);
 
-    UserDto from(User user);
+    UserTo from(User user);
 
     @Mapping(target = "userId", source = "author.id")
-    QuestDto from(Quest quest);
+    QuestTo from(Quest quest);
 
-    QuestionDto from(Question question);
+    QuestionTo from(Question question);
 
-    AnswerDto from(Answer answer);
+    AnswerTo from(Answer answer);
 
-    @Mapping(target = "question", ignore = true)
-    GameDto from(Game game);
+    GameTo from(Game game);
 
 }

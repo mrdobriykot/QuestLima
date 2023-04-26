@@ -1,6 +1,6 @@
 package com.javarush.khmelov.controller;
 
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.util.Go;
 import com.javarush.khmelov.util.Jsp;
 import jakarta.servlet.ServletException;
@@ -23,7 +23,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        UserTo user = (UserTo) session.getAttribute("user");
         Jsp.redirect(response, Go.USER + "?id=" + user.getId());
     }
 }

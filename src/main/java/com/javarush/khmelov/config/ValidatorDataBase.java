@@ -8,6 +8,7 @@ import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
@@ -15,21 +16,10 @@ import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 
+@AllArgsConstructor
 public class ValidatorDataBase {
 
-    //need read cnn data from config
-    public static final String DRIVER = "org.postgresql.Driver";
-    public static final String URI = "jdbc:postgresql://localhost:2345/game";
-    public static final String USER = "postgres";
-    public static final String PASSWORD = "postgres";
-
-    static {
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    private final ApplicationProperties properties;
 
     public static final String CLASSPATH_DB_CHANGELOG_XML = "classpath:/db/changelog.xml";
 
@@ -37,7 +27,11 @@ public class ValidatorDataBase {
     public void update() {
         Map<String, Object> config = new HashMap<>();
         Scope.child(config, () -> {
-            try (Connection connection = DriverManager.getConnection(URI, USER, PASSWORD);) {
+            try (Connection connection = DriverManager.getConnection(
+                    properties.getProperty(ApplicationProperties.HIBERNATE_CONNECTION_URL),
+                    properties.getProperty(ApplicationProperties.HIBERNATE_CONNECTION_USERNAME),
+                    properties.getProperty(ApplicationProperties.HIBERNATE_CONNECTION_PASSWORD)
+            )) {
                 JdbcConnection jdbcConnection = new JdbcConnection(connection);
                 Database database = DatabaseFactory
                         .getInstance()

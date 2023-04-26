@@ -1,7 +1,6 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.config.ApplicationProperties;
-import com.javarush.khmelov.config.Configurator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
@@ -28,7 +27,7 @@ public class ImageService {
 
     @SneakyThrows
     public ImageService(ApplicationProperties applicationProperties) {
-        imagesFolder= applicationProperties.WEB_INF.resolve(IMAGES_FOLDER);
+        imagesFolder= ApplicationProperties.WEB_INF.resolve(IMAGES_FOLDER);
         Files.createDirectories(imagesFolder);
     }
 

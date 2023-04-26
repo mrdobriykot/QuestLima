@@ -1,7 +1,7 @@
 package com.javarush.khmelov.mapping;
 
-import com.javarush.khmelov.dto.QuestDto;
-import com.javarush.khmelov.dto.UserDto;
+import com.javarush.khmelov.dto.QuestTo;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.Quest;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
@@ -15,10 +15,10 @@ class DtoTest {
 
     @Test
     void getUserDto() {
-        User user = User.builder().id(1L).role(Role.ADMIN).build();
-        UserDto userDto = mapper.from(user);
-        System.out.println(userDto);
-        assertEquals(user.getId(), userDto.getId());
+        User user = User.builder().id(1L).login("test").role(Role.ADMIN).build();
+        UserTo userTo = mapper.from(user);
+        System.out.println(userTo);
+        assertEquals(user.getId(), userTo.getId());
     }
 
 
@@ -32,8 +32,8 @@ class DtoTest {
                 .name("Question name")
                 .text("Question text")
                 .build();
-        QuestDto questDto = mapper.from(quest);
-        System.out.println(questDto);
-        assertEquals(quest.getId(), questDto.getId());
+        QuestTo questTo = mapper.from(quest);
+        System.out.println(questTo);
+        assertEquals(quest.getId(), questTo.getId());
     }
 }

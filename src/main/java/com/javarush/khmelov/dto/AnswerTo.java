@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AnswerDto {
+public class AnswerTo {
     Long id;
     String text;
     Long nextQuestionId;

@@ -7,10 +7,10 @@ import java.util.Collection;
 
 @Data
 @Builder
-public class QuestionDto {
+public class QuestionTo {
     Long id;
     Long questId;
     String image;
     String text;
-    Collection<AnswerDto> answers;
+    Collection<AnswerTo> answers;
 }

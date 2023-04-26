@@ -12,8 +12,6 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
-import com.javarush.khmelov.util.Go;
-
 @WebFilter("/*")
 public class MessageFilter extends HttpFilter {
 

@@ -7,11 +7,11 @@ import java.util.Collection;
 
 @Data
 @Builder
-public class QuestDto {
+public class QuestTo {
     Long id;
     Long userId;
     String name;
     String text;
     Long startQuestionId;
-    Collection<QuestionDto> questions;
+    Collection<QuestionTo> questions;
 }

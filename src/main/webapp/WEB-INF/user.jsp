@@ -2,7 +2,7 @@
 <%@include file="parts/header.jsp" %>
 <div class="container">
     <jsp:useBean id="user" scope="request"
-                 type="com.javarush.khmelov.entity.User"/>
+                 type="com.javarush.khmelov.dto.UserTo"/>
     <form class="form-horizontal" action="user?id=${user.id==null?0:user.id}" method="post"
           enctype="multipart/form-data">
         <fieldset>
@@ -51,7 +51,7 @@
                 <label class="col-md-4 control-label" for="password">Password</label>
                 <div class="col-md-4">
                     <input id="password" name="password" type="password" placeholder=""
-                           class="form-control input-md" value="${user.password}"
+                           class="form-control input-md"
                            required="">
 
                 </div>

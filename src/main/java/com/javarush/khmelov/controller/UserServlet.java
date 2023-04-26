@@ -1,8 +1,8 @@
 package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.config.Spring;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.ImageService;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
@@ -33,9 +33,9 @@ public class UserServlet extends HttpServlet {
         request.setAttribute(Key.ID, parameterId);
         if (Objects.nonNull(parameterId)) {
             long id = Long.parseLong(parameterId);
-            Optional<User> optionalUser = userService.get(id);
+            Optional<UserTo> optionalUser = userService.get(id);
             if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
+                UserTo user = optionalUser.get();
                 request.setAttribute(Key.USER, user);
             }
             Jsp.forward(request, response, Go.USER);
@@ -45,21 +45,20 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = User.builder()
-                .id(Long.valueOf(request.getParameter(Key.ID)))
-                .login(request.getParameter(Key.LOGIN))
-                .password(request.getParameter(Key.PASSWORD))
-                .role(Role.valueOf(request.getParameter(Key.ROLE)))
-                .build();
+        Long id = Long.valueOf(request.getParameter(Key.ID));
+        String login = request.getParameter(Key.LOGIN);
+        String role = request.getParameter(Key.ROLE);
+        String password = request.getParameter(Key.PASSWORD);
         Map<String, String[]> parameterMap = request.getParameterMap();
         if (parameterMap.containsKey("create")) {
-            userService.create(user);
+            Optional<UserTo> user=userService.create(id,login,password,role);
+            imageService.uploadImage(request, user.orElseThrow().getImage());
         } else if (parameterMap.containsKey("update")) {
-            userService.update(user);
+            Optional<UserTo> user=userService.update(id,login,password,role);
+            imageService.uploadImage(request, user.orElseThrow().getImage());
         } else if (parameterMap.containsKey("delete")) {
-            userService.delete(user);
+            userService.delete(id);
         } else throw new IllegalStateException("unknown command");
-        imageService.uploadImage(request, user.getImage());
         response.sendRedirect(Key.USERS);
     }
 }

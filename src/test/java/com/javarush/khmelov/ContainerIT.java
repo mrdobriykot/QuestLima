@@ -8,21 +8,20 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 
+import static com.javarush.khmelov.config.ApplicationProperties.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ContainerIT {
 
     private final static JdbcDatabaseContainer<?> CONTAINER;
 
-    public static final String HIBERNATE_CONNECTION_URL = "hibernate.connection.url";
-    public static final String HIBERNATE_CONNECTION_USERNAME = "hibernate.connection.username";
-    public static final String HIBERNATE_CONNECTION_PASSWORD = "hibernate.connection.password";
+    public static final String DOCKER_IMAGE_NAME = "postgres:14.6";
 
     static {
         //create
-        CONTAINER = new PostgreSQLContainer<>("postgres:14.6");
+        CONTAINER = new PostgreSQLContainer<>(DOCKER_IMAGE_NAME);
         CONTAINER.start();
-        //set new properties for TestContainers
+        //set new properties from TestContainers
         ApplicationProperties properties = Spring.getBean(ApplicationProperties.class);
         properties.setProperty(HIBERNATE_CONNECTION_URL, CONTAINER.getJdbcUrl());
         properties.setProperty(HIBERNATE_CONNECTION_USERNAME, CONTAINER.getUsername());

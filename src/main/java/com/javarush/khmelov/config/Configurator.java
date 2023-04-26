@@ -6,11 +6,6 @@ import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.service.UserService;
 import lombok.AllArgsConstructor;
 
-import java.net.URI;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Objects;
-
 @AllArgsConstructor
 public class Configurator {
 
@@ -20,10 +15,9 @@ public class Configurator {
     public void fillEmptyRepository() {
         validatorDataBase.update();
         if (userService.get(1L).isEmpty()) {
-            User admin = User.builder().login("admin").password("456").role(Role.ADMIN).build();
-            userService.create(admin);
-            userService.create(User.builder().login("user").password("user").role(Role.USER).build());
-            userService.create(User.builder().login("guest").password("guest").role(Role.GUEST).build());
+            userService.create(null, "admin", "456",Role.ADMIN.toString());
+            userService.create(null, "user", "user",Role.ADMIN.toString());
+            userService.create(null, "guest", "guest",Role.GUEST.toString());
         }
 
         QuestService questService = Spring.getBean(QuestService.class);

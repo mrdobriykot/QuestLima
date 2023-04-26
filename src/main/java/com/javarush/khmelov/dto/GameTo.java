@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 @Builder
-public class GameDto {
+public class GameTo {
     Long id;
     Long questId;
     Long userId;
-    QuestionDto question;
+    Long currentQuestionId;
     GameState gameState;
 }

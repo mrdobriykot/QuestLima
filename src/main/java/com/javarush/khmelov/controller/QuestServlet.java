@@ -1,10 +1,10 @@
 package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.config.Spring;
-import com.javarush.khmelov.entity.Quest;
-import com.javarush.khmelov.entity.Question;
+import com.javarush.khmelov.dto.QuestTo;
+import com.javarush.khmelov.dto.QuestionTo;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.ImageService;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.service.QuestionService;
@@ -36,19 +36,19 @@ public class QuestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long id = Parser.getId(req);
-        Optional<Quest> quest = questService.get(id);
+        Optional<QuestTo> quest = questService.get(id);
         req.setAttribute(QUEST, quest.orElseThrow());
         Jsp.forward(req, resp, Go.QUEST);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Optional<User> editor = Parser.getUser(req.getSession());
+        Optional<UserTo> editor = Parser.getUser(req.getSession());
         if (editor.isPresent() && editor.get().getRole() == Role.ADMIN) {
             Long id = Parser.getId(req);
             Long questionId = Parser.getId(req, "questionId");
             String text = req.getParameter(Key.TEXT);
-            Optional<Question> question = questionService.update(questionId,text);
+            Optional<QuestionTo> question = questionService.update(questionId,text);
             if (question.isPresent()) {
                 imageService.uploadImage(req, question.get().getImage());
             }

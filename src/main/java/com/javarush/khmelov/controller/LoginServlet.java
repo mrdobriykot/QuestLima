@@ -1,7 +1,7 @@
 package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.config.Spring;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
 import com.javarush.khmelov.util.Jsp;
@@ -30,13 +30,13 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String login = request.getParameter(Key.LOGIN);
         String password = request.getParameter(Key.PASSWORD);
-        Optional<User> user = userService.get(login, password);
+        Optional<UserTo> user = userService.get(login, password);
         if (user.isPresent()) {
             HttpSession session = request.getSession();
-            session.setAttribute(Key.USER,user.get());
-            Jsp.redirect(response,Go.PROFILE);
+            session.setAttribute(Key.USER, user.get());
+            Jsp.redirect(response, Go.PROFILE);
         } else {
-            Jsp.redirect(response,Go.LOGIN); //todo add error message
+            Jsp.redirect(response, Go.LOGIN); //todo add error message
         }
     }
 }

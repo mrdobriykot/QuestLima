@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
 import org.hibernate.cfg.Configuration;
 
-import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SessionCreator implements AutoCloseable {
