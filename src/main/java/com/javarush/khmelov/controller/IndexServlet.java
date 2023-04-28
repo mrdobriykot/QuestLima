@@ -16,9 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import static com.javarush.khmelov.util.Key.INDEX;
-import static com.javarush.khmelov.util.Key.QUESTS;
-
 @WebServlet(value = Go.HOME, loadOnStartup = 0)
 public class IndexServlet extends HttpServlet {
 
@@ -35,7 +32,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute(QUESTS, questService.getAll());
-        Jsp.forward(req, resp, INDEX);
+        req.setAttribute(Key.QUESTS, questService.getAll());
+        Jsp.forward(req, resp, Key.INDEX);
     }
 }

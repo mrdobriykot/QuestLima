@@ -1,7 +1,6 @@
 package com.javarush.khmelov.config;
 
 import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.service.UserService;
 import lombok.AllArgsConstructor;
@@ -15,9 +14,9 @@ public class Configurator {
     public void fillEmptyRepository() {
         validatorDataBase.update();
         if (userService.get(1L).isEmpty()) {
-            userService.create(null, "admin", "456",Role.ADMIN.toString());
-            userService.create(null, "user", "user",Role.ADMIN.toString());
-            userService.create(null, "guest", "guest",Role.GUEST.toString());
+            userService.create(null, "admin", "456", Role.ADMIN.toString());
+            userService.create(null, "user", "user", Role.USER.toString());
+            userService.create(null, "guest", "guest", Role.GUEST.toString());
         }
 
         QuestService questService = Spring.getBean(QuestService.class);

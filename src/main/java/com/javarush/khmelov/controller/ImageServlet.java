@@ -2,6 +2,7 @@ package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.service.ImageService;
+import com.javarush.khmelov.util.Go;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,11 +12,10 @@ import lombok.SneakyThrows;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@WebServlet("/images/*")
+@WebServlet(Go.IMAGES)
 public class ImageServlet extends HttpServlet {
 
     private final ImageService imageService = Spring.getBean(ImageService.class);
-
 
     @Override
     @SneakyThrows

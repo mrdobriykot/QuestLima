@@ -2,7 +2,6 @@ package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.dto.UserTo;
-import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.service.ImageService;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
