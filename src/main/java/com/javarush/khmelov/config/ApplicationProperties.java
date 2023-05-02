@@ -19,6 +19,12 @@ public class ApplicationProperties extends Properties {
     @SneakyThrows
     public ApplicationProperties() {
         this.load(new FileReader(CLASSES_ROOT + "/application.properties"));
+        try {
+            String driver = this.getProperty(HIBERNATE_CONNECTION_DRIVER_CLASS);
+            Class.forName(driver);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //any runtime
