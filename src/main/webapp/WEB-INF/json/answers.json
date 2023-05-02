@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "text": "Принять вызов",
+    "questionId": 1,
+    "nextQuestionId": 2
+  },
+  {
+    "id": 2,
+    "text": "Отклонить вызов",
+    "questionId": 1,
+    "nextQuestionId": 5
+  },
+  {
+    "id": 3,
+    "text": "Подняться на мостик",
+    "questionId": 2,
+    "nextQuestionId": 3
+  },
+  {
+    "id": 4,
+    "text": "Отказаться подниматься на мостик",
+    "questionId": 2,
+    "nextQuestionId": 6
+  },
+  {
+    "id": 5,
+    "text": "Рассказать правду о себе",
+    "questionId": 3,
+    "nextQuestionId": 4
+  },
+  {
+    "id": 6,
+    "text": "Солгать о себе",
+    "questionId": 3,
+    "nextQuestionId": 5
+  }
+]
