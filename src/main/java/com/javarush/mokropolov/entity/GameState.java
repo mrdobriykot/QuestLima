@@ -1,0 +1,1 @@
+package com.javarush.mokropolov.entity;public enum GameState {    PLAY, WIN, LOST}
