@@ -5,11 +5,13 @@ import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.mapping.Dto;
 import com.javarush.khmelov.repository.impl.UserRepository;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
+@Service
 @Transactional
 public class UserService {
 

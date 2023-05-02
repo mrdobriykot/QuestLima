@@ -5,12 +5,14 @@ import com.javarush.khmelov.entity.*;
 import com.javarush.khmelov.mapping.Dto;
 import com.javarush.khmelov.repository.impl.*;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.Optional;
 
 @AllArgsConstructor
+@Service
 public class GameService {
 
     private final UserRepository userRepository;

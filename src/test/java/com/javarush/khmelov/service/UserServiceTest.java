@@ -1,6 +1,7 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.ContainerIT;
+import com.javarush.khmelov.config.Context;
 import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.Role;
@@ -20,7 +21,7 @@ class UserServiceTest {
     @BeforeEach
     void setup() {
         ContainerIT.init();
-        userService = Spring.getBean(UserService.class);
+        userService = Context.getBean(UserService.class);
     }
 
     @Test

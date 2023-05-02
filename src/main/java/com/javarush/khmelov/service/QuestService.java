@@ -8,6 +8,7 @@ import com.javarush.khmelov.repository.impl.AnswerRepository;
 import com.javarush.khmelov.repository.impl.QuestRepository;
 import com.javarush.khmelov.repository.impl.QuestionRepository;
 import com.javarush.khmelov.repository.impl.UserRepository;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
@@ -17,6 +18,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Service
 public class QuestService {
 
     public static final String QUEST_SYMBOL = ":";

@@ -6,10 +6,12 @@ import com.javarush.khmelov.mapping.Dto;
 import com.javarush.khmelov.repository.impl.QuestionRepository;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+@Service
 @AllArgsConstructor
 public class QuestionService {
 

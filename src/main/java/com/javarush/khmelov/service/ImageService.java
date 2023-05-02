@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 
+@Service
 public class ImageService {
 
     private static final String IMAGES_FOLDER = "images";

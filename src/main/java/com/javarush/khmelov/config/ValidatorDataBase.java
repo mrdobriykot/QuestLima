@@ -10,18 +10,24 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 
-@AllArgsConstructor
+@Component
 public class ValidatorDataBase {
 
     private final ApplicationProperties properties;
 
     public static final String CLASSPATH_DB_CHANGELOG_XML = "classpath:/db/changelog.xml";
+
+    public ValidatorDataBase(ApplicationProperties properties) {
+        this.properties = properties;
+        update();
+    }
 
     @SneakyThrows
     public void update() {
