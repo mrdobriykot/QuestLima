@@ -1,17 +1,19 @@
 package com.javarush.khmelov.controller.cmd;
 
+import com.javarush.khmelov.view.View;
+import com.javarush.khmelov.view.Go;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 public interface Command {
-    default void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    default View get(HttpServletRequest request) throws ServletException, IOException {
+        return View.forward(Go.HOME);
     }
 
-    default void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    default View post(HttpServletRequest request) throws ServletException, IOException {
+        return View.redirect(Go.HOME);
     }
 }

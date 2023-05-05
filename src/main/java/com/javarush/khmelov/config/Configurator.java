@@ -4,7 +4,9 @@ import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @AllArgsConstructor
 public class Configurator {
 
@@ -19,7 +21,7 @@ public class Configurator {
             userService.create(null, "guest", "guest", Role.GUEST.toString());
         }
 
-        QuestService questService = Spring.getBean(QuestService.class);
+        QuestService questService = Context.getBean(QuestService.class);
         Long adminId = userService
                 .get("admin", "456")
                 .orElseThrow()

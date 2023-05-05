@@ -1,6 +1,6 @@
 package com.javarush.khmelov.filter;
 
-import com.javarush.khmelov.util.Key;
+import com.javarush.khmelov.controller.Key;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;

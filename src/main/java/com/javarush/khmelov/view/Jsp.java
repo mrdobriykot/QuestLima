@@ -1,4 +1,4 @@
-package com.javarush.khmelov.util;
+package com.javarush.khmelov.view;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,7 +11,7 @@ import lombok.experimental.UtilityClass;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.javarush.khmelov.util.Key.ERROR_MESSAGE;
+import static com.javarush.khmelov.controller.Key.ERROR_MESSAGE;
 
 @UtilityClass
 public class Jsp {

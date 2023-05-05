@@ -1,8 +1,8 @@
 package com.javarush.khmelov.entity;
 
 import com.javarush.khmelov.ContainerIT;
+import com.javarush.khmelov.config.Context;
 import com.javarush.khmelov.config.SessionCreator;
-import com.javarush.khmelov.config.Spring;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.AfterEach;
@@ -17,7 +17,7 @@ public class BaseTest {
     @BeforeEach
     void setUp() {
         ContainerIT.init();
-        sessionCreator = Spring.getBean(SessionCreator.class);
+        sessionCreator = Context.getBean(SessionCreator.class);
         session = sessionCreator.getSession();
         tx = session.beginTransaction();
     }

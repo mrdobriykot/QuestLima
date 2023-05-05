@@ -1,8 +1,6 @@
 package com.javarush.khmelov.repository;
 
-import com.javarush.khmelov.ContainerIT;
 import com.javarush.khmelov.config.Context;
-import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.repository.impl.UserRepository;
@@ -16,7 +14,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserRepositoryTest {
 

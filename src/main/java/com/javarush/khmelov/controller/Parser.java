@@ -1,4 +1,4 @@
-package com.javarush.khmelov.util;
+package com.javarush.khmelov.controller;
 
 import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.User;

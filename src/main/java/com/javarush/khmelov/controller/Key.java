@@ -1,4 +1,4 @@
-package com.javarush.khmelov.util;
+package com.javarush.khmelov.controller;
 
 public class Key {
     public static final String INDEX = "index";

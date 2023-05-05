@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Collection;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class UserTest extends BaseTest{
 
     public static final long PRIMARY_KEY = 1L;

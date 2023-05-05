@@ -1,33 +1,31 @@
-package com.javarush.khmelov.controller;
+package com.javarush.khmelov.controller.cmd.impl;
 
-import com.javarush.khmelov.config.Spring;
+import com.javarush.khmelov.controller.cmd.Command;
+import com.javarush.khmelov.view.View;
 import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.service.ImageService;
 import com.javarush.khmelov.service.UserService;
-import com.javarush.khmelov.util.Go;
-import com.javarush.khmelov.util.Jsp;
-import com.javarush.khmelov.util.Key;
+import com.javarush.khmelov.view.Go;
+import com.javarush.khmelov.controller.Key;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@WebServlet(Go.USER)
-@MultipartConfig(fileSizeThreshold = 1 << 20)
-public class UserServlet extends HttpServlet {
+@Controller(Go.USER)
+@AllArgsConstructor
+public class UserCommand implements Command {
 
-    private final UserService userService = Spring.getBean(UserService.class);
-    private final ImageService imageService = Spring.getBean(ImageService.class);
+    private final UserService userService;
+    private final ImageService imageService;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public View get(HttpServletRequest request) throws ServletException, IOException {
         String parameterId = request.getParameter(Key.ID);
         request.setAttribute(Key.ID, parameterId);
         if (Objects.nonNull(parameterId)) {
@@ -37,27 +35,27 @@ public class UserServlet extends HttpServlet {
                 UserTo user = optionalUser.get();
                 request.setAttribute(Key.USER, user);
             }
-            Jsp.forward(request, response, Go.USER);
+            return View.forward(Go.USER);
         }
-        Jsp.redirect(response,Go.USERS);
+        return View.redirect(Go.USERS);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public View post(HttpServletRequest request) throws ServletException, IOException {
         Long id = Long.valueOf(request.getParameter(Key.ID));
         String login = request.getParameter(Key.LOGIN);
         String role = request.getParameter(Key.ROLE);
         String password = request.getParameter(Key.PASSWORD);
         Map<String, String[]> parameterMap = request.getParameterMap();
         if (parameterMap.containsKey("create")) {
-            Optional<UserTo> user=userService.create(id,login,password,role);
+            Optional<UserTo> user = userService.create(id, login, password, role);
             imageService.uploadImage(request, user.orElseThrow().getImage());
         } else if (parameterMap.containsKey("update")) {
-            Optional<UserTo> user=userService.update(id,login,password,role);
+            Optional<UserTo> user = userService.update(id, login, password, role);
             imageService.uploadImage(request, user.orElseThrow().getImage());
         } else if (parameterMap.containsKey("delete")) {
             userService.delete(id);
         } else throw new IllegalStateException("unknown command");
-        response.sendRedirect(Key.USERS);
+        return View.redirect(Key.USERS);
     }
 }

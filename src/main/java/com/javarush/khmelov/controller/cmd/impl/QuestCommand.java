@@ -1,6 +1,7 @@
-package com.javarush.khmelov.controller;
+package com.javarush.khmelov.controller.cmd.impl;
 
-import com.javarush.khmelov.config.Spring;
+import com.javarush.khmelov.controller.cmd.Command;
+import com.javarush.khmelov.view.View;
 import com.javarush.khmelov.dto.QuestTo;
 import com.javarush.khmelov.dto.QuestionTo;
 import com.javarush.khmelov.dto.UserTo;
@@ -8,41 +9,38 @@ import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.service.ImageService;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.service.QuestionService;
-import com.javarush.khmelov.util.Go;
-import com.javarush.khmelov.util.Jsp;
-import com.javarush.khmelov.util.Key;
-import com.javarush.khmelov.util.Parser;
+import com.javarush.khmelov.view.Go;
+import com.javarush.khmelov.controller.Key;
+import com.javarush.khmelov.controller.Parser;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.util.Optional;
 
-import static com.javarush.khmelov.util.Key.QUEST;
+import static com.javarush.khmelov.controller.Key.QUEST;
 
 
-@MultipartConfig(fileSizeThreshold = 1 << 20)
-@WebServlet(Go.QUEST)
-public class QuestServlet extends HttpServlet {
+@Controller(Go.QUEST)
+@AllArgsConstructor
+public class QuestCommand implements Command {
 
-    private final QuestService questService = Spring.getBean(QuestService.class);
-    private final QuestionService questionService = Spring.getBean(QuestionService.class);
-    private final ImageService imageService = Spring.getBean(ImageService.class);
+    private final QuestService questService;
+    private final QuestionService questionService;
+    private final ImageService imageService;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public View get(HttpServletRequest req) throws ServletException, IOException {
         long id = Parser.getId(req);
         Optional<QuestTo> quest = questService.get(id);
         req.setAttribute(QUEST, quest.orElseThrow());
-        Jsp.forward(req, resp, Go.QUEST);
+        return View.forward(Go.QUEST);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    public View post(HttpServletRequest req) throws IOException, ServletException {
         Optional<UserTo> editor = Parser.getUser(req.getSession());
         if (editor.isPresent() && editor.get().getRole() == Role.ADMIN) {
             Long id = Parser.getId(req);
@@ -53,9 +51,9 @@ public class QuestServlet extends HttpServlet {
                 imageService.uploadImage(req, question.get().getImage());
             }
             String uri = "%s?id=%d#bookmark%d".formatted(Go.QUEST, id, questionId);
-            Jsp.redirect(resp, uri);
+            return View.redirect(uri);
         } else {
-            Jsp.forward(req, resp, Go.QUEST, "Недостаточно прав для редактирования");
+            return View.redirect(Go.QUEST, "Недостаточно прав для редактирования");
         }
     }
 }

@@ -6,7 +6,8 @@ import org.hibernate.Session;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class SessionCreatorTest {
 
@@ -17,7 +18,7 @@ class SessionCreatorTest {
 
     @Test
     void getSession() {
-        SessionCreator sessionCreator = Spring.getBean(SessionCreator.class);
+        SessionCreator sessionCreator = Context.getBean(SessionCreator.class);
         Session session = sessionCreator.getSession();
         assertNotNull(session);
         User user = session.load(User.class, 1L);

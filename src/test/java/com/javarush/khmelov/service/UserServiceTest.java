@@ -2,15 +2,10 @@ package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.ContainerIT;
 import com.javarush.khmelov.config.Context;
-import com.javarush.khmelov.config.Spring;
 import com.javarush.khmelov.dto.UserTo;
-import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
