@@ -1,5 +1,6 @@
 package com.javarush.khmelov.repository;
 
+import com.javarush.khmelov.ContainerIT;
 import com.javarush.khmelov.config.Context;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.entity.User;
@@ -21,7 +22,7 @@ class UserRepositoryTest {
 
     @BeforeEach
     void setup() {
-        //ContainerIT.init();
+        ContainerIT.init();
         userRepository = Context.getBean(UserRepository.class);
     }
 
@@ -80,7 +81,10 @@ class UserRepositoryTest {
         userRepository.update(tempUser);
         System.out.println("UPDATE " + tempUser);
 
-        userRepository.delete(tempUser.getId());
-        System.out.println("DELETE " + tempUser);
+        Long id = tempUser.getId();
+        if (id != null) { //check tx mode
+            userRepository.delete(id);
+            System.out.println("DELETE " + tempUser);
+        }
     }
 }

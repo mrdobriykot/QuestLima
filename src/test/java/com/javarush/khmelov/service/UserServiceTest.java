@@ -41,8 +41,10 @@ class UserServiceTest {
 
         user = userService.update(user.getId(), user.getLogin(), "new_password", "GUEST").orElseThrow();
         System.out.println("UPDATE " + user);
-
-        userService.delete(user.getId());
-        System.out.println("DELETE " + user);
+        Long id = user.getId();
+        if (id != null) { //check tx mode
+            userService.delete(id);
+            System.out.println("DELETE " + user);
+        }
     }
 }
