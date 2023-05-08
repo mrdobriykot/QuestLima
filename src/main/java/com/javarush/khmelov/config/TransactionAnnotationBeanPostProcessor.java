@@ -37,7 +37,7 @@ public class TransactionAnnotationBeanPostProcessor implements BeanPostProcessor
     public Object postProcessAfterInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
         Class<?> aClass = mapRealClass.get(beanName);
         if (aClass != null) {
-            //bean = proxy(bean, aClass);
+            bean = proxy(bean, aClass);
             System.out.printf("<<< after init %s%n", beanName);
         }
         return bean;

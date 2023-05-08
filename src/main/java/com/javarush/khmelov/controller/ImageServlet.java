@@ -3,10 +3,10 @@ package com.javarush.khmelov.controller;
 import com.javarush.khmelov.config.Context;
 import com.javarush.khmelov.service.ImageService;
 import com.javarush.khmelov.view.Go;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 
 import java.nio.file.Files;

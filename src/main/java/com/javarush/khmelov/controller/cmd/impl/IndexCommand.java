@@ -5,8 +5,8 @@ import com.javarush.khmelov.controller.cmd.Command;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.view.Go;
 import com.javarush.khmelov.view.View;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 
