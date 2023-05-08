@@ -5,15 +5,14 @@ import com.javarush.khmelov.config.Context;
 import com.javarush.khmelov.controller.cmd.Command;
 import com.javarush.khmelov.controller.cmd.CommandResolver;
 import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.view.Go;
 import com.javarush.khmelov.view.View;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 

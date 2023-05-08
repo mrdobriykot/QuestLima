@@ -1,9 +1,9 @@
 package com.javarush.khmelov.entity;
 
+import javax.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;

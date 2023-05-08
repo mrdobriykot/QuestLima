@@ -2,17 +2,16 @@ package com.javarush.khmelov.repository;
 
 import com.javarush.khmelov.config.SessionCreator;
 import com.javarush.khmelov.entity.AbstractEntity;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,7 +19,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
-@Transactional
 public class BaseRepository<T extends AbstractEntity> implements Repository<T> {
 
     private final SessionCreator sessionCreator;

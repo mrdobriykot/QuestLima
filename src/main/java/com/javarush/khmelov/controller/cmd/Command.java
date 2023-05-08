@@ -1,9 +1,9 @@
 package com.javarush.khmelov.controller.cmd;
 
-import com.javarush.khmelov.view.View;
 import com.javarush.khmelov.view.Go;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
+import com.javarush.khmelov.view.View;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
 

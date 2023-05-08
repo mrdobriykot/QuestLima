@@ -10,8 +10,8 @@ import com.javarush.khmelov.service.QuestionService;
 import com.javarush.khmelov.view.Go;
 import com.javarush.khmelov.controller.Key;
 import com.javarush.khmelov.controller.Parser;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 

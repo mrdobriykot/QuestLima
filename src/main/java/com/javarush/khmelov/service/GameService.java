@@ -4,22 +4,47 @@ import com.javarush.khmelov.dto.GameTo;
 import com.javarush.khmelov.entity.*;
 import com.javarush.khmelov.mapping.Dto;
 import com.javarush.khmelov.repository.impl.*;
-import lombok.AllArgsConstructor;
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.Optional;
 
-@AllArgsConstructor
 @Service
 public class GameService {
 
-    private final UserRepository userRepository;
-    private final GameRepository gameRepository;
-    private final QuestRepository questRepository;
-    private final QuestionRepository questionRepository;
-    private final AnswerRepository answerRepository;
+    private UserRepository userRepository;
+    private GameRepository gameRepository;
+    private QuestRepository questRepository;
+    private QuestionRepository questionRepository;
+    private AnswerRepository answerRepository;
+
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setGameRepository(GameRepository gameRepository) {
+        this.gameRepository = gameRepository;
+    }
+
+    @Autowired
+    public void setQuestRepository(QuestRepository questRepository) {
+        this.questRepository = questRepository;
+    }
+
+    @Autowired
+    public void setQuestionRepository(QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
+    }
+
+    @Autowired
+    public void setAnswerRepository(AnswerRepository answerRepository) {
+        this.answerRepository = answerRepository;
+    }
 
     @Transactional
     public Optional<GameTo> getGame(Long questId, Long userId) {

@@ -3,8 +3,8 @@ package com.javarush.khmelov.controller;
 import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.exception.AppException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import lombok.experimental.UtilityClass;
 
 import java.util.Optional;

@@ -4,18 +4,22 @@ import com.javarush.khmelov.dto.QuestionTo;
 import com.javarush.khmelov.entity.Question;
 import com.javarush.khmelov.mapping.Dto;
 import com.javarush.khmelov.repository.impl.QuestionRepository;
-import lombok.AllArgsConstructor;
+import javax.transaction.Transactional;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class QuestionService {
 
-    private final QuestionRepository questionRepository;
+    private QuestionRepository questionRepository;
+
+    @Autowired
+    public void setQuestionRepository(QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
+    }
 
     @Transactional
     public Optional<QuestionTo> get(long id) {

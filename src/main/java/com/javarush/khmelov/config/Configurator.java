@@ -3,15 +3,18 @@ package com.javarush.khmelov.config;
 import com.javarush.khmelov.entity.Role;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@AllArgsConstructor
 public class Configurator {
 
     private final ValidatorDataBase validatorDataBase;
     private final UserService userService;
+
+    public Configurator(ValidatorDataBase validatorDataBase, UserService userService) {
+        this.validatorDataBase = validatorDataBase;
+        this.userService = userService;
+    }
 
     public void fillEmptyRepository() {
         validatorDataBase.update();

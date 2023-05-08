@@ -1,10 +1,8 @@
 package com.javarush.khmelov.entity;
 
-import lombok.*;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
+import lombok.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,8 +15,6 @@ import java.util.List;
 @Entity
 @ToString
 @Table(name = "users")
-@Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "user_region")
 public class User implements AbstractEntity{
 
     @Id

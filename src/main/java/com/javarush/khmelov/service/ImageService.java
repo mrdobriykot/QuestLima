@@ -1,9 +1,9 @@
 package com.javarush.khmelov.service;
 
 import com.javarush.khmelov.config.ApplicationProperties;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Part;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ public class ImageService {
     private final Path imagesFolder;
 
     @SneakyThrows
-    public ImageService(ApplicationProperties applicationProperties) {
+    public ImageService() {
         imagesFolder= ApplicationProperties.WEB_INF.resolve(IMAGES_FOLDER);
         Files.createDirectories(imagesFolder);
     }

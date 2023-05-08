@@ -8,9 +8,10 @@ import com.javarush.khmelov.repository.impl.AnswerRepository;
 import com.javarush.khmelov.repository.impl.QuestRepository;
 import com.javarush.khmelov.repository.impl.QuestionRepository;
 import com.javarush.khmelov.repository.impl.UserRepository;
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -27,15 +28,28 @@ public class QuestService {
     public static final String LINK_SYMBOL = "<";
     public static final String DIGITS = "\\d+";
 
-    private final UserRepository userRepository;
-    private final QuestRepository questRepository;
-    private final QuestionRepository questionRepository;
-    private final AnswerRepository answerRepository;
+    private UserRepository userRepository;
+    private QuestRepository questRepository;
+    private QuestionRepository questionRepository;
+    private AnswerRepository answerRepository;
 
-    public QuestService(UserRepository userRepository, QuestRepository questRepository, QuestionRepository questionRepository, AnswerRepository answerRepository) {
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setQuestRepository(QuestRepository questRepository) {
         this.questRepository = questRepository;
+    }
+
+    @Autowired
+    public void setQuestionRepository(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
+    }
+
+    @Autowired
+    public void setAnswerRepository(AnswerRepository answerRepository) {
         this.answerRepository = answerRepository;
     }
 
